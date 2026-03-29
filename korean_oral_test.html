@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>តេស្តនិយាយភាសាកូរ៉េ — អនុវត្ត</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+Khmer:wght@300;400;600;700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1208;
+    --paper: #f5f0e8;
+    --paper2: #ede7d9;
+    --accent: #c0392b;
+    --accent2: #e67e22;
+    --muted: #8a7e6e;
+    --green: #27ae60;
+    --border: #c8b89a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(139,124,100,0.08) 27px, rgba(139,124,100,0.08) 28px);
+  }
+
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 24px 32px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    border-bottom: 3px solid var(--accent);
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  header span {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .progress-bar {
+    height: 3px;
+    background: var(--paper2);
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.5s ease;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Question card */
+  .question-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: 2px;
+    padding: 36px 40px;
+    box-shadow: 4px 4px 0 var(--paper2), 8px 8px 0 var(--border);
+    margin-bottom: 28px;
+    animation: slideIn 0.35s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .q-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    padding: 3px 10px;
+    border-radius: 1px;
+  }
+
+  .q-counter {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .q-prompt {
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .q-pattern {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    border-left: 2px solid var(--border);
+    padding-left: 10px;
+    margin-bottom: 8px;
+  }
+
+  .q-hint {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .q-hint .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  /* Recording controls */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn-record {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-record:hover { background: #a93226; transform: translateY(-1px); }
+  .btn-record.recording {
+    background: var(--green);
+    animation: pulse 1.2s infinite;
+  }
+  .btn-record.recording:hover { background: #229954; }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(39,174,96,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(39,174,96,0); }
+  }
+
+  .dot {
+    width: 10px; height: 10px;
+    background: white;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .btn-record.recording .dot {
+    border-radius: 2px;
+    animation: none;
+  }
+
+  .timer {
+    font-family: 'DM Mono', monospace;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--ink);
+    min-width: 60px;
+    letter-spacing: 0.05em;
+  }
+
+  .waveform {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 30px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .waveform.active { opacity: 1; }
+  .waveform-bar {
+    width: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    animation: wave 0.8s ease-in-out infinite;
+    min-height: 4px;
+  }
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+  }
+
+  /* Answer & feedback */
+  .answer-section {
+    display: none;
+  }
+  .answer-section.visible { display: block; animation: slideIn 0.3s ease; }
+
+  .audio-player {
+    background: var(--paper2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  audio { width: 100%; height: 32px; }
+
+  .btn-check {
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 16px;
+    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .btn-check:hover { background: #2c2213; }
+  .btn-check:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .feedback-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 24px 28px;
+    display: none;
+    animation: slideIn 0.3s ease;
+  }
+  .feedback-box.visible { display: block; }
+
+  .feedback-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .score-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 4px 12px;
+    border-radius: 1px;
+  }
+  .score-great { background: #d5f5e3; color: #1a7a44; border: 1px solid #27ae60; }
+  .score-ok { background: #fef9e7; color: #7d6608; border: 1px solid #f0b429; }
+  .score-retry { background: #fdedec; color: #922b21; border: 1px solid var(--accent); }
+
+  .feedback-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink);
+    white-space: pre-wrap;
+  }
+
+  .model-answer {
+    margin-top: 16px;
+    background: var(--paper);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .model-answer .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  /* Navigation */
+  .nav-row {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .btn-nav {
+    background: transparent;
+    border: 2px solid var(--ink);
+    color: var(--ink);
+    padding: 11px 24px;
+    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+    flex: 1;
+  }
+  .btn-nav:hover { background: var(--ink); color: var(--paper); }
+  .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+  .btn-nav.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn-nav.primary:hover { background: #2c2213; }
+
+  /* Mode selector */
+  .mode-selector {
+    display: flex;
+    gap: 0;
+    margin-bottom: 28px;
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .mode-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+    border-right: 1px solid var(--ink);
+  }
+  .mode-btn:last-child { border-right: none; }
+  .mode-btn.active { background: var(--ink); color: var(--paper); }
+
+  /* Loading spinner */
+  .spinner {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Skeleton loading */
+  .skeleton {
+    background: linear-gradient(90deg, var(--paper2) 25%, var(--border) 50%, var(--paper2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+    border-radius: 2px;
+    height: 16px;
+    margin-bottom: 8px;
+  }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+
+  /* Complete screen */
+  #complete-screen {
+    display: none;
+    text-align: center;
+    padding: 60px 40px;
+  }
+  #complete-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-style: italic;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  #complete-screen p {
+    color: var(--muted);
+    margin-bottom: 32px;
+    font-size: 15px;
+  }
+
+  .no-mic-msg {
+    display: none;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    color: #856404;
+    padding: 12px 16px;
+    font-size: 13px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  .btn-speak {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1.5px solid var(--accent2);
+    color: var(--accent2);
+    padding: 6px 14px;
+    font-family: 'Noto Sans Khmer', serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    margin-top: 12px;
+  }
+  .btn-speak:hover { background: var(--accent2); color: white; }
+  .btn-speak.speaking { background: var(--accent2); color: white; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>តេស្តនិយាយភាសាកូរ៉េ — អនុវត្ត</h1>
+  <span>Korean Oral Test Practice · មីនា</span>
+</header>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<div class="container">
+
+  <div class="mode-selector">
+    <button class="mode-btn active" onclick="setMode('all')">សំណួរទាំងអស់</button>
+    <button class="mode-btn" onclick="setMode('q01')">Q01 ម៉ោង</button>
+    <button class="mode-btn" onclick="setMode('q02')">Q02 តម្លៃ</button>
+    <button class="mode-btn" onclick="setMode('q03')">Q03 លេខ</button>
+    <button class="mode-btn" onclick="setMode('q04')">Q04 ទីកន្លែង</button>
+    <button class="mode-btn" onclick="setMode('free')">សន្ទនាសេរី</button>
+  </div>
+
+  <div id="test-area">
+    <div class="question-card" id="question-card">
+      <div class="q-meta">
+        <span class="q-tag" id="q-tag">Q01</span>
+        <span class="q-counter" id="q-counter">1 / 30</span>
+      </div>
+      <div class="q-prompt" id="q-prompt">Loading...</div>
+      <div class="q-pattern" id="q-pattern"></div>
+      <button class="btn-speak" id="btn-speak" onclick="speakQuestion()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <span id="speak-label">ស្តាប់សំណួរ</span>
+      </button>
+      <div class="q-hint" id="q-hint" style="display:none">
+        <div class="label">ព័ត៌មានជំនួយ / Input</div>
+        <div id="q-hint-text"></div>
+      </div>
+    </div>
+
+    <div class="no-mic-msg" id="no-mic-msg">
+      ⚠️ មិនអាចចូលដំណើរការមីក្រូហ្វូនបានទេ។ សូមអនុញ្ញាតការចូលដំណើរការក្នុងការកំណត់កម្មវិធីរុករករបស់អ្នក។
+    </div>
+
+    <div class="controls">
+      <button class="btn-record" id="btn-record" onclick="toggleRecord()">
+        <div class="dot"></div>
+        <span id="btn-label">ចាប់ផ្តើមថត</span>
+      </button>
+      <div class="timer" id="timer">0:00</div>
+      <div class="waveform" id="waveform">
+        <div class="waveform-bar" style="animation-delay:0s"></div>
+        <div class="waveform-bar" style="animation-delay:0.1s"></div>
+        <div class="waveform-bar" style="animation-delay:0.2s"></div>
+        <div class="waveform-bar" style="animation-delay:0.15s"></div>
+        <div class="waveform-bar" style="animation-delay:0.05s"></div>
+        <div class="waveform-bar" style="animation-delay:0.25s"></div>
+        <div class="waveform-bar" style="animation-delay:0.1s"></div>
+      </div>
+    </div>
+
+    <div class="answer-section" id="answer-section">
+      <audio id="audio-playback" controls style="width:100%;margin-bottom:16px;"></audio>
+
+      <button class="btn-check" id="btn-check" onclick="checkAnswer()">
+        <span id="check-label">ទទួលមតិយោបល់ AI ✦</span>
+      </button>
+
+      <div class="feedback-box" id="feedback-box">
+        <div class="feedback-header">
+          <span id="feedback-title" style="font-weight:600;font-size:15px;">មតិយោបល់</span>
+          <span class="score-badge" id="score-badge"></span>
+        </div>
+        <div class="feedback-text" id="feedback-text"></div>
+        <div class="model-answer" id="model-answer-box">
+          <div class="label">ចម្លើយគំរូ / Model Answer</div>
+          <div id="model-answer-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row" style="margin-top:20px;">
+      <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← ថយក្រោយ</button>
+      <button class="btn-nav primary" id="btn-next" onclick="navigate(1)">បន្ទាប់ →</button>
+    </div>
+  </div>
+
+  <div id="complete-screen">
+    <h2>អបអរសាទរ! 🎉</h2>
+    <p>អ្នកបានបញ្ចប់សំណួរទាំងអស់ហើយ។</p>
+    <button class="btn-nav primary" onclick="restart()" style="max-width:200px;margin:0 auto;display:block;">ចាប់ផ្តើមម្តងទៀត</button>
+  </div>
+
+</div>
+
+<script>
+// ── Question bank ──────────────────────────────────────────────
+const QUESTIONS = [
+  // Q01 — Time
+  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'서울은 지금 몇 시예요?', hint:'12:30', answer:'서울은 지금 열두 시 삼십 분이에요.' },
+  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'베이징은 지금 몇 시예요?', hint:'4:50', answer:'베이징은 지금 네 시 오십 분이에요.' },
+  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'모스크바는 지금 몇 시예요?', hint:'5:23', answer:'모스크바는 지금 다섯 시 이십삼 분이에요.' },
+  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'도쿄는 지금 몇 시예요?', hint:'6:47', answer:'도쿄는 지금 여섯 시 사십칠 분이에요.' },
+  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'샌프란시스코는 지금 몇 시예요?', hint:'1:34', answer:'샌프란시스코는 지금 한 시 삼십사 분이에요.' },
+  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'파리는 지금 몇 시예요?', hint:'2:45', answer:'파리는 지금 두 시 사십오 분이에요.' },
+  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'프놈펜은 지금 몇 시예요?', hint:'3:16', answer:'프놈펜은 지금 세 시 십육 분이에요.' },
+  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'런던은 지금 몇 시예요?', hint:'7:28', answer:'런던은 지금 일곱 시 이십팔 분이에요.' },
+  // Q02 — Price
+  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'24,700원', answer:'이만 사천칠백 원이에요.' },
+  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'3,500원', answer:'삼천오백 원이에요.' },
+  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'1,200원', answer:'천이백 원이에요.' },
+  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'10,000원', answer:'만 원이에요.' },
+  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'84,300원', answer:'팔만 사천삼백 원이에요.' },
+  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'1,322,700원', answer:'백삼십이만 이천칠백 원이에요.' },
+  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'234,800원', answer:'이십삼만 사천팔백 원이에요.' },
+  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'9,467,900원', answer:'구백사십육만 칠천구백 원이에요.' },
+  // Q03 — Phone numbers
+  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'폴 씨 핸드폰 번호가 몇 번이에요?', hint:'088-145-293', answer:'폴 씨 핸드폰 번호는 공팔팔에 일사오에 이구삼이에요.' },
+  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'수잔 씨 핸드폰 번호가 몇 번이에요?', hint:'077-123-456', answer:'수잔 씨 핸드폰 번호는 공칠칠에 일이삼에 사오육이에요.' },
+  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'미나 씨 핸드폰 번호가 몇 번이에요?', hint:'010-987-543', answer:'미나 씨 핸드폰 번호는 공일공에 구팔칠에 오사삼이에요.' },
+  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'앤디 씨 핸드폰 번호가 몇 번이에요?', hint:'096-349-7285', answer:'앤디 씨 핸드폰 번호는 공구육에 삼사구에 칠이팔오예요.' },
+  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'소라 씨 핸드폰 번호가 몇 번이에요?', hint:'082-952-167', answer:'소라 씨 핸드폰 번호는 공팔이에 구오이에 일육칠이에요.' },
+  // Q04 — Location
+  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'미나 씨가 어디에서 아침 식사해요?', hint:'아침 식사하다', answer:'미나 씨가 식당에서 아침 식사해요.' },
+  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'앤디 씨가 어디에서 공책을 사요?', hint:'공책을 사다', answer:'앤디 씨가 문구점에서 공책을 사요.' },
+  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'한스 씨가 어디에서 수영해요?', hint:'수영하다', answer:'한스 씨가 수영장에서 수영해요.' },
+  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'투안 씨가 어디에서 영화를 봐요?', hint:'영화를 보다', answer:'투안 씨가 극장에서 영화를 봐요.' },
+  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'이치로 씨가 어디에서 책을 읽어요?', hint:'책을 읽다', answer:'이치로 씨가 도서관에서 책을 읽어요.' },
+  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'완 씨가 어디에서 한국어를 배워요?', hint:'한국어를 배우다', answer:'완 씨가 학교에서 한국어를 배워요.' },
+  // Free conversation
+  { tag:'자유', pattern:'자신에 대한 질문', prompt:'자기소개해 주세요.', hint:'이름, 나라', answer:'안녕하세요. 저는 [이름]이에요. [나라]에서 왔어요.' },
+  { tag:'자유', pattern:'자신에 대한 질문', prompt:'보통 주말에 뭐 해요?', hint:'주말 활동', answer:'보통 친구를 만나요. / 집에서 쉬어요.' },
+  { tag:'자유', pattern:'자신에 대한 질문', prompt:'한국 음식을 좋아해요? 무슨 음식을 좋아해요?', hint:'음식 이름', answer:'네, 좋아해요. 비빔밥을 좋아해요.' },
+  { tag:'자유', pattern:'자신에 대한 질문', prompt:'한국어 공부가 재미있어요?', hint:'솔직하게!', answer:'네, 재미있어요! / 조금 어려워요.' },
+];
+
+const MODES = {
+  all: QUESTIONS,
+  q01: QUESTIONS.filter(q => q.tag === 'Q01'),
+  q02: QUESTIONS.filter(q => q.tag === 'Q02'),
+  q03: QUESTIONS.filter(q => q.tag === 'Q03'),
+  q04: QUESTIONS.filter(q => q.tag === 'Q04'),
+  free: QUESTIONS.filter(q => q.tag === '자유'),
+};
+
+let currentMode = 'all';
+let questions = [...QUESTIONS];
+let currentIndex = 0;
+
+// Recording state
+let mediaRecorder = null;
+let audioChunks = [];
+let audioBlob = null;
+let recordingInterval = null;
+let recordSeconds = 0;
+let isRecording = false;
+
+function setMode(mode) {
+  currentMode = mode;
+  questions = [...MODES[mode]];
+  currentIndex = 0;
+  document.querySelectorAll('.mode-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['all','q01','q02','q03','q04','free'][i] === mode);
+  });
+  resetQuestion();
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[currentIndex];
+  document.getElementById('q-tag').textContent = q.tag;
+  document.getElementById('q-counter').textContent = `${currentIndex + 1} / ${questions.length}`;
+  document.getElementById('q-prompt').textContent = q.prompt;
+  document.getElementById('q-pattern').textContent = 'គំរូ: ' + q.pattern;
+  document.getElementById('q-hint').style.display = 'block';
+  document.getElementById('q-hint-text').textContent = q.hint;
+  document.getElementById('model-answer-text').textContent = q.answer;
+  document.getElementById('progress').style.width = ((currentIndex + 1) / questions.length * 100) + '%';
+  document.getElementById('btn-prev').disabled = currentIndex === 0;
+  document.getElementById('btn-next').disabled = currentIndex === questions.length - 1;
+  resetQuestion();
+}
+
+function resetQuestion() {
+  stopSpeech();
+  stopRecording(true); // silent stop
+  document.getElementById('answer-section').classList.remove('visible');
+  document.getElementById('feedback-box').classList.remove('visible');
+  document.getElementById('btn-record').className = 'btn-record';
+  document.getElementById('btn-label').textContent = 'ចាប់ផ្តើមថត';
+  document.getElementById('timer').textContent = '0:00';
+  document.getElementById('waveform').classList.remove('active');
+  audioBlob = null;
+  audioChunks = [];
+  isRecording = false;
+}
+
+async function toggleRecord() {
+  if (isRecording) {
+    stopRecording(false);
+  } else {
+    await startRecording();
+  }
+}
+
+async function startRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    audioChunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+    mediaRecorder.onstop = () => {
+      audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+      const url = URL.createObjectURL(audioBlob);
+      document.getElementById('audio-playback').src = url;
+      document.getElementById('answer-section').classList.add('visible');
+      document.getElementById('feedback-box').classList.remove('visible');
+      stream.getTracks().forEach(t => t.stop());
+    };
+    mediaRecorder.start();
+    isRecording = true;
+    recordSeconds = 0;
+    document.getElementById('btn-record').className = 'btn-record recording';
+    document.getElementById('btn-label').textContent = 'ឈប់ថត';
+    document.getElementById('waveform').classList.add('active');
+    document.getElementById('no-mic-msg').style.display = 'none';
+    recordingInterval = setInterval(() => {
+      recordSeconds++;
+      const m = Math.floor(recordSeconds / 60);
+      const s = recordSeconds % 60;
+      document.getElementById('timer').textContent = `${m}:${String(s).padStart(2,'0')}`;
+      if (recordSeconds >= 30) stopRecording(false);
+    }, 1000);
+  } catch (e) {
+    document.getElementById('no-mic-msg').style.display = 'block';
+  }
+}
+
+function stopRecording(silent) {
+  if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+    if (!silent) mediaRecorder.stop();
+    else { try { mediaRecorder.stop(); } catch(e){} }
+  }
+  isRecording = false;
+  document.getElementById('btn-record').className = 'btn-record';
+  document.getElementById('btn-label').textContent = 'ថតម្តងទៀត';
+  document.getElementById('waveform').classList.remove('active');
+}
+
+async function checkAnswer() {
+  if (!audioBlob) return;
+  const q = questions[currentIndex];
+  const btn = document.getElementById('btn-check');
+  const label = document.getElementById('check-label');
+  btn.disabled = true;
+  label.innerHTML = '<span class="spinner"></span> AI កំពុងវិភាគ...';
+
+  const feedbackBox = document.getElementById('feedback-box');
+  feedbackBox.classList.add('visible');
+  document.getElementById('feedback-text').innerHTML = '<div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:60%"></div><div class="skeleton" style="width:90%"></div>';
+  document.getElementById('score-badge').textContent = '';
+  document.getElementById('score-badge').className = 'score-badge';
+
+  // Convert audio to base64
+  const base64Audio = await blobToBase64(audioBlob);
+
+  const systemPrompt = `You are a Korean language teacher evaluating a beginner student's oral answer. The student is Cambodian and speaks Khmer. Give all feedback in Khmer language (ភាសាខ្មែរ). Be encouraging but precise.
+
+The student was asked: "${q.prompt}"
+Pattern to use: ${q.pattern}
+The model answer is: "${q.answer}"
+
+Evaluate on:
+1. Correct use of the sentence pattern
+2. Pronunciation tips for the key Korean numbers/words
+3. Natural flow
+
+Respond ONLY in Khmer in this exact format:
+ពិន្ទុ: [ល្អណាស់ / ល្អ / សាកម្តងទៀត]
+មតិយោបល់: [2-3 ប្រយោគ ជំរុញនិងជាក់លាក់ជាភាសាខ្មែរ]
+គន្លឹះ: [គន្លឹះការបញ្ចេញសំឡេង ឬវេយ្យាករណ៍មួយ ជាភាសាខ្មែរ]
+
+Keep it brief and encouraging!`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{
+          role: 'user',
+          content: `Please evaluate my Korean oral answer for the question: "${q.prompt}". The model answer is: "${q.answer}". I recorded my answer but you cannot hear it directly, so please give me guidance on what to check in my answer and tips for saying it correctly. Focus especially on the numbers/pattern: ${q.pattern}. Hint data: ${q.hint}`
+        }],
+        system: systemPrompt
+      })
+    });
+
+    const data = await response.json();
+    const text = data.content?.map(c => c.text || '').join('') || '';
+    parseFeedback(text, q.answer);
+  } catch(e) {
+    document.getElementById('feedback-text').textContent = '피드백을 불러올 수 없어요. 네트워크를 확인해 주세요.';
+  }
+
+  btn.disabled = false;
+  label.innerHTML = 'AI 피드백 받기 ✦';
+}
+
+function parseFeedback(text, modelAnswer) {
+  let score = 'N/A';
+  let feedbackText = text;
+
+  const scoreMatch = text.match(/SCORE:\s*(.+)/i);
+  if (scoreMatch) score = scoreMatch[1].trim();
+
+  const feedbackMatch = text.match(/FEEDBACK:\s*([\s\S]*?)(?=TIP:|$)/i);
+  if (feedbackMatch) {
+    const tipMatch = text.match(/TIP:\s*([\s\S]*)/i);
+    feedbackText = (feedbackMatch[1].trim()) + (tipMatch ? '\n\n💡 ' + tipMatch[1].trim() : '');
+  }
+
+  const badge = document.getElementById('score-badge');
+  badge.textContent = score;
+  if (score.includes('좋아요')) badge.className = 'score-badge score-great';
+  else if (score.includes('괜찮아요')) badge.className = 'score-badge score-ok';
+  else badge.className = 'score-badge score-retry';
+
+  document.getElementById('feedback-text').textContent = feedbackText;
+  document.getElementById('model-answer-box').style.display = 'block';
+  document.getElementById('model-answer-text').textContent = modelAnswer;
+}
+
+function blobToBase64(blob) {
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+    reader.readAsDataURL(blob);
+  });
+}
+
+function navigate(dir) {
+  const next = currentIndex + dir;
+  if (next < 0 || next >= questions.length) return;
+  currentIndex = next;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function restart() {
+  currentIndex = 0;
+  document.getElementById('complete-screen').style.display = 'none';
+  document.getElementById('test-area').style.display = 'block';
+  renderQuestion();
+}
+
+function speakQuestion() {
+  const q = questions[currentIndex];
+  const btn = document.getElementById('btn-speak');
+  const label = document.getElementById('speak-label');
+
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    btn.classList.remove('speaking');
+    label.textContent = 'ស្តាប់សំណួរ';
+    return;
+  }
+
+  const utter = new SpeechSynthesisUtterance(q.prompt);
+  utter.lang = 'ko-KR';
+  utter.rate = 0.85;
+  utter.pitch = 1;
+
+  // Pick a Korean voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const korVoice = voices.find(v => v.lang.startsWith('ko'));
+  if (korVoice) utter.voice = korVoice;
+
+  utter.onstart = () => {
+    btn.classList.add('speaking');
+    label.textContent = 'កំពុងនិយាយ...';
+  };
+  utter.onend = utter.onerror = () => {
+    btn.classList.remove('speaking');
+    label.textContent = 'ស្តាប់សំណួរ';
+  };
+
+  window.speechSynthesis.speak(utter);
+}
+
+function stopSpeech() {
+  if (window.speechSynthesis && window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+  }
+  const btn = document.getElementById('btn-speak');
+  const label = document.getElementById('speak-label');
+  if (btn) btn.classList.remove('speaking');
+  if (label) label.textContent = 'ស្តាប់សំណួរ';
+}
+
+// Pre-load voices (Chrome requires this)
+if (window.speechSynthesis) {
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+}
+
+// Init
+renderQuestion();
+</script>
+</body>
+</html>
