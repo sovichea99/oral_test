@@ -1,979 +1,1340 @@
 <!DOCTYPE html>
 <html lang="km">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>តេស្តនិយាយភាសាកូរ៉េ — អនុវត្ត</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+Khmer:wght@300;400;600;700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #1a1208;
-    --paper: #f5f0e8;
-    --paper2: #ede7d9;
-    --accent: #c0392b;
-    --accent2: #e67e22;
-    --muted: #8a7e6e;
-    --green: #27ae60;
-    --border: #c8b89a;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>តេស្តនិយាយភាសាកូរ៉េ — អនុវត្ត</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+Khmer:wght@300;400;600;700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,700;1,500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1a1208;
+      --paper: #f5f0e8;
+      --paper2: #ede7d9;
+      --accent: #c0392b;
+      --accent2: #e67e22;
+      --muted: #8a7e6e;
+      --green: #27ae60;
+      --border: #c8b89a;
+    }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-    background: var(--paper);
-    color: var(--ink);
-    min-height: 100vh;
-    background-image:
-      repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(139,124,100,0.08) 27px, rgba(139,124,100,0.08) 28px);
-  }
+    body {
+      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(139, 124, 100, 0.08) 27px, rgba(139, 124, 100, 0.08) 28px);
+    }
 
-  header {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 24px 32px;
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    border-bottom: 3px solid var(--accent);
-  }
+    header {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 24px 32px;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      border-bottom: 3px solid var(--accent);
+    }
 
-  header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-style: italic;
-    letter-spacing: 0.02em;
-  }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
 
-  header span {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
+    header span {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
 
-  .progress-bar { height: 3px; background: var(--paper2); }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transition: width 0.5s ease;
-  }
+    .progress-bar {
+      height: 3px;
+      background: var(--paper2);
+    }
 
-  .container { max-width: 780px; margin: 0 auto; padding: 40px 24px; }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 0.5s ease;
+    }
 
-  .question-card {
-    background: white;
-    border: 1px solid var(--border);
-    border-top: 4px solid var(--accent);
-    border-radius: 2px;
-    padding: 36px 40px;
-    box-shadow: 4px 4px 0 var(--paper2), 8px 8px 0 var(--border);
-    margin-bottom: 28px;
-    animation: slideIn 0.35s ease;
-  }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
 
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+    .question-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      border-radius: 2px;
+      padding: 36px 40px;
+      box-shadow: 4px 4px 0 var(--paper2), 8px 8px 0 var(--border);
+      margin-bottom: 28px;
+      animation: slideIn 0.35s ease;
+    }
 
-  .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
 
-  .q-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    text-transform: uppercase;
-    border: 1px solid var(--accent);
-    padding: 3px 10px;
-    border-radius: 1px;
-  }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  .q-counter { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); }
+    .q-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
 
-  .q-prompt { font-size: 19px; font-weight: 600; line-height: 1.5; margin-bottom: 12px; color: var(--ink); }
+    .q-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      border: 1px solid var(--accent);
+      padding: 3px 10px;
+      border-radius: 1px;
+    }
 
-  .q-pattern {
-    font-size: 13px;
-    color: var(--muted);
-    font-style: italic;
-    border-left: 2px solid var(--border);
-    padding-left: 10px;
-    margin-bottom: 8px;
-  }
+    .q-counter {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
 
-  .q-hint {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 14px 18px;
-    margin-top: 16px;
-    font-size: 14px;
-    line-height: 1.7;
-  }
+    .q-prompt {
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
 
-  .q-hint .label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
+    .q-pattern {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      border-left: 2px solid var(--border);
+      padding-left: 10px;
+      margin-bottom: 8px;
+    }
 
-  .controls { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+    .q-hint {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 14px 18px;
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
 
-  .btn-record {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 28px;
-    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-    letter-spacing: 0.03em;
-  }
+    .q-hint .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
 
-  .btn-record:hover { background: #a93226; transform: translateY(-1px); }
-  .btn-record.recording { background: var(--green); animation: pulse 1.2s infinite; }
-  .btn-record.recording:hover { background: #229954; }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
 
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(39,174,96,0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(39,174,96,0); }
-  }
+    .btn-record {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.2s;
+      letter-spacing: 0.03em;
+    }
 
-  .dot { width: 10px; height: 10px; background: white; border-radius: 50%; flex-shrink: 0; }
-  .btn-record.recording .dot { border-radius: 2px; }
+    .btn-record:hover {
+      background: #a93226;
+      transform: translateY(-1px);
+    }
 
-  .timer {
-    font-family: 'DM Mono', monospace;
-    font-size: 22px;
-    font-weight: 300;
-    color: var(--ink);
-    min-width: 60px;
-    letter-spacing: 0.05em;
-  }
+    .btn-record.recording {
+      background: var(--green);
+      animation: pulse 1.2s infinite;
+    }
 
-  .waveform { display: flex; align-items: center; gap: 3px; height: 30px; opacity: 0; transition: opacity 0.3s; }
-  .waveform.active { opacity: 1; }
-  .waveform-bar {
-    width: 3px;
-    background: var(--accent);
-    border-radius: 2px;
-    animation: wave 0.8s ease-in-out infinite;
-    min-height: 4px;
-  }
-  @keyframes wave {
-    0%, 100% { transform: scaleY(0.3); }
-    50% { transform: scaleY(1); }
-  }
+    .btn-record.recording:hover {
+      background: #229954;
+    }
 
-  .answer-section { display: none; }
-  .answer-section.visible { display: block; animation: slideIn 0.3s ease; }
+    @keyframes pulse {
 
-  /* Custom audio player */
-  .audio-player-custom {
-    background: var(--paper2);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4);
+      }
 
-  .audio-play-btn {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: var(--ink);
-    border: none;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: background 0.2s;
-  }
-  .audio-play-btn:hover { background: var(--accent); }
-  .audio-play-btn svg { fill: white; }
+      50% {
+        box-shadow: 0 0 0 8px rgba(39, 174, 96, 0);
+      }
+    }
 
-  .audio-progress-wrap {
-    flex: 1;
-    height: 4px;
-    background: var(--border);
-    border-radius: 2px;
-    cursor: pointer;
-    position: relative;
-  }
-  .audio-progress-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 2px;
-    width: 0%;
-    transition: width 0.1s linear;
-  }
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
-  .audio-time {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    min-width: 40px;
-    text-align: right;
-  }
+    .btn-record.recording .dot {
+      border-radius: 2px;
+    }
 
-  /* Hidden native audio for fallback */
-  audio { display: none; }
+    .timer {
+      font-family: 'DM Mono', monospace;
+      font-size: 22px;
+      font-weight: 300;
+      color: var(--ink);
+      min-width: 60px;
+      letter-spacing: 0.05em;
+    }
 
-  .btn-check {
-    width: 100%;
-    background: var(--green);
-    color: white;
-    border: none;
-    padding: 16px;
-    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 2px;
-    letter-spacing: 0.05em;
-    transition: all 0.2s;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  .btn-check:hover { background: #229954; transform: translateY(-1px); }
-  .btn-check.speaking { background: var(--accent2); animation: pulse 1.2s infinite; }
-  .btn-check:disabled { opacity: 0.5; cursor: not-allowed; }
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 30px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
 
-  .model-answer-reveal {
-    background: white;
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--green);
-    border-radius: 2px;
-    padding: 18px 22px;
-    margin-bottom: 16px;
-    animation: slideIn 0.3s ease;
-  }
-  .model-answer-reveal .label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .model-answer-reveal #model-answer-text {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1.6;
-  }
+    .waveform.active {
+      opacity: 1;
+    }
 
-  .feedback-box {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 24px 28px;
-    display: none;
-    animation: slideIn 0.3s ease;
-  }
-  .feedback-box.visible { display: block; }
+    .waveform-bar {
+      width: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: wave 0.8s ease-in-out infinite;
+      min-height: 4px;
+    }
 
-  .feedback-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-  }
+    @keyframes wave {
 
-  .score-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    font-weight: 400;
-    padding: 4px 12px;
-    border-radius: 1px;
-  }
-  .score-great { background: #d5f5e3; color: #1a7a44; border: 1px solid #27ae60; }
-  .score-ok { background: #fef9e7; color: #7d6608; border: 1px solid #f0b429; }
-  .score-retry { background: #fdedec; color: #922b21; border: 1px solid var(--accent); }
+      0%,
+      100% {
+        transform: scaleY(0.3);
+      }
 
-  .feedback-text { font-size: 14px; line-height: 1.8; color: var(--ink); white-space: pre-wrap; }
+      50% {
+        transform: scaleY(1);
+      }
+    }
 
-  .model-answer {
-    margin-top: 16px;
-    background: var(--paper);
-    border-left: 3px solid var(--accent);
-    padding: 12px 16px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  .model-answer .label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
+    .answer-section {
+      display: none;
+    }
 
-  .nav-row { display: flex; gap: 12px; justify-content: space-between; align-items: center; margin-top: 8px; }
+    .answer-section.visible {
+      display: block;
+      animation: slideIn 0.3s ease;
+    }
 
-  .btn-nav {
-    background: transparent;
-    border: 2px solid var(--ink);
-    color: var(--ink);
-    padding: 11px 24px;
-    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-    letter-spacing: 0.05em;
-    flex: 1;
-  }
-  .btn-nav:hover { background: var(--ink); color: var(--paper); }
-  .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
-  .btn-nav.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .btn-nav.primary:hover { background: #2c2213; }
+    /* Custom audio player */
+    .audio-player-custom {
+      background: var(--paper2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
 
-  .mode-selector {
-    display: flex;
-    gap: 0;
-    margin-bottom: 28px;
-    border: 2px solid var(--ink);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .mode-btn {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    background: transparent;
-    font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    color: var(--ink);
-    letter-spacing: 0.04em;
-    transition: all 0.2s;
-    border-right: 1px solid var(--ink);
-  }
-  .mode-btn:last-child { border-right: none; }
-  .mode-btn.active { background: var(--ink); color: var(--paper); }
+    .audio-play-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--ink);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
 
-  .spinner {
-    display: inline-block;
-    width: 14px; height: 14px;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
+    .audio-play-btn:hover {
+      background: var(--accent);
+    }
 
-  .skeleton {
-    background: linear-gradient(90deg, var(--paper2) 25%, var(--border) 50%, var(--paper2) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.2s infinite;
-    border-radius: 2px;
-    height: 16px;
-    margin-bottom: 8px;
-  }
-  @keyframes shimmer { to { background-position: -200% 0; } }
+    .audio-play-btn svg {
+      fill: white;
+    }
 
-  .no-mic-msg {
-    display: none;
-    background: #fff3cd;
-    border: 1px solid #ffc107;
-    color: #856404;
-    padding: 12px 16px;
-    font-size: 13px;
-    border-radius: 2px;
-    margin-bottom: 16px;
-  }
+    .audio-progress-wrap {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+    }
 
-  .btn-speak {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: transparent;
-    border: 1.5px solid var(--accent2);
-    color: var(--accent2);
-    padding: 6px 14px;
-    font-family: 'Noto Sans Khmer', serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
-    margin-top: 12px;
-  }
-  .btn-speak:hover { background: var(--accent2); color: white; }
-  .btn-speak.speaking { background: var(--accent2); color: white; }
+    .audio-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
 
-  /* Self-assessment panel (shown after recording since AI can't hear audio) */
-  .self-check {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-    font-size: 14px;
-    line-height: 1.8;
-  }
-  .self-check .label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .self-check-items { list-style: none; }
-  .self-check-items li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
-  .self-check-items li::before { content: '☐'; font-size: 16px; line-height: 1.2; color: var(--accent); flex-shrink: 0; }
+    .audio-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      min-width: 40px;
+      text-align: right;
+    }
 
-  .api-banner {
-    background: #fffbf0;
-    border-bottom: 2px solid var(--accent2);
-    padding: 12px 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .api-banner label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
-  .api-banner input { flex: 1; min-width: 180px; font-family: 'DM Mono', monospace; font-size: 12px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 2px; background: white; color: var(--ink); outline: none; }
-  .api-banner input:focus { border-color: var(--accent2); }
-  .api-banner input.saved { border-color: var(--green); background: #f0faf4; }
-  .api-save-btn { font-family: 'Noto Sans Khmer', serif; font-size: 12px; font-weight: 600; padding: 7px 16px; background: var(--accent2); color: white; border: none; border-radius: 2px; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
-  .api-save-btn:hover { background: #d35400; }
-  .api-status { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--green); display: none; }
-  .api-status.visible { display: inline; }
-  .api-help { font-size: 11px; color: var(--muted); width: 100%; margin-top: 2px; }
-  .api-help a { color: var(--accent2); text-decoration: none; }
-</style>
+    /* Hidden native audio for fallback */
+    audio {
+      display: none;
+    }
+
+    .btn-check {
+      width: 100%;
+      background: var(--green);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-check:hover {
+      background: #229954;
+      transform: translateY(-1px);
+    }
+
+    .btn-check.speaking {
+      background: var(--accent2);
+      animation: pulse 1.2s infinite;
+    }
+
+    .btn-check:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .model-answer-reveal {
+      background: white;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--green);
+      border-radius: 2px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+      animation: slideIn 0.3s ease;
+    }
+
+    .model-answer-reveal .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .model-answer-reveal #model-answer-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .feedback-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 24px 28px;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    .feedback-box.visible {
+      display: block;
+    }
+
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .score-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 4px 12px;
+      border-radius: 1px;
+    }
+
+    .score-great {
+      background: #d5f5e3;
+      color: #1a7a44;
+      border: 1px solid #27ae60;
+    }
+
+    .score-ok {
+      background: #fef9e7;
+      color: #7d6608;
+      border: 1px solid #f0b429;
+    }
+
+    .score-retry {
+      background: #fdedec;
+      color: #922b21;
+      border: 1px solid var(--accent);
+    }
+
+    .feedback-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--ink);
+      white-space: pre-wrap;
+    }
+
+    .model-answer {
+      margin-top: 16px;
+      background: var(--paper);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .model-answer .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .btn-nav {
+      background: transparent;
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      padding: 11px 24px;
+      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+      flex: 1;
+    }
+
+    .btn-nav:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .btn-nav.primary {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .btn-nav.primary:hover {
+      background: #2c2213;
+    }
+
+    .mode-selector {
+      display: flex;
+      gap: 0;
+      margin-bottom: 28px;
+      border: 2px solid var(--ink);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      border-right: 1px solid var(--ink);
+    }
+
+    .mode-btn:last-child {
+      border-right: none;
+    }
+
+    .mode-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, var(--paper2) 25%, var(--border) 50%, var(--paper2) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.2s infinite;
+      border-radius: 2px;
+      height: 16px;
+      margin-bottom: 8px;
+    }
+
+    @keyframes shimmer {
+      to {
+        background-position: -200% 0;
+      }
+    }
+
+    .no-mic-msg {
+      display: none;
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      color: #856404;
+      padding: 12px 16px;
+      font-size: 13px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .btn-speak {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      border: 1.5px solid var(--accent2);
+      color: var(--accent2);
+      padding: 6px 14px;
+      font-family: 'Noto Sans Khmer', serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.2s;
+      margin-top: 12px;
+    }
+
+    .btn-speak:hover {
+      background: var(--accent2);
+      color: white;
+    }
+
+    .btn-speak.speaking {
+      background: var(--accent2);
+      color: white;
+    }
+
+    /* Self-assessment panel (shown after recording since AI can't hear audio) */
+    .self-check {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .self-check .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .self-check-items {
+      list-style: none;
+    }
+
+    .self-check-items li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .self-check-items li::before {
+      content: '☐';
+      font-size: 16px;
+      line-height: 1.2;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .api-banner {
+      background: #fffbf0;
+      border-bottom: 2px solid var(--accent2);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .api-banner label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .api-banner input {
+      flex: 1;
+      min-width: 180px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: white;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .api-banner input:focus {
+      border-color: var(--accent2);
+    }
+
+    .api-banner input.saved {
+      border-color: var(--green);
+      background: #f0faf4;
+    }
+
+    .api-save-btn {
+      font-family: 'Noto Sans Khmer', serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 16px;
+      background: var(--accent2);
+      color: white;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .api-save-btn:hover {
+      background: #d35400;
+    }
+
+    .api-status {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--green);
+      display: none;
+    }
+
+    .api-status.visible {
+      display: inline;
+    }
+
+    .api-help {
+      font-size: 11px;
+      color: var(--muted);
+      width: 100%;
+      margin-top: 2px;
+    }
+
+    .api-help a {
+      color: var(--accent2);
+      text-decoration: none;
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <h1>តេស្តនិយាយភាសាកូរ៉េ — អនុវត្ត</h1>
-  <span>Korean Oral Test Practice · មីនា</span>
-</header>
-<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-
-</div>
-
-<div class="container">
-
-  <div class="mode-selector">
-    <button class="mode-btn active" onclick="setMode('all')">ទាំងអស់</button>
-    <button class="mode-btn" onclick="setMode('q01')">Q01 ម៉ោង</button>
-    <button class="mode-btn" onclick="setMode('q02')">Q02 តម្លៃ</button>
-    <button class="mode-btn" onclick="setMode('q03')">Q03 លេខ</button>
-    <button class="mode-btn" onclick="setMode('q04')">Q04 ទីកន្លែង</button>
-    <button class="mode-btn" onclick="setMode('free')">សន្ទនា</button>
+  <header>
+    <h1>តេស្តនិយាយភាសាកូរ៉េ — អនុវត្ត</h1>
+    <span>Korean Oral Test Practice · មីនា</span>
+  </header>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
   </div>
 
-  <div id="test-area">
-    <div class="question-card" id="question-card">
-      <div class="q-meta">
-        <span class="q-tag" id="q-tag">Q01</span>
-        <span class="q-counter" id="q-counter">1 / 30</span>
-      </div>
-      <div class="q-prompt" id="q-prompt">Loading...</div>
-      <div class="q-pattern" id="q-pattern"></div>
-      <button class="btn-speak" id="btn-speak" onclick="speakQuestion()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-        </svg>
-        <span id="speak-label">ស្តាប់សំណួរ</span>
-      </button>
-      <div class="q-hint" id="q-hint" style="display:none">
-        <div class="label">ព័ត៌មានជំនួយ / Input</div>
-        <div id="q-hint-text"></div>
-      </div>
+  </div>
+
+  <div class="container">
+
+    <div class="mode-selector">
+      <button class="mode-btn active" onclick="setMode('all')">ទាំងអស់</button>
+      <button class="mode-btn" onclick="setMode('q01')">Q01 ម៉ោង</button>
+      <button class="mode-btn" onclick="setMode('q02')">Q02 តម្លៃ</button>
+      <button class="mode-btn" onclick="setMode('q03')">Q03 លេខ</button>
+      <button class="mode-btn" onclick="setMode('q04')">Q04 ទីកន្លែង</button>
+      <button class="mode-btn" onclick="setMode('free')">សន្ទនា</button>
     </div>
 
-    <div class="no-mic-msg" id="no-mic-msg">
-      ⚠️ មិនអាចចូលដំណើរការមីក្រូហ្វូនបានទេ។ សូមអនុញ្ញាតការចូលដំណើរការក្នុងការកំណត់កម្មវិធីរុករករបស់អ្នក។
-    </div>
-
-    <div class="controls">
-      <button class="btn-record" id="btn-record" onclick="toggleRecord()">
-        <div class="dot"></div>
-        <span id="btn-label">ចាប់ផ្តើមថត</span>
-      </button>
-      <div class="timer" id="timer">0:00</div>
-      <div class="waveform" id="waveform">
-        <div class="waveform-bar" style="animation-delay:0s"></div>
-        <div class="waveform-bar" style="animation-delay:0.1s"></div>
-        <div class="waveform-bar" style="animation-delay:0.2s"></div>
-        <div class="waveform-bar" style="animation-delay:0.15s"></div>
-        <div class="waveform-bar" style="animation-delay:0.05s"></div>
-        <div class="waveform-bar" style="animation-delay:0.25s"></div>
-        <div class="waveform-bar" style="animation-delay:0.1s"></div>
-      </div>
-    </div>
-
-    <div class="answer-section" id="answer-section">
-
-      <!-- Custom audio player -->
-      <div class="audio-player-custom" id="audio-player-custom">
-        <button class="audio-play-btn" id="audio-play-btn" onclick="toggleAudioPlay()">
-          <svg id="play-icon" width="14" height="14" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-        </button>
-        <div class="audio-progress-wrap" id="audio-progress-wrap" onclick="seekAudio(event)">
-          <div class="audio-progress-fill" id="audio-progress-fill"></div>
+    <div id="test-area">
+      <div class="question-card" id="question-card">
+        <div class="q-meta">
+          <span class="q-tag" id="q-tag">Q01</span>
+          <span class="q-counter" id="q-counter">1 / 30</span>
         </div>
-        <div class="audio-time" id="audio-time">0:00</div>
+        <div class="q-prompt" id="q-prompt">Loading...</div>
+        <div class="q-pattern" id="q-pattern"></div>
+        <button class="btn-speak" id="btn-speak" onclick="speakQuestion()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span id="speak-label">ស្តាប់សំណួរ</span>
+        </button>
+        <div class="q-hint" id="q-hint" style="display:none">
+          <div class="label">ព័ត៌មានជំនួយ / Input</div>
+          <div id="q-hint-text"></div>
+        </div>
       </div>
 
-      <!-- Hidden native audio element -->
-      <audio id="audio-playback"></audio>
-
-      <!-- Self-check list shown before AI feedback -->
-      <div class="self-check" id="self-check" style="display:none">
-        <div class="label">ពិនិត្យខ្លួនឯង / Self-check</div>
-        <ul class="self-check-items" id="self-check-items"></ul>
+      <div class="no-mic-msg" id="no-mic-msg">
+        ⚠️ មិនអាចចូលដំណើរការមីក្រូហ្វូនបានទេ។ សូមអនុញ្ញាតការចូលដំណើរការក្នុងការកំណត់កម្មវិធីរុករករបស់អ្នក។
       </div>
 
-      <button class="btn-check" id="btn-check" onclick="speakAnswer()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-        </svg>
-        <span id="check-label">ស្តាប់ចម្លើយគំរូ</span>
-      </button>
+      <div class="controls">
+        <button class="btn-record" id="btn-record" onclick="toggleRecord()">
+          <div class="dot"></div>
+          <span id="btn-label">ចាប់ផ្តើមថត</span>
+        </button>
+        <div class="timer" id="timer">0:00</div>
+        <div class="waveform" id="waveform">
+          <div class="waveform-bar" style="animation-delay:0s"></div>
+          <div class="waveform-bar" style="animation-delay:0.1s"></div>
+          <div class="waveform-bar" style="animation-delay:0.2s"></div>
+          <div class="waveform-bar" style="animation-delay:0.15s"></div>
+          <div class="waveform-bar" style="animation-delay:0.05s"></div>
+          <div class="waveform-bar" style="animation-delay:0.25s"></div>
+          <div class="waveform-bar" style="animation-delay:0.1s"></div>
+        </div>
+      </div>
 
-      <div class="model-answer-reveal" id="model-answer-box" style="display:none">
-        <div class="label">ចម្លើយគំរូ / Model Answer</div>
-        <div id="model-answer-text"></div>
+      <div class="answer-section" id="answer-section">
+
+        <!-- Custom audio player -->
+        <div class="audio-player-custom" id="audio-player-custom">
+          <button class="audio-play-btn" id="audio-play-btn" onclick="toggleAudioPlay()">
+            <svg id="play-icon" width="14" height="14" viewBox="0 0 24 24">
+              <polygon points="5,3 19,12 5,21" />
+            </svg>
+          </button>
+          <div class="audio-progress-wrap" id="audio-progress-wrap" onclick="seekAudio(event)">
+            <div class="audio-progress-fill" id="audio-progress-fill"></div>
+          </div>
+          <div class="audio-time" id="audio-time">0:00</div>
+        </div>
+
+        <!-- Hidden native audio element -->
+        <audio id="audio-playback"></audio>
+
+        <!-- Self-check list shown before AI feedback -->
+        <div class="self-check" id="self-check" style="display:none">
+          <div class="label">ពិនិត្យខ្លួនឯង / Self-check</div>
+          <ul class="self-check-items" id="self-check-items"></ul>
+        </div>
+
+        <button class="btn-check" id="btn-check" onclick="speakAnswer()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span id="check-label">ស្តាប់ចម្លើយគំរូ</span>
+        </button>
+
+        <div class="model-answer-reveal" id="model-answer-box" style="display:none">
+          <div class="label">ចម្លើយគំរូ / Model Answer</div>
+          <div id="model-answer-text"></div>
+        </div>
+      </div>
+
+      <div class="nav-row" style="margin-top:20px;">
+        <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← មុន</button>
+        <button class="btn-nav primary" id="btn-next" onclick="navigate(1)">បន្ទាប់ →</button>
       </div>
     </div>
 
-    <div class="nav-row" style="margin-top:20px;">
-      <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← មុន</button>
-      <button class="btn-nav primary" id="btn-next" onclick="navigate(1)">បន្ទាប់ →</button>
-    </div>
   </div>
 
-</div>
+  <script>
+    // ── Question bank ──────────────────────────────────────────────
+    const QUESTIONS = [
+      {
+        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.', prompt: '서울은 지금 몇 시예요?', hint: '12:30', answer: '서울은 지금 열두 시 삼십 분이에요.',
+        checks: ['열두 (yeoldu) = 12 — ណាមួយ?', '삼십 (samsip) = 30 — បានអានត្រឹមត្រូវទេ?', 'ប្រើ 이에요 នៅចុង?']
+      },
+      {
+        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.', prompt: '베이징은 지금 몇 시예요?', hint: '4:50', answer: '베이징은 지금 네 시 오십 분이에요.',
+        checks: ['네 (ne) = 4', '오십 (osip) = 50', '베이징은 — 은 ត្រូវប្រើ']
+      },
+      {
+        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.', prompt: '모스크바는 지금 몇 시예요?', hint: '5:23', answer: '모스크바는 지금 다섯 시 이십삼 분이에요.',
+        checks: ['다섯 (daseot) = 5', '이십삼 (isimsam) = 23', '모스크바는 — 는 ត្រូវប្រើ']
+      },
+      {
+        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.', prompt: '도쿄는 지금 몇 시예요?', hint: '6:47', answer: '도쿄는 지금 여섯 시 사십칠 분이에요.',
+        checks: ['여섯 (yeoseot) = 6', '사십칠 (sasipchil) = 47', 'ប្រើ분 (bun) សម្រាប់នាទី']
+      },
+      {
+        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.', prompt: '샌프란시스코는 지금 몇 시예요?', hint: '1:34', answer: '샌프란시스코는 지금 한 시 삼십사 분이에요.',
+        checks: ['한 (han) = 1', '삼십사 (samsipsa) = 34', 'ស្តាប់ត្រូវថា 샌프란시스코는 ហើយ']
+      },
+      {
+        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.', prompt: '파리는 지금 몇 시예요?', hint: '2:45', answer: '파리는 지금 두 시 사십오 분이에요.',
+        checks: ['두 (du) = 2', '사십오 (sasipo) = 45', 'ប្រយ័ត្ន 사십오 vs 오십사']
+      },
+      {
+        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.', prompt: '프놈펜은 지금 몇 시예요?', hint: '3:16', answer: '프놈펜은 지금 세 시 십육 분이에요.',
+        checks: ['세 (se) = 3', '십육 (simnyuk) = 16', 'ប្រយ័ត្ន 십육 ออกเสียง "심뉵"']
+      },
+      {
+        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.', prompt: '런던은 지금 몇 시예요?', hint: '7:28', answer: '런던은 지금 일곱 시 이십팔 분이에요.',
+        checks: ['일곱 (ilgop) = 7', '이십팔 (isippal) = 28', 'ប្រើ은 ជំនួស 는 ព្រោះ런던 ចប់ដោយស្រៈ']
+      },
+      {
+        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.', prompt: '이게 얼마예요?', hint: '24,700원', answer: '이만 사천칠백 원이에요.',
+        checks: ['이만 (iman) = 20,000', '사천 (sacheon) = 4,000', '칠백 (chilbaek) = 700']
+      },
+      {
+        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.', prompt: '이게 얼마예요?', hint: '3,500원', answer: '삼천오백 원이에요.',
+        checks: ['삼천 (samcheon) = 3,000', '오백 (obaek) = 500', 'ពីរចំណែកផ្សំបានត្រូវ?']
+      },
+      {
+        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.', prompt: '이게 얼마예요?', hint: '1,200원', answer: '천이백 원이에요.',
+        checks: ['천 (cheon) = 1,000 — មិនបាច់និយាយ 일천', '이백 (ibaek) = 200', 'ជារួម: 천이백']
+      },
+      {
+        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.', prompt: '이게 얼마예요?', hint: '10,000원', answer: '만 원이에요.',
+        checks: ['만 (man) = 10,000 — ខ្លីណាស់!', 'មិនបាច់ 일만 — គ្រាន់តែ 만', 'ប្រើ 원 (won) ក្រោយ']
+      },
+      {
+        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.', prompt: '이게 얼마예요?', hint: '84,300원', answer: '팔만 사천삼백 원이에요.',
+        checks: ['팔만 (palman) = 80,000', '사천 (sacheon) = 4,000', '삼백 (sambaek) = 300']
+      },
+      {
+        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.', prompt: '이게 얼마예요?', hint: '1,322,700원', answer: '백삼십이만 이천칠백 원이에요.',
+        checks: ['백삼십이만 = 1,320,000', '이천칠백 = 2,700', 'ចំណែក 만 គឺ crucial ក្នុងលេខធំ']
+      },
+      {
+        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.', prompt: '이게 얼마예요?', hint: '234,800원', answer: '이십삼만 사천팔백 원이에요.',
+        checks: ['이십삼만 = 230,000', '사천 = 4,000', '팔백 = 800']
+      },
+      {
+        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.', prompt: '이게 얼마예요?', hint: '9,467,900원', answer: '구백사십육만 칠천구백 원이에요.',
+        checks: ['구백사십육만 = 9,460,000', '칠천구백 = 7,900', 'លេខធំ — ត្រូវតែហ្លឿន!']
+      },
+      {
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '폴 씨 핸드폰 번호가 몇 번이에요?', hint: '088-145-293', answer: '폴 씨 핸드폰 번호는 공팔팔에 일사오에 이구삼이에요.',
+        checks: ['공 (gong) = 0', 'ប្រើ 에 (e) ដើម្បីញែក group', '읽다 digit ម្តងមួយៗ']
+      },
+      {
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '수잔 씨 핸드폰 번호가 몇 번이에요?', hint: '077-123-456', answer: '수잔 씨 핸드폰 번호는 공칠칠에 일이삼에 사오육이에요.',
+        checks: ['공칠칠 — 공 = 0, 칠 = 7', '일이삼 — digit មួយៗ', '사오육 — ត្រឹមត្រូវ?']
+      },
+      {
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '미나 씨 핸드폰 번호가 몇 번이에요?', hint: '010-987-543', answer: '미나 씨 핸드폰 번호는 공일공에 구팔칠에 오사삼이에요.',
+        checks: ['공일공 — 0,1,0', '구팔칠 — 9,8,7', '오사삼 — 5,4,3']
+      },
+      {
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '앤디 씨 핸드폰 번호가 몇 번이에요?', hint: '096-349-7285', answer: '앤디 씨 핸드폰 번호는 공구육에 삼사구에 칠이팔오예요.',
+        checks: ['공구육 — 0,9,6', '삼사구 — 3,4,9', '칠이팔오 — group ចុង 4 digits']
+      },
+      {
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '소라 씨 핸드폰 번호가 몇 번이에요?', hint: '082-952-167', answer: '소라 씨 핸드폰 번호는 공팔이에 구오이에 일육칠이에요.',
+        checks: ['공팔이 — 0,8,2', '구오이 — 9,5,2', '일육칠 — 1,6,7']
+      },
+      {
+        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '미나 씨가 어디에서 아침 식사해요?', hint: '아침 식사하다 → 식당', answer: '미나 씨가 식당에서 아침 식사해요.',
+        checks: ['식당 (sikdang) = restaurant', 'ប្រើ 에서 (eseo) = at/in', 'ប្រព័ន្ធ: [ឈ្មោះ]씨가 [ទីកន្លែង]에서 [កិ្រយា]']
+      },
+      {
+        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '앤디 씨가 어디에서 공책을 사요?', hint: '공책을 사다 → 문구점', answer: '앤디 씨가 문구점에서 공책을 사요.',
+        checks: ['문구점 (mungujeom) = stationery store', '사요 (sayo) = buys', 'ចំណាំ object 공책을 នៅ position ត្រឹមត្រូវ']
+      },
+      {
+        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '한스 씨가 어디에서 수영해요?', hint: '수영하다 → 수영장', answer: '한스 씨가 수영장에서 수영해요.',
+        checks: ['수영장 (suyeongjang) = swimming pool', '수영해요 = swims', '한스는 vs 한스씨가 — difference?']
+      },
+      {
+        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '투안 씨가 어디에서 영화를 봐요?', hint: '영화를 보다 → 극장', answer: '투안 씨가 극장에서 영화를 봐요.',
+        checks: ['극장 (geukjang) = cinema', '봐요 (bwayo) = watches', '영화를 — 를 particle ត្រឹមត្រូវ']
+      },
+      {
+        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '이치로 씨가 어디에서 책을 읽어요?', hint: '책을 읽다 → 도서관', answer: '이치로 씨가 도서관에서 책을 읽어요.',
+        checks: ['도서관 (doseogwan) = library', '읽어요 (ilgeoyo) = reads', 'ប្រើ 에서 ជំនួស 에 ព្រោះមានសកម្មភាព']
+      },
+      {
+        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '완 씨가 어디에서 한국어를 배워요?', hint: '한국어를 배우다 → 학교', answer: '완 씨가 학교에서 한국어를 배워요.',
+        checks: ['학교 (hakgyo) = school', '배워요 (baeweoyo) = learns', '한국어를 — 를 particle']
+      },
+      { tag: '자유', pattern: '저는 [이름]이에요.', prompt: '자기소개해 주세요.', hint: 'ឈ្មោះ, ប្រទេស', answer: '안녕하세요. 저는 [이름]이에요. [나라]에서 왔어요.', checks: ['ឈ្មោះ?', 'ប្រទេស?'] },
+      { tag: '자유', pattern: '저는 [나이]살이에요.', prompt: '몇 살이에요?', hint: 'អាយុ', answer: '저는 [나이]살이에요.', checks: ['លេខកូរ៉េ (Pure Korean)?'] },
+      { tag: '자유', pattern: '보통 [시간]에 먹어요.', prompt: '점심을 몇 시에 먹어요?', hint: 'ម៉ោងបាយថ្ងៃ', answer: '보통 열두 시에 먹어요.', checks: ['열두 시 (12:00)?'] },
+      { tag: '자유', pattern: '가족이 [숫자]명이에요.', prompt: '가족이 몇 명이에요?', hint: 'ចំនួនសមាជិកគ្រួសារ', answer: '가족이 [숫자]명이에요.', checks: ['명 (count)?'] },
+      { tag: '자유', pattern: '학교에서 공부해요.', prompt: '어디에서 한국어를 공부해요?', hint: 'ទីកន្លែងសិក្សា', answer: '학교에서 공부해요.', checks: ['에서 (at)?'] },
+      { tag: '자유', pattern: '액션 영화를 좋아해요.', prompt: '영화를 좋아해요?', hint: 'ចូលចិត្តរឿងអត់?', answer: '네, 좋아해요. 액션 영화를 좋아해요.', checks: ['좋아해요?'] },
+      { tag: '자유', pattern: '보통 아침 여덟 시에 와요.', prompt: '보통 언제 학교에 와요?', hint: 'ម៉ោងមកដល់សាលា', answer: '보통 아침 여덟 시에 와요.', checks: ['여덟 시 (8:00)?'] },
+      { tag: '자유', pattern: '요즘 [동네]에 살아요.', prompt: '요즘 어디에 살아요?', hint: 'កន្លែងរស់នៅបច្ចុប្បន្ន', answer: '요즘 [동네]에 살아요.', checks: ['에 살아요?'] },
+      { tag: '자유', pattern: '고향은 [나라/도시]예요.', prompt: '고향이 어디예요?', hint: 'ស្រុកកំណើត', answer: '고향은 [나라/도시]예요.', checks: ['고향 (hometown)?'] },
+      { tag: '자유', pattern: '[년/월]에 왔어요.', prompt: '언제 프놈펜에 왔어요?', hint: 'ពេលមកដល់ភ្នំពេញ', answer: '[년/월]에 왔어요.', checks: ['왔어요 (past)?'] },
 
-<script>
-// ── Question bank ──────────────────────────────────────────────
-const QUESTIONS = [
-  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'서울은 지금 몇 시예요?', hint:'12:30', answer:'서울은 지금 열두 시 삼십 분이에요.',
-    checks:['열두 (yeoldu) = 12 — ណាមួយ?','삼십 (samsip) = 30 — បានអានត្រឹមត្រូវទេ?','ប្រើ 이에요 នៅចុង?'] },
-  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'베이징은 지금 몇 시예요?', hint:'4:50', answer:'베이징은 지금 네 시 오십 분이에요.',
-    checks:['네 (ne) = 4','오십 (osip) = 50','베이징은 — 은 ត្រូវប្រើ'] },
-  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'모스크바는 지금 몇 시예요?', hint:'5:23', answer:'모스크바는 지금 다섯 시 이십삼 분이에요.',
-    checks:['다섯 (daseot) = 5','이십삼 (isimsam) = 23','모스크바는 — 는 ត្រូវប្រើ'] },
-  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'도쿄는 지금 몇 시예요?', hint:'6:47', answer:'도쿄는 지금 여섯 시 사십칠 분이에요.',
-    checks:['여섯 (yeoseot) = 6','사십칠 (sasipchil) = 47','ប្រើ분 (bun) សម្រាប់នាទី'] },
-  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'샌프란시스코는 지금 몇 시예요?', hint:'1:34', answer:'샌프란시스코는 지금 한 시 삼십사 분이에요.',
-    checks:['한 (han) = 1','삼십사 (samsipsa) = 34','ស្តាប់ត្រូវថា 샌프란시스코는 ហើយ'] },
-  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'파리는 지금 몇 시예요?', hint:'2:45', answer:'파리는 지금 두 시 사십오 분이에요.',
-    checks:['두 (du) = 2','사십오 (sasipo) = 45','ប្រយ័ត្ន 사십오 vs 오십사'] },
-  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'프놈펜은 지금 몇 시예요?', hint:'3:16', answer:'프놈펜은 지금 세 시 십육 분이에요.',
-    checks:['세 (se) = 3','십육 (simnyuk) = 16','ប្រយ័ត្ន 십육 ออกเสียง "심뉵"'] },
-  { tag:'Q01', pattern:'[도시]은/는 지금 [시간]이에요.', prompt:'런던은 지금 몇 시예요?', hint:'7:28', answer:'런던은 지금 일곱 시 이십팔 분이에요.',
-    checks:['일곱 (ilgop) = 7','이십팔 (isippal) = 28','ប្រើ은 ជំនួស 는 ព្រោះ런던 ចប់ដោយស្រៈ'] },
-  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'24,700원', answer:'이만 사천칠백 원이에요.',
-    checks:['이만 (iman) = 20,000','사천 (sacheon) = 4,000','칠백 (chilbaek) = 700'] },
-  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'3,500원', answer:'삼천오백 원이에요.',
-    checks:['삼천 (samcheon) = 3,000','오백 (obaek) = 500','ពីរចំណែកផ្សំបានត្រូវ?'] },
-  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'1,200원', answer:'천이백 원이에요.',
-    checks:['천 (cheon) = 1,000 — មិនបាច់និយាយ 일천','이백 (ibaek) = 200','ជារួម: 천이백'] },
-  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'10,000원', answer:'만 원이에요.',
-    checks:['만 (man) = 10,000 — ខ្លីណាស់!','មិនបាច់ 일만 — គ្រាន់តែ 만','ប្រើ 원 (won) ក្រោយ'] },
-  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'84,300원', answer:'팔만 사천삼백 원이에요.',
-    checks:['팔만 (palman) = 80,000','사천 (sacheon) = 4,000','삼백 (sambaek) = 300'] },
-  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'1,322,700원', answer:'백삼십이만 이천칠백 원이에요.',
-    checks:['백삼십이만 = 1,320,000','이천칠백 = 2,700','ចំណែក 만 គឺ crucial ក្នុងលេខធំ'] },
-  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'234,800원', answer:'이십삼만 사천팔백 원이에요.',
-    checks:['이십삼만 = 230,000','사천 = 4,000','팔백 = 800'] },
-  { tag:'Q02', pattern:'[물건]이/가 [가격]이에요.', prompt:'이게 얼마예요?', hint:'9,467,900원', answer:'구백사십육만 칠천구백 원이에요.',
-    checks:['구백사십육만 = 9,460,000','칠천구백 = 7,900','លេខធំ — ត្រូវតែហ្លឿន!'] },
-  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'폴 씨 핸드폰 번호가 몇 번이에요?', hint:'088-145-293', answer:'폴 씨 핸드폰 번호는 공팔팔에 일사오에 이구삼이에요.',
-    checks:['공 (gong) = 0','ប្រើ 에 (e) ដើម្បីញែក group','읽다 digit ម្តងមួយៗ'] },
-  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'수잔 씨 핸드폰 번호가 몇 번이에요?', hint:'077-123-456', answer:'수잔 씨 핸드폰 번호는 공칠칠에 일이삼에 사오육이에요.',
-    checks:['공칠칠 — 공 = 0, 칠 = 7','일이삼 — digit មួយៗ','사오육 — ត្រឹមត្រូវ?'] },
-  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'미나 씨 핸드폰 번호가 몇 번이에요?', hint:'010-987-543', answer:'미나 씨 핸드폰 번호는 공일공에 구팔칠에 오사삼이에요.',
-    checks:['공일공 — 0,1,0','구팔칠 — 9,8,7','오사삼 — 5,4,3'] },
-  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'앤디 씨 핸드폰 번호가 몇 번이에요?', hint:'096-349-7285', answer:'앤디 씨 핸드폰 번호는 공구육에 삼사구에 칠이팔오예요.',
-    checks:['공구육 — 0,9,6','삼사구 — 3,4,9','칠이팔오 — group ចុង 4 digits'] },
-  { tag:'Q03', pattern:'[이름] 씨 핸드폰 번호는 [번호]예요.', prompt:'소라 씨 핸드폰 번호가 몇 번이에요?', hint:'082-952-167', answer:'소라 씨 핸드폰 번호는 공팔이에 구오이에 일육칠이에요.',
-    checks:['공팔이 — 0,8,2','구오이 — 9,5,2','일육칠 — 1,6,7'] },
-  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'미나 씨가 어디에서 아침 식사해요?', hint:'아침 식사하다 → 식당', answer:'미나 씨가 식당에서 아침 식사해요.',
-    checks:['식당 (sikdang) = restaurant','ប្រើ 에서 (eseo) = at/in','ប្រព័ន្ធ: [ឈ្មោះ]씨가 [ទីកន្លែង]에서 [កិ្រយា]'] },
-  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'앤디 씨가 어디에서 공책을 사요?', hint:'공책을 사다 → 문구점', answer:'앤디 씨가 문구점에서 공책을 사요.',
-    checks:['문구점 (mungujeom) = stationery store','사요 (sayo) = buys','ចំណាំ object 공책을 នៅ position ត្រឹមត្រូវ'] },
-  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'한스 씨가 어디에서 수영해요?', hint:'수영하다 → 수영장', answer:'한스 씨가 수영장에서 수영해요.',
-    checks:['수영장 (suyeongjang) = swimming pool','수영해요 = swims','한스는 vs 한스씨가 — difference?'] },
-  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'투안 씨가 어디에서 영화를 봐요?', hint:'영화를 보다 → 극장', answer:'투안 씨가 극장에서 영화를 봐요.',
-    checks:['극장 (geukjang) = cinema','봐요 (bwayo) = watches','영화를 — 를 particle ត្រឹមត្រូវ'] },
-  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'이치로 씨가 어디에서 책을 읽어요?', hint:'책을 읽다 → 도서관', answer:'이치로 씨가 도서관에서 책을 읽어요.',
-    checks:['도서관 (doseogwan) = library','읽어요 (ilgeoyo) = reads','ប្រើ 에서 ជំនួស 에 ព្រោះមានសកម្មភាព'] },
-  { tag:'Q04', pattern:'[이름] 씨가 [장소]에서 [동사].', prompt:'완 씨가 어디에서 한국어를 배워요?', hint:'한국어를 배우다 → 학교', answer:'완 씨가 학교에서 한국어를 배워요.',
-    checks:['학교 (hakgyo) = school','배워요 (baeweoyo) = learns','한국어를 — 를 particle'] },
-  { tag:'자유', pattern:'자신에 대한 질문', prompt:'자기소개해 주세요.', hint:'이름, 나라, 직업', answer:'안녕하세요. 저는 [이름]이에요. [나라]에서 왔어요.',
-    checks:['ចាប់ផ្តើម 안녕하세요?','ប្រើ 저는 (jeoneun) = I am','ប្រើ 에서 왔어요 = I came from'] },
-  { tag:'자유', pattern:'자신에 대한 질문', prompt:'보통 주말에 뭐 해요?', hint:'주말 활동', answer:'보통 친구를 만나요. / 집에서 쉬어요.',
-    checks:['보통 (botong) = usually','주말 (jumal) = weekend','ប្រើ verb stem + 아요/어요'] },
-  { tag:'자유', pattern:'자신에 대한 질문', prompt:'한국 음식을 좋아해요? 무슨 음식을 좋아해요?', hint:'음식 이름', answer:'네, 좋아해요. 비빔밥을 좋아해요.',
-    checks:['ចាប់ផ្តើម 네 (ne) = yes','좋아해요 (joahaeyo) = I like','ប្រើ 을/를 particle ក្រោយ food name'] },
-  { tag:'자유', pattern:'자신에 대한 질문', prompt:'한국어 공부가 재미있어요?', hint:'솔직하게!', answer:'네, 재미있어요! / 조금 어려워요.',
-    checks:['재미있어요 (jaemi isseoyo) = interesting','조금 (jogeum) = a little','어려워요 (eoryeowoyo) = difficult'] },
-];
+      // --- Group 2: Opinions & Daily Life ---
+      { tag: '자유', pattern: '조금 어려워요.', prompt: '한국어 공부가 재미있어요?', hint: 'តើការរៀនភាសាកូរ៉េសប្បាយទេ?', answer: '네, 재미있어요! / 조금 어려워요.', checks: ['재미있어요?', '어려워요?'] },
+      { tag: '자유', pattern: '네, 많아요.', prompt: '친구가 많아요?', hint: 'មិត្តភក្តិច្រើនអត់?', answer: '네, 많아요. / 아니요, 많지 않아요.', checks: ['많아요 vs 많지 않아요?'] },
+      { tag: '자유', pattern: '보통 친구를 만나요.', prompt: '보통 주말에 뭐 해요?', hint: 'សកម្មភាពចុងសប្តាហ៍', answer: '보통 친구를 만나요. / 집에서 쉬어요.', checks: ['만나요?', '쉬어요?'] },
+      { tag: '자유', pattern: '네, 좋아해요.', prompt: '한국 음식을 좋아해요?', hint: 'ចូលចិត្តម្ហូបកូរ៉េអត់?', answer: '네, 좋아해요.', checks: ['좋아해요?'] },
+      { tag: '자유', pattern: '비빔밥을 좋아해요.', prompt: '무슨 음식을 좋아해요?', hint: 'ម្ហូបដែលចូលចិត្ត', answer: '비빔밥을 좋아해요.', checks: ['ម្ហូបអ្វី?'] },
+      { tag: '자유', pattern: '네, 먹어 봤어요.', prompt: '한국 음식을 먹어 봤어요?', hint: 'ធ្លាប់ញ៉ាំអត់?', answer: '네, 먹어 봤어요.', checks: ['~어/아 봤어요?'] },
+      { tag: '자유', pattern: '맛있어요!', prompt: '김치를 먹어 봤어요?', hint: 'ធ្លាប់ញ៉ាំគីមឈីអត់?', answer: '네, 먹어 봤어요. 맛있어요!', checks: ['맛있어요?'] },
+      { tag: '자유', pattern: '카페에서 만나요.', prompt: '보통 어디에서 친구를 만나요?', hint: 'កន្លែងជួបមិត្តភក្តិ', answer: '카페에서 만나요.', checks: ['에서 (at)?'] },
+      { tag: '자유', pattern: '쇼핑해요.', prompt: '주말에 뭐 해요?', hint: 'ធ្វើអ្វីខ្លះចុងសប្តាហ៍', answer: '쇼핑해요. / 영화를 봐요.', checks: ['쇼핑해요?'] },
+      { tag: '자유', pattern: '가끔 가요.', prompt: '주말에 극장에 자주 가요?', hint: 'ទៅរោងកុនញឹកអត់?', answer: '가끔 가요.', checks: ['가끔 (sometimes)?'] },
 
-const MODES = {
-  all: QUESTIONS,
-  q01: QUESTIONS.filter(q => q.tag === 'Q01'),
-  q02: QUESTIONS.filter(q => q.tag === 'Q02'),
-  q03: QUESTIONS.filter(q => q.tag === 'Q03'),
-  q04: QUESTIONS.filter(q => q.tag === 'Q04'),
-  free: QUESTIONS.filter(q => q.tag === '자유'),
-};
+      // --- Group 3: Preferences & Hobbies ---
+      { tag: '자유', pattern: '공원에 가요.', prompt: '보통 주말에 어디에 가요?', hint: 'តើអ្នកទៅណានៅចុងសប្តាហ៍?', answer: '공원에 가요. 거기에서 산책해요.', checks: ['산책해요 (walk)?'] },
+      { tag: '자유', pattern: '제 꿈은 [직업]이에요.', prompt: '꿈이 뭐예요?', hint: 'សុបិន្ត/អាជីព', answer: '제 꿈은 [직업]이에요.', checks: ['꿈 (dream)?'] },
+      { tag: '자유', pattern: '네, 조금 알아요.', prompt: '한국 노래를 알아요?', hint: 'ស្គាល់បទចម្រៀងកូរ៉េអត់?', answer: '네, 조금 알아요.', checks: ['조금 알아요?'] },
+      { tag: '자유', pattern: 'K-pop을 좋아해요.', prompt: '노래를 좋아해요?', hint: 'ចូលចិត្តច្រៀង/ស្តាប់ចម្រៀងអត់?', answer: '네, 좋아해요. K-pop을 좋아해요.', checks: ['좋아해요?'] },
+      { tag: '자유', pattern: '팝 음악을 좋아해요.', prompt: '어떤 음악을 좋아해요?', hint: 'ប្រភេទតន្ត្រី', answer: '팝 음악을 좋아해요.', checks: ['팝 (Pop)?'] },
+      { tag: '자유', pattern: '집에 가요.', prompt: '보통 수업 후에 뭐 해요?', hint: 'ធ្វើអ្វីក្រោយចេញពីរៀន', answer: '집에 가요. / 친구와 밥을 먹어요.', checks: ['수업 후 (after class)?'] },
+      { tag: '자유', pattern: '영화를 봐요.', prompt: '시간이 있을 때 뭐 해요?', hint: 'ពេលមានពេលទំនេរ', answer: '영화를 봐요.', checks: ['~을 때 (when)?'] },
+      { tag: '자유', pattern: '네, 있어요.', prompt: '보통 주말에 시간이 있어요?', hint: 'មានពេលនៅចុងសប្តាហ៍អត់?', answer: '네, 있어요.', checks: ['있어요?'] },
+      { tag: '자유', pattern: '아니요, 안 바빠요.', prompt: '이번 주 토요일에 바빠요?', hint: 'រវល់អត់ថ្ងៃសៅរ៍នេះ?', answer: '아니요, 안 바빠요.', checks: ['안 바빠요?'] },
+      { tag: '자유', pattern: '카페에서 만나요.', prompt: '보통 어디에서 친구를 만나요?', hint: 'កន្លែងជួបមិត្តភក្តិ', answer: '카페에서 만나요.', checks: ['카페 (cafe)?'] }
+    ];
 
-let currentMode = 'all';
-let questions = [...QUESTIONS];
-let currentIndex = 0;
-
-let mediaRecorder = null;
-let audioChunks = [];
-let audioBlob = null;
-let recordingInterval = null;
-let recordSeconds = 0;
-let isRecording = false;
-let audioContext = null;
-let currentAudio = null;
-
-// ── Get best supported MIME type ──────────────────────────────
-function getSupportedMimeType() {
-  const types = [
-    'audio/mp4',
-    'audio/webm;codecs=opus',
-    'audio/webm',
-    'audio/ogg;codecs=opus',
-    'audio/ogg',
-  ];
-  for (const type of types) {
-    if (MediaRecorder.isTypeSupported(type)) return type;
-  }
-  return ''; // let browser choose
-}
-
-function setMode(mode) {
-  currentMode = mode;
-  questions = [...MODES[mode]];
-  currentIndex = 0;
-  document.querySelectorAll('.mode-btn').forEach((b, i) => {
-    b.classList.toggle('active', ['all','q01','q02','q03','q04','free'][i] === mode);
-  });
-  resetQuestion();
-  renderQuestion();
-}
-
-function renderQuestion() {
-  const q = questions[currentIndex];
-  document.getElementById('q-tag').textContent = q.tag;
-  document.getElementById('q-counter').textContent = `${currentIndex + 1} / ${questions.length}`;
-  document.getElementById('q-prompt').textContent = q.prompt;
-  document.getElementById('q-pattern').textContent = 'គំរូ: ' + q.pattern;
-  document.getElementById('q-hint').style.display = 'block';
-  document.getElementById('q-hint-text').textContent = q.hint;
-  document.getElementById('model-answer-text').textContent = q.answer;
-  document.getElementById('progress').style.width = ((currentIndex + 1) / questions.length * 100) + '%';
-  document.getElementById('btn-prev').disabled = currentIndex === 0;
-  document.getElementById('btn-next').disabled = currentIndex === questions.length - 1;
-  resetQuestion();
-}
-
-function resetQuestion() {
-  stopSpeech();
-  silentStopRecording();
-  stopAudio();
-  document.getElementById('answer-section').classList.remove('visible');
-  document.getElementById('feedback-box').classList.remove('visible');
-  document.getElementById('model-answer-box').style.display = 'none';
-  document.getElementById('self-check').style.display = 'none';
-  document.getElementById('btn-record').className = 'btn-record';
-  document.getElementById('btn-label').textContent = 'ចាប់ផ្តើមថត';
-  document.getElementById('timer').textContent = '0:00';
-  document.getElementById('waveform').classList.remove('active');
-  document.getElementById('audio-progress-fill').style.width = '0%';
-  document.getElementById('audio-time').textContent = '0:00';
-  audioBlob = null;
-  audioChunks = [];
-  isRecording = false;
-}
-
-async function toggleRecord() {
-  if (isRecording) {
-    stopRecording();
-  } else {
-    await startRecording();
-  }
-}
-
-async function startRecording() {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-    audioChunks = [];
-
-    const mimeType = getSupportedMimeType();
-    const options = mimeType ? { mimeType } : {};
-
-    mediaRecorder = new MediaRecorder(stream, options);
-
-    mediaRecorder.ondataavailable = e => {
-      if (e.data && e.data.size > 0) audioChunks.push(e.data);
+    const MODES = {
+      all: QUESTIONS,
+      q01: QUESTIONS.filter(q => q.tag === 'Q01'),
+      q02: QUESTIONS.filter(q => q.tag === 'Q02'),
+      q03: QUESTIONS.filter(q => q.tag === 'Q03'),
+      q04: QUESTIONS.filter(q => q.tag === 'Q04'),
+      free: QUESTIONS.filter(q => q.tag === '자유'),
     };
 
-    mediaRecorder.onstop = () => {
-      stream.getTracks().forEach(t => t.stop());
+    let currentMode = 'all';
+    let questions = [...QUESTIONS];
+    let currentIndex = 0;
 
-      const mime = mediaRecorder.mimeType || mimeType || 'audio/webm';
-      audioBlob = new Blob(audioChunks, { type: mime });
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let audioBlob = null;
+    let recordingInterval = null;
+    let recordSeconds = 0;
+    let isRecording = false;
+    let audioContext = null;
+    let currentAudio = null;
 
-      // Revoke any previous URL
-      const audioEl = document.getElementById('audio-playback');
-      if (audioEl.src) URL.revokeObjectURL(audioEl.src);
+    // ── Get best supported MIME type ──────────────────────────────
+    function getSupportedMimeType() {
+      const types = [
+        'audio/mp4',
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/ogg;codecs=opus',
+        'audio/ogg',
+      ];
+      for (const type of types) {
+        if (MediaRecorder.isTypeSupported(type)) return type;
+      }
+      return ''; // let browser choose
+    }
 
-      const url = URL.createObjectURL(audioBlob);
-      audioEl.src = url;
-      audioEl.load();
+    function setMode(mode) {
+      currentMode = mode;
+      questions = [...MODES[mode]];
+      currentIndex = 0;
+      document.querySelectorAll('.mode-btn').forEach((b, i) => {
+        b.classList.toggle('active', ['all', 'q01', 'q02', 'q03', 'q04', 'free'][i] === mode);
+      });
+      resetQuestion();
+      renderQuestion();
+    }
 
-      // Setup custom player events
-      audioEl.onloadedmetadata = () => {
-        document.getElementById('audio-time').textContent = formatTime(audioEl.duration || 0);
-      };
-      audioEl.ontimeupdate = updateAudioProgress;
-      audioEl.onended = () => {
-        document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-      };
-      audioEl.onerror = (e) => {
-        console.warn('Audio element error:', e);
-        // Show native audio as fallback
-        audioEl.style.display = 'block';
-        document.getElementById('audio-player-custom').style.display = 'none';
-      };
-
-      document.getElementById('answer-section').classList.add('visible');
-      document.getElementById('feedback-box').classList.remove('visible');
-
-      // Show self-check list
+    function renderQuestion() {
       const q = questions[currentIndex];
-      const list = document.getElementById('self-check-items');
-      list.innerHTML = q.checks.map(c => `<li>${c}</li>`).join('');
-      document.getElementById('self-check').style.display = 'block';
-    };
+      document.getElementById('q-tag').textContent = q.tag;
+      document.getElementById('q-counter').textContent = `${currentIndex + 1} / ${questions.length}`;
+      document.getElementById('q-prompt').textContent = q.prompt;
+      document.getElementById('q-pattern').textContent = 'គំរូ: ' + q.pattern;
+      document.getElementById('q-hint').style.display = 'block';
+      document.getElementById('q-hint-text').textContent = q.hint;
+      document.getElementById('model-answer-text').textContent = q.answer;
+      document.getElementById('progress').style.width = ((currentIndex + 1) / questions.length * 100) + '%';
+      document.getElementById('btn-prev').disabled = currentIndex === 0;
+      document.getElementById('btn-next').disabled = currentIndex === questions.length - 1;
+      resetQuestion();
+    }
 
-    // Collect data every 250ms for reliability
-    mediaRecorder.start(250);
-    isRecording = true;
-    recordSeconds = 0;
+    function resetQuestion() {
+      stopSpeech();
+      silentStopRecording();
+      stopAudio();
+      document.getElementById('answer-section').classList.remove('visible');
+      document.getElementById('feedback-box').classList.remove('visible');
+      document.getElementById('model-answer-box').style.display = 'none';
+      document.getElementById('self-check').style.display = 'none';
+      document.getElementById('btn-record').className = 'btn-record';
+      document.getElementById('btn-label').textContent = 'ចាប់ផ្តើមថត';
+      document.getElementById('timer').textContent = '0:00';
+      document.getElementById('waveform').classList.remove('active');
+      document.getElementById('audio-progress-fill').style.width = '0%';
+      document.getElementById('audio-time').textContent = '0:00';
+      audioBlob = null;
+      audioChunks = [];
+      isRecording = false;
+    }
 
-    document.getElementById('btn-record').className = 'btn-record recording';
-    document.getElementById('btn-label').textContent = 'ឈប់ថត';
-    document.getElementById('waveform').classList.add('active');
-    document.getElementById('no-mic-msg').style.display = 'none';
+    async function toggleRecord() {
+      if (isRecording) {
+        stopRecording();
+      } else {
+        await startRecording();
+      }
+    }
 
-    recordingInterval = setInterval(() => {
-      recordSeconds++;
-      const m = Math.floor(recordSeconds / 60);
-      const s = recordSeconds % 60;
-      document.getElementById('timer').textContent = `${m}:${String(s).padStart(2,'0')}`;
-      if (recordSeconds >= 30) stopRecording();
-    }, 1000);
+    async function startRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+        audioChunks = [];
 
-  } catch (e) {
-    console.error('Mic error:', e);
-    document.getElementById('no-mic-msg').style.display = 'block';
-  }
-}
+        const mimeType = getSupportedMimeType();
+        const options = mimeType ? { mimeType } : {};
 
-function stopRecording() {
-  if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
-  if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-    mediaRecorder.stop();
-  }
-  isRecording = false;
-  document.getElementById('btn-record').className = 'btn-record';
-  document.getElementById('btn-label').textContent = 'ថតម្តងទៀត';
-  document.getElementById('waveform').classList.remove('active');
-}
+        mediaRecorder = new MediaRecorder(stream, options);
 
-function silentStopRecording() {
-  if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
-  if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-    try { mediaRecorder.stop(); } catch(e) {}
-  }
-  isRecording = false;
-}
+        mediaRecorder.ondataavailable = e => {
+          if (e.data && e.data.size > 0) audioChunks.push(e.data);
+        };
 
-// ── Custom audio player controls ──────────────────────────────
-function toggleAudioPlay() {
-  const audio = document.getElementById('audio-playback');
-  if (!audio.src) return;
-  if (audio.paused) {
-    audio.play().catch(e => {
-      console.warn('Play failed:', e);
-      audio.style.display = 'block';
-      document.getElementById('audio-player-custom').style.display = 'none';
-      audio.play();
-    });
-    document.getElementById('play-icon').innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-  } else {
-    audio.pause();
-    document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-  }
-}
+        mediaRecorder.onstop = () => {
+          stream.getTracks().forEach(t => t.stop());
 
-function stopAudio() {
-  const audio = document.getElementById('audio-playback');
-  audio.pause();
-  try { audio.currentTime = 0; } catch(e) {}
-  document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-  document.getElementById('audio-progress-fill').style.width = '0%';
-}
+          const mime = mediaRecorder.mimeType || mimeType || 'audio/webm';
+          audioBlob = new Blob(audioChunks, { type: mime });
 
-function updateAudioProgress() {
-  const audio = document.getElementById('audio-playback');
-  if (audio.duration) {
-    const pct = (audio.currentTime / audio.duration) * 100;
-    document.getElementById('audio-progress-fill').style.width = pct + '%';
-    document.getElementById('audio-time').textContent = formatTime(audio.currentTime);
-  }
-}
+          // Revoke any previous URL
+          const audioEl = document.getElementById('audio-playback');
+          if (audioEl.src) URL.revokeObjectURL(audioEl.src);
 
-function seekAudio(e) {
-  const audio = document.getElementById('audio-playback');
-  if (!audio.duration) return;
-  const rect = e.currentTarget.getBoundingClientRect();
-  const pct = (e.clientX - rect.left) / rect.width;
-  audio.currentTime = pct * audio.duration;
-}
+          const url = URL.createObjectURL(audioBlob);
+          audioEl.src = url;
+          audioEl.load();
 
-function formatTime(s) {
-  if (!s || isNaN(s)) return '0:00';
-  const m = Math.floor(s / 60);
-  const sec = Math.floor(s % 60);
-  return `${m}:${String(sec).padStart(2,'0')}`;
-}
+          // Setup custom player events
+          audioEl.onloadedmetadata = () => {
+            document.getElementById('audio-time').textContent = formatTime(audioEl.duration || 0);
+          };
+          audioEl.ontimeupdate = updateAudioProgress;
+          audioEl.onended = () => {
+            document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+          };
+          audioEl.onerror = (e) => {
+            console.warn('Audio element error:', e);
+            // Show native audio as fallback
+            audioEl.style.display = 'block';
+            document.getElementById('audio-player-custom').style.display = 'none';
+          };
 
-// ── Speak model answer ───────────────────────────────────────
-let answerUtterance = null;
+          document.getElementById('answer-section').classList.add('visible');
+          document.getElementById('feedback-box').classList.remove('visible');
 
-function speakAnswer() {
-  const q = questions[currentIndex];
-  const btn = document.getElementById('btn-check');
-  const label = document.getElementById('check-label');
+          // Show self-check list
+          const q = questions[currentIndex];
+          const list = document.getElementById('self-check-items');
+          list.innerHTML = q.checks.map(c => `<li>${c}</li>`).join('');
+          document.getElementById('self-check').style.display = 'block';
+        };
 
-  // Show the answer text
-  document.getElementById('model-answer-box').style.display = 'block';
-  document.getElementById('model-answer-text').textContent = q.answer;
+        // Collect data every 250ms for reliability
+        mediaRecorder.start(250);
+        isRecording = true;
+        recordSeconds = 0;
 
-  // Stop if already speaking
-  if (window.speechSynthesis.speaking) {
-    window.speechSynthesis.cancel();
-    btn.classList.remove('speaking');
-    label.textContent = 'ស្តាប់ចម្លើយគំរូ';
-    return;
-  }
+        document.getElementById('btn-record').className = 'btn-record recording';
+        document.getElementById('btn-label').textContent = 'ឈប់ថត';
+        document.getElementById('waveform').classList.add('active');
+        document.getElementById('no-mic-msg').style.display = 'none';
 
-  const utter = new SpeechSynthesisUtterance(q.answer);
-  utter.lang = 'ko-KR';
-  utter.rate = 0.75;
-  utter.pitch = 1;
+        recordingInterval = setInterval(() => {
+          recordSeconds++;
+          const m = Math.floor(recordSeconds / 60);
+          const s = recordSeconds % 60;
+          document.getElementById('timer').textContent = `${m}:${String(s).padStart(2, '0')}`;
+          if (recordSeconds >= 30) stopRecording();
+        }, 1000);
 
-  const voices = window.speechSynthesis.getVoices();
-  const korVoice = voices.find(v => v.lang.startsWith('ko'));
-  if (korVoice) utter.voice = korVoice;
+      } catch (e) {
+        console.error('Mic error:', e);
+        document.getElementById('no-mic-msg').style.display = 'block';
+      }
+    }
 
-  utter.onstart = () => {
-    btn.classList.add('speaking');
-    label.textContent = 'កំពុងនិយាយ... (ចុចដើម្បីឈប់)';
-  };
-  utter.onend = utter.onerror = () => {
-    btn.classList.remove('speaking');
-    label.textContent = 'ស្តាប់ម្តងទៀត 🔁';
-  };
+    function stopRecording() {
+      if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+      }
+      isRecording = false;
+      document.getElementById('btn-record').className = 'btn-record';
+      document.getElementById('btn-label').textContent = 'ថតម្តងទៀត';
+      document.getElementById('waveform').classList.remove('active');
+    }
 
-  window.speechSynthesis.speak(utter);
-}
+    function silentStopRecording() {
+      if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        try { mediaRecorder.stop(); } catch (e) { }
+      }
+      isRecording = false;
+    }
+
+    // ── Custom audio player controls ──────────────────────────────
+    function toggleAudioPlay() {
+      const audio = document.getElementById('audio-playback');
+      if (!audio.src) return;
+      if (audio.paused) {
+        audio.play().catch(e => {
+          console.warn('Play failed:', e);
+          audio.style.display = 'block';
+          document.getElementById('audio-player-custom').style.display = 'none';
+          audio.play();
+        });
+        document.getElementById('play-icon').innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+      } else {
+        audio.pause();
+        document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+      }
+    }
+
+    function stopAudio() {
+      const audio = document.getElementById('audio-playback');
+      audio.pause();
+      try { audio.currentTime = 0; } catch (e) { }
+      document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+      document.getElementById('audio-progress-fill').style.width = '0%';
+    }
+
+    function updateAudioProgress() {
+      const audio = document.getElementById('audio-playback');
+      if (audio.duration) {
+        const pct = (audio.currentTime / audio.duration) * 100;
+        document.getElementById('audio-progress-fill').style.width = pct + '%';
+        document.getElementById('audio-time').textContent = formatTime(audio.currentTime);
+      }
+    }
+
+    function seekAudio(e) {
+      const audio = document.getElementById('audio-playback');
+      if (!audio.duration) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      const pct = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pct * audio.duration;
+    }
+
+    function formatTime(s) {
+      if (!s || isNaN(s)) return '0:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return `${m}:${String(sec).padStart(2, '0')}`;
+    }
+
+    // ── Speak model answer ───────────────────────────────────────
+    let answerUtterance = null;
+
+    function speakAnswer() {
+      const q = questions[currentIndex];
+      const btn = document.getElementById('btn-check');
+      const label = document.getElementById('check-label');
+
+      // Show the answer text
+      document.getElementById('model-answer-box').style.display = 'block';
+      document.getElementById('model-answer-text').textContent = q.answer;
+
+      // Stop if already speaking
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        btn.classList.remove('speaking');
+        label.textContent = 'ស្តាប់ចម្លើយគំរូ';
+        return;
+      }
+
+      const utter = new SpeechSynthesisUtterance(q.answer);
+      utter.lang = 'ko-KR';
+      utter.rate = 0.75;
+      utter.pitch = 1;
+
+      const voices = window.speechSynthesis.getVoices();
+      const korVoice = voices.find(v => v.lang.startsWith('ko'));
+      if (korVoice) utter.voice = korVoice;
+
+      utter.onstart = () => {
+        btn.classList.add('speaking');
+        label.textContent = 'កំពុងនិយាយ... (ចុចដើម្បីឈប់)';
+      };
+      utter.onend = utter.onerror = () => {
+        btn.classList.remove('speaking');
+        label.textContent = 'ស្តាប់ម្តងទៀត 🔁';
+      };
+
+      window.speechSynthesis.speak(utter);
+    }
 
 
-function navigate(dir) {
-  const next = currentIndex + dir;
-  if (next < 0 || next >= questions.length) return;
-  currentIndex = next;
-  renderQuestion();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    function navigate(dir) {
+      const next = currentIndex + dir;
+      if (next < 0 || next >= questions.length) return;
+      currentIndex = next;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-function speakQuestion() {
-  const q = questions[currentIndex];
-  const btn = document.getElementById('btn-speak');
-  const label = document.getElementById('speak-label');
+    function speakQuestion() {
+      const q = questions[currentIndex];
+      const btn = document.getElementById('btn-speak');
+      const label = document.getElementById('speak-label');
 
-  if (window.speechSynthesis.speaking) {
-    window.speechSynthesis.cancel();
-    btn.classList.remove('speaking');
-    label.textContent = 'ស្តាប់សំណួរ';
-    return;
-  }
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        btn.classList.remove('speaking');
+        label.textContent = 'ស្តាប់សំណួរ';
+        return;
+      }
 
-  const utter = new SpeechSynthesisUtterance(q.prompt);
-  utter.lang = 'ko-KR';
-  utter.rate = 0.85;
-  utter.pitch = 1;
+      const utter = new SpeechSynthesisUtterance(q.prompt);
+      utter.lang = 'ko-KR';
+      utter.rate = 0.85;
+      utter.pitch = 1;
 
-  const voices = window.speechSynthesis.getVoices();
-  const korVoice = voices.find(v => v.lang.startsWith('ko'));
-  if (korVoice) utter.voice = korVoice;
+      const voices = window.speechSynthesis.getVoices();
+      const korVoice = voices.find(v => v.lang.startsWith('ko'));
+      if (korVoice) utter.voice = korVoice;
 
-  utter.onstart = () => { btn.classList.add('speaking'); label.textContent = 'កំពុងនិយាយ...'; };
-  utter.onend = utter.onerror = () => { btn.classList.remove('speaking'); label.textContent = 'ស្តាប់សំណួរ'; };
+      utter.onstart = () => { btn.classList.add('speaking'); label.textContent = 'កំពុងនិយាយ...'; };
+      utter.onend = utter.onerror = () => { btn.classList.remove('speaking'); label.textContent = 'ស្តាប់សំណួរ'; };
 
-  window.speechSynthesis.speak(utter);
-}
+      window.speechSynthesis.speak(utter);
+    }
 
-function stopSpeech() {
-  if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel();
-  const btn = document.getElementById('btn-check');
-  if (btn) { btn.classList.remove('speaking'); }
-  const lbl = document.getElementById('check-label');
-  if (lbl) lbl.textContent = 'ស្តាប់ចម្លើយគំរូ';
-  const btnSpeak = document.getElementById('btn-speak');
-  const label = document.getElementById('speak-label');
-  if (btnSpeak) btnSpeak.classList.remove('speaking');
-  if (label) label.textContent = 'ស្តាប់សំណួរ';
-}
+    function stopSpeech() {
+      if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel();
+      const btn = document.getElementById('btn-check');
+      if (btn) { btn.classList.remove('speaking'); }
+      const lbl = document.getElementById('check-label');
+      if (lbl) lbl.textContent = 'ស្តាប់ចម្លើយគំរូ';
+      const btnSpeak = document.getElementById('btn-speak');
+      const label = document.getElementById('speak-label');
+      if (btnSpeak) btnSpeak.classList.remove('speaking');
+      if (label) label.textContent = 'ស្តាប់សំណួរ';
+    }
 
-if (window.speechSynthesis) {
-  window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-}
+    if (window.speechSynthesis) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
 
-renderQuestion();
-</script>
+    renderQuestion();
+  </script>
 </body>
+
 </html>
