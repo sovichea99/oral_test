@@ -233,8 +233,8 @@
 
   .btn-check {
     width: 100%;
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--green);
+    color: white;
     border: none;
     padding: 16px;
     font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
@@ -248,10 +248,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
   }
-  .btn-check:hover { background: #2c2213; }
+  .btn-check:hover { background: #229954; transform: translateY(-1px); }
+  .btn-check.speaking { background: var(--accent2); animation: pulse 1.2s infinite; }
   .btn-check:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .model-answer-reveal {
+    background: white;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    border-radius: 2px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    animation: slideIn 0.3s ease;
+  }
+  .model-answer-reveal .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .model-answer-reveal #model-answer-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.6;
+  }
 
   .feedback-box {
     background: white;
@@ -528,25 +553,23 @@
         <ul class="self-check-items" id="self-check-items"></ul>
       </div>
 
-      <button class="btn-check" id="btn-check" onclick="checkAnswer()">
-        <span id="check-label">ទទួលមតិយោបល់ AI ✦</span>
+      <button class="btn-check" id="btn-check" onclick="speakAnswer()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <span id="check-label">ស្តាប់ចម្លើយគំរូ</span>
       </button>
 
-      <div class="feedback-box" id="feedback-box">
-        <div class="feedback-header">
-          <span id="feedback-title" style="font-weight:600;font-size:15px;">មតិយោបល់</span>
-          <span class="score-badge" id="score-badge"></span>
-        </div>
-        <div class="feedback-text" id="feedback-text"></div>
-        <div class="model-answer" id="model-answer-box">
-          <div class="label">ចម្លើយគំរូ / Model Answer</div>
-          <div id="model-answer-text"></div>
-        </div>
+      <div class="model-answer-reveal" id="model-answer-box" style="display:none">
+        <div class="label">ចម្លើយគំរូ / Model Answer</div>
+        <div id="model-answer-text"></div>
       </div>
     </div>
 
     <div class="nav-row" style="margin-top:20px;">
-      <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← ថយក្រោយ</button>
+      <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← មុន</button>
       <button class="btn-nav primary" id="btn-next" onclick="navigate(1)">បន្ទាប់ →</button>
     </div>
   </div>
@@ -689,6 +712,7 @@ function resetQuestion() {
   stopAudio();
   document.getElementById('answer-section').classList.remove('visible');
   document.getElementById('feedback-box').classList.remove('visible');
+  document.getElementById('model-answer-box').style.display = 'none';
   document.getElementById('self-check').style.display = 'none';
   document.getElementById('btn-record').className = 'btn-record';
   document.getElementById('btn-label').textContent = 'ចាប់ផ្តើមថត';
@@ -855,95 +879,47 @@ function formatTime(s) {
   return `${m}:${String(sec).padStart(2,'0')}`;
 }
 
-// ── AI Feedback (text-based since API can't process audio blobs) ──
-async function checkAnswer() {
-  if (!audioBlob) return;
+// ── Speak model answer ───────────────────────────────────────
+let answerUtterance = null;
 
+function speakAnswer() {
   const q = questions[currentIndex];
   const btn = document.getElementById('btn-check');
   const label = document.getElementById('check-label');
-  btn.disabled = true;
-  label.innerHTML = '<span class="spinner"></span> AI កំពុងវិភាគ...';
 
-  const feedbackBox = document.getElementById('feedback-box');
-  feedbackBox.classList.add('visible');
-  document.getElementById('feedback-text').innerHTML =
-    '<div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:60%"></div><div class="skeleton" style="width:90%"></div>';
-  document.getElementById('score-badge').textContent = '';
-  document.getElementById('score-badge').className = 'score-badge';
-
-  const systemPrompt = `You are a Korean language teacher helping a Cambodian beginner practice speaking Korean. 
-The student has recorded their answer (audio). You cannot hear the audio, but you know exactly what the correct answer is.
-Give detailed, encouraging feedback in Khmer (ភាសាខ្មែរ) to help the student self-assess and improve.
-
-Question: "${q.prompt}"
-Pattern: ${q.pattern}
-Model answer: "${q.answer}"
-Hint given: ${q.hint}
-
-Provide guidance in Khmer on exactly HOW to pronounce the key words and self-check. 
-Respond in this EXACT format (in Khmer):
-ពិន្ទុ: [ល្អណាស់ / ល្អ / សាកម្តងទៀត]
-មតិយោបល់: [2-3 sentences of encouragement and specific guidance in Khmer]
-គន្លឹះ: [One key pronunciation or grammar tip for this specific answer in Khmer]`;
-
-  try {
-    const response = await fetch('/.netlify/functions/claude', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{
-          role: 'user',
-          content: `ខ្ញុំបានថតចម្លើយរបស់ខ្ញុំហើយ។ សំណួរ: "${q.prompt}". ចម្លើយគំរូ: "${q.answer}". 
-សូមផ្តល់ការណែនាំលម្អិតជាភាសាខ្មែរ ដើម្បីជួយខ្ញុំពិនិត្យថាខ្ញុំបាននិយាយត្រឹមត្រូវ ជាពិសេសសំឡេង និងឃ្លា key។ 
-ប្រើទម្រង់: ពិន្ទុ: / មតិយោបល់: / គន្លឹះ:`
-        }]
-      })
-    });
-
-    const data = await response.json();
-    if (data.error) throw new Error(JSON.stringify(data.error));
-    const text = data.content?.map(c => c.text || '').join('') || '';
-    if (!text) throw new Error('AI មិនបានឆ្លើយតប — response: ' + JSON.stringify(data).slice(0, 200));
-    parseFeedback(text, q.answer);
-  } catch(e) {
-    document.getElementById('feedback-text').textContent =
-      'មិនអាចទាញយកមតិយោបល់បានទេ។\n\nError: ' + (e.message || 'Unknown error');
-    document.getElementById('score-badge').textContent = '⚠️ Error';
-    document.getElementById('score-badge').className = 'score-badge score-retry';
-  }
-
-  btn.disabled = false;
-  label.innerHTML = 'ទទួលមតិយោបល់ AI ✦';
-}
-
-function parseFeedback(text, modelAnswer) {
-  const scoreMatch = text.match(/ពិន្ទុ\s*[:៖]\s*(.+)/);
-  const score = scoreMatch ? scoreMatch[1].trim() : '';
-
-  const feedbackMatch = text.match(/មតិយោបល់\s*[:៖]\s*([\s\S]*?)(?=គន្លឹះ\s*[:៖]|$)/);
-  const tipMatch = text.match(/គន្លឹះ\s*[:៖]\s*([\s\S]*)/);
-
-  let feedbackText = text;
-  if (feedbackMatch) {
-    feedbackText = feedbackMatch[1].trim();
-    if (tipMatch) feedbackText += '\n\n💡 ' + tipMatch[1].trim();
-  }
-
-  const badge = document.getElementById('score-badge');
-  badge.textContent = score || 'មតិយោបល់';
-  if (score.includes('ល្អណាស់')) badge.className = 'score-badge score-great';
-  else if (score.includes('ល្អ')) badge.className = 'score-badge score-ok';
-  else if (score.includes('សាក')) badge.className = 'score-badge score-retry';
-  else badge.className = 'score-badge score-ok';
-
-  document.getElementById('feedback-text').textContent = feedbackText || text;
+  // Show the answer text
   document.getElementById('model-answer-box').style.display = 'block';
-  document.getElementById('model-answer-text').textContent = modelAnswer;
+  document.getElementById('model-answer-text').textContent = q.answer;
+
+  // Stop if already speaking
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    btn.classList.remove('speaking');
+    label.textContent = 'ស្តាប់ចម្លើយគំរូ';
+    return;
+  }
+
+  const utter = new SpeechSynthesisUtterance(q.answer);
+  utter.lang = 'ko-KR';
+  utter.rate = 0.75;
+  utter.pitch = 1;
+
+  const voices = window.speechSynthesis.getVoices();
+  const korVoice = voices.find(v => v.lang.startsWith('ko'));
+  if (korVoice) utter.voice = korVoice;
+
+  utter.onstart = () => {
+    btn.classList.add('speaking');
+    label.textContent = 'កំពុងនិយាយ... (ចុចដើម្បីឈប់)';
+  };
+  utter.onend = utter.onerror = () => {
+    btn.classList.remove('speaking');
+    label.textContent = 'ស្តាប់ម្តងទៀត 🔁';
+  };
+
+  window.speechSynthesis.speak(utter);
 }
+
 
 function navigate(dir) {
   const next = currentIndex + dir;
@@ -982,9 +958,13 @@ function speakQuestion() {
 
 function stopSpeech() {
   if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel();
-  const btn = document.getElementById('btn-speak');
+  const btn = document.getElementById('btn-check');
+  if (btn) { btn.classList.remove('speaking'); }
+  const lbl = document.getElementById('check-label');
+  if (lbl) lbl.textContent = 'ស្តាប់ចម្លើយគំរូ';
+  const btnSpeak = document.getElementById('btn-speak');
   const label = document.getElementById('speak-label');
-  if (btn) btn.classList.remove('speaking');
+  if (btnSpeak) btnSpeak.classList.remove('speaking');
   if (label) label.textContent = 'ស្តាប់សំណួរ';
 }
 
