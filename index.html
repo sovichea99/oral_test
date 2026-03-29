@@ -450,15 +450,6 @@
 </header>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 
-<!-- API Key Banner -->
-<div class="api-banner" id="api-banner">
-  <label>🔑 Anthropic API Key</label>
-  <input type="password" id="api-key-input" placeholder="sk-ant-..." autocomplete="off" oninput="onKeyInput()"/>
-  <button class="api-save-btn" onclick="saveApiKey()">រក្សាទុក</button>
-  <span class="api-status" id="api-status">✓ រក្សាទុករួច</span>
-  <div class="api-help">
-    បង្កើត API key ឥតគិតថ្លៃ នៅ <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys → Create Key
-  </div>
 </div>
 
 <div class="container">
@@ -867,12 +858,7 @@ function formatTime(s) {
 // ── AI Feedback (text-based since API can't process audio blobs) ──
 async function checkAnswer() {
   if (!audioBlob) return;
-  if (!apiKey) {
-    document.getElementById('feedback-box').classList.add('visible');
-    document.getElementById('feedback-text').textContent = 'សូមបញ្ចូល Anthropic API Key នៅខាងលើ ហើយចុច "រក្សាទុក" សិន។';
-    document.getElementById('score-badge').textContent = '';
-    return;
-  }
+
   const q = questions[currentIndex];
   const btn = document.getElementById('btn-check');
   const label = document.getElementById('check-label');
@@ -902,14 +888,9 @@ Respond in this EXACT format (in Khmer):
 គន្លឹះ: [One key pronunciation or grammar tip for this specific answer in Khmer]`;
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch('/.netlify/functions/claude', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
         max_tokens: 1000,
@@ -1009,33 +990,6 @@ if (window.speechSynthesis) {
   window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
 }
 
-// ── API Key management ───────────────────────────────────────
-let apiKey = localStorage.getItem('anthropic_api_key') || '';
-
-function onKeyInput() {
-  document.getElementById('api-status').classList.remove('visible');
-  document.getElementById('api-key-input').classList.remove('saved');
-}
-
-function saveApiKey() {
-  const val = document.getElementById('api-key-input').value.trim();
-  if (!val) return;
-  apiKey = val;
-  localStorage.setItem('anthropic_api_key', val);
-  document.getElementById('api-key-input').classList.add('saved');
-  document.getElementById('api-status').classList.add('visible');
-  document.getElementById('api-key-input').value = val.slice(0,8) + '••••••••••••••••••••';
-}
-
-function initApiKey() {
-  if (apiKey) {
-    document.getElementById('api-key-input').value = apiKey.slice(0,8) + '••••••••••••••••••••';
-    document.getElementById('api-key-input').classList.add('saved');
-    document.getElementById('api-status').classList.add('visible');
-  }
-}
-
-initApiKey();
 renderQuestion();
 </script>
 </body>
