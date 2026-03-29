@@ -420,6 +420,26 @@
   .self-check-items { list-style: none; }
   .self-check-items li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
   .self-check-items li::before { content: '☐'; font-size: 16px; line-height: 1.2; color: var(--accent); flex-shrink: 0; }
+
+  .api-banner {
+    background: #fffbf0;
+    border-bottom: 2px solid var(--accent2);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .api-banner label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+  .api-banner input { flex: 1; min-width: 180px; font-family: 'DM Mono', monospace; font-size: 12px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 2px; background: white; color: var(--ink); outline: none; }
+  .api-banner input:focus { border-color: var(--accent2); }
+  .api-banner input.saved { border-color: var(--green); background: #f0faf4; }
+  .api-save-btn { font-family: 'Noto Sans Khmer', serif; font-size: 12px; font-weight: 600; padding: 7px 16px; background: var(--accent2); color: white; border: none; border-radius: 2px; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+  .api-save-btn:hover { background: #d35400; }
+  .api-status { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--green); display: none; }
+  .api-status.visible { display: inline; }
+  .api-help { font-size: 11px; color: var(--muted); width: 100%; margin-top: 2px; }
+  .api-help a { color: var(--accent2); text-decoration: none; }
 </style>
 </head>
 <body>
@@ -429,6 +449,17 @@
   <span>Korean Oral Test Practice · មីនា</span>
 </header>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<!-- API Key Banner -->
+<div class="api-banner" id="api-banner">
+  <label>🔑 Anthropic API Key</label>
+  <input type="password" id="api-key-input" placeholder="sk-ant-..." autocomplete="off" oninput="onKeyInput()"/>
+  <button class="api-save-btn" onclick="saveApiKey()">រក្សាទុក</button>
+  <span class="api-status" id="api-status">✓ រក្សាទុករួច</span>
+  <div class="api-help">
+    បង្កើត API key ឥតគិតថ្លៃ នៅ <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys → Create Key
+  </div>
+</div>
 
 <div class="container">
 
@@ -836,6 +867,12 @@ function formatTime(s) {
 // ── AI Feedback (text-based since API can't process audio blobs) ──
 async function checkAnswer() {
   if (!audioBlob) return;
+  if (!apiKey) {
+    document.getElementById('feedback-box').classList.add('visible');
+    document.getElementById('feedback-text').textContent = 'សូមបញ្ចូល Anthropic API Key នៅខាងលើ ហើយចុច "រក្សាទុក" សិន។';
+    document.getElementById('score-badge').textContent = '';
+    return;
+  }
   const q = questions[currentIndex];
   const btn = document.getElementById('btn-check');
   const label = document.getElementById('check-label');
@@ -869,6 +906,8 @@ Respond in this EXACT format (in Khmer):
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
         'anthropic-dangerous-direct-browser-access': 'true'
       },
       body: JSON.stringify({
@@ -970,6 +1009,33 @@ if (window.speechSynthesis) {
   window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
 }
 
+// ── API Key management ───────────────────────────────────────
+let apiKey = localStorage.getItem('anthropic_api_key') || '';
+
+function onKeyInput() {
+  document.getElementById('api-status').classList.remove('visible');
+  document.getElementById('api-key-input').classList.remove('saved');
+}
+
+function saveApiKey() {
+  const val = document.getElementById('api-key-input').value.trim();
+  if (!val) return;
+  apiKey = val;
+  localStorage.setItem('anthropic_api_key', val);
+  document.getElementById('api-key-input').classList.add('saved');
+  document.getElementById('api-status').classList.add('visible');
+  document.getElementById('api-key-input').value = val.slice(0,8) + '••••••••••••••••••••';
+}
+
+function initApiKey() {
+  if (apiKey) {
+    document.getElementById('api-key-input').value = apiKey.slice(0,8) + '••••••••••••••••••••';
+    document.getElementById('api-key-input').classList.add('saved');
+    document.getElementById('api-status').classList.add('visible');
+  }
+}
+
+initApiKey();
 renderQuestion();
 </script>
 </body>
