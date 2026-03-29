@@ -1037,7 +1037,7 @@
       for (const type of types) {
         if (MediaRecorder.isTypeSupported(type)) return type;
       }
-      return ''; // let browser choose
+      return '';
     }
 
     function setMode(mode) {
@@ -1073,12 +1073,13 @@
       resetQuestion();
     }
 
+
     function resetQuestion() {
       stopSpeech();
       silentStopRecording();
       stopAudio();
       document.getElementById('answer-section').classList.remove('visible');
-      document.getElementById('feedback-box').classList.remove('visible');
+      document.getElementById('feedback-box')?.classList.remove('visible');
       document.getElementById('model-answer-box').style.display = 'none';
       document.getElementById('self-check').style.display = 'none';
       document.getElementById('btn-record').className = 'btn-record';
