@@ -741,7 +741,7 @@ Keep it brief and encouraging!`;
         max_tokens: 1000,
         messages: [{
           role: 'user',
-          content: `Please evaluate my Korean oral answer for the question: "${q.prompt}". The model answer is: "${q.answer}". I recorded my answer but you cannot hear it directly, so please give me guidance on what to check in my answer and tips for saying it correctly. Focus especially on the numbers/pattern: ${q.pattern}. Hint data: ${q.hint}`
+          content: `សូមវាយតម្លៃចម្លើយភាសាកូរ៉េរបស់ខ្ញុំ។ សំណួរ: "${q.prompt}". ចម្លើយគំរូ: "${q.answer}". គំរូប្រយោគ: ${q.pattern}. ព័ត៌មានជំនួយ: ${q.hint}. ខ្ញុំថតសំឡេងចម្លើយរបស់ខ្ញុំ ប៉ុន្តែអ្នកមិនអាចឮបានដោយផ្ទាល់ទេ ដូច្នេះសូមណែនាំខ្ញុំពីអ្វីដែលត្រូវពិនិត្យ និងគន្លឹះការបញ្ចេញសំឡេង។ សូមឆ្លើយតបទាំងស្រុងជាភាសាខ្មែរ ដោយប្រើទម្រង់: ពិន្ទុ: / មតិយោបល់: / គន្លឹះ:`
         }],
         system: systemPrompt
       })
@@ -751,33 +751,38 @@ Keep it brief and encouraging!`;
     const text = data.content?.map(c => c.text || '').join('') || '';
     parseFeedback(text, q.answer);
   } catch(e) {
-    document.getElementById('feedback-text').textContent = '피드백을 불러올 수 없어요. 네트워크를 확인해 주세요.';
+    document.getElementById('feedback-text').textContent = 'មិនអាចទាញយកមតិយោបល់បានទេ។ សូមពិនិត្យការតភ្ជាប់អ៊ីនធឺណិតរបស់អ្នក។';
   }
 
   btn.disabled = false;
-  label.innerHTML = 'AI 피드백 받기 ✦';
+  label.innerHTML = 'ទទួលមតិយោបល់ AI ✦';
 }
 
 function parseFeedback(text, modelAnswer) {
-  let score = 'N/A';
+  let score = '';
   let feedbackText = text;
 
-  const scoreMatch = text.match(/SCORE:\s*(.+)/i);
+  // Match Khmer labels
+  const scoreMatch = text.match(/ពិន្ទុ\s*[:៖]\s*(.+)/);
   if (scoreMatch) score = scoreMatch[1].trim();
 
-  const feedbackMatch = text.match(/FEEDBACK:\s*([\s\S]*?)(?=TIP:|$)/i);
+  const feedbackMatch = text.match(/មតិយោបល់\s*[:៖]\s*([\s\S]*?)(?=គន្លឹះ\s*[:៖]|$)/);
+  const tipMatch = text.match(/គន្លឹះ\s*[:៖]\s*([\s\S]*)/);
+
   if (feedbackMatch) {
-    const tipMatch = text.match(/TIP:\s*([\s\S]*)/i);
-    feedbackText = (feedbackMatch[1].trim()) + (tipMatch ? '\n\n💡 ' + tipMatch[1].trim() : '');
+    feedbackText = feedbackMatch[1].trim();
+    if (tipMatch) feedbackText += '\n\n💡 ' + tipMatch[1].trim();
   }
 
   const badge = document.getElementById('score-badge');
-  badge.textContent = score;
-  if (score.includes('좋아요')) badge.className = 'score-badge score-great';
-  else if (score.includes('괜찮아요')) badge.className = 'score-badge score-ok';
-  else badge.className = 'score-badge score-retry';
+  badge.textContent = score || 'មតិយោបល់';
 
-  document.getElementById('feedback-text').textContent = feedbackText;
+  if (score.includes('ល្អណាស់')) badge.className = 'score-badge score-great';
+  else if (score.includes('ល្អ')) badge.className = 'score-badge score-ok';
+  else if (score.includes('សាក')) badge.className = 'score-badge score-retry';
+  else badge.className = 'score-badge score-ok';
+
+  document.getElementById('feedback-text').textContent = feedbackText || text;
   document.getElementById('model-answer-box').style.display = 'block';
   document.getElementById('model-answer-text').textContent = modelAnswer;
 }
