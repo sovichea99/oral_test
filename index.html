@@ -546,7 +546,7 @@
     </div>
 
     <div class="nav-row" style="margin-top:20px;">
-      <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← មុន</button>
+      <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← ថយក្រោយ</button>
       <button class="btn-nav primary" id="btn-next" onclick="navigate(1)">បន្ទាប់ →</button>
     </div>
   </div>
@@ -905,12 +905,15 @@ Respond in this EXACT format (in Khmer):
     });
 
     const data = await response.json();
-    if (data.error) throw new Error(data.error.message);
+    if (data.error) throw new Error(JSON.stringify(data.error));
     const text = data.content?.map(c => c.text || '').join('') || '';
+    if (!text) throw new Error('AI មិនបានឆ្លើយតប — response: ' + JSON.stringify(data).slice(0, 200));
     parseFeedback(text, q.answer);
   } catch(e) {
     document.getElementById('feedback-text').textContent =
-      'មិនអាចទាញយកមតិយោបល់បានទេ។ (' + (e.message || 'Error') + ') សូមពិនិត្យការតភ្ជាប់អ៊ីនធឺណិតរបស់អ្នក។';
+      'មិនអាចទាញយកមតិយោបល់បានទេ។\n\nError: ' + (e.message || 'Unknown error');
+    document.getElementById('score-badge').textContent = '⚠️ Error';
+    document.getElementById('score-badge').className = 'score-badge score-retry';
   }
 
   btn.disabled = false;

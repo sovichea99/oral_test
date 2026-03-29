@@ -34,7 +34,6 @@ exports.handler = async (event) => {
 
     const data = await response.json();
 
-    // Convert Gemini response → Anthropic-like format so frontend works unchanged
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
     const converted = {
       content: [{ type: 'text', text }]
