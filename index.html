@@ -756,12 +756,12 @@
   <div class="container">
 
     <div class="mode-selector">
-      <button class="mode-btn active" onclick="setMode('all')">ទាំងអស់</button>
-      <button class="mode-btn" onclick="setMode('q01')">Q01 ម៉ោង</button>
-      <button class="mode-btn" onclick="setMode('q02')">Q02 តម្លៃ</button>
-      <button class="mode-btn" onclick="setMode('q03')">Q03 លេខ</button>
-      <button class="mode-btn" onclick="setMode('q04')">Q04 ទីកន្លែង</button>
-      <button class="mode-btn" onclick="setMode('free')">សន្ទនា</button>
+      <button class="mode-btn active" data-mode="all">ទាំងអស់</button>
+      <button class="mode-btn" data-mode="q01">Q01 ម៉ោង</button>
+      <button class="mode-btn" data-mode="q02">Q02 តម្លៃ</button>
+      <button class="mode-btn" data-mode="q03">Q03 លេខ</button>
+      <button class="mode-btn" data-mode="q04">Q04 ទីកន្លែង</button>
+      <button class="mode-btn" data-mode="free">សន្ទនា</button>
     </div>
 
     <div id="test-area">
@@ -1044,12 +1044,19 @@
       currentMode = mode;
       questions = [...MODES[mode]];
       currentIndex = 0;
-      document.querySelectorAll('.mode-btn').forEach((b, i) => {
-        b.classList.toggle('active', ['all', 'q01', 'q02', 'q03', 'q04', 'free'][i] === mode);
+
+      document.querySelectorAll('.mode-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === mode);
       });
+
       resetQuestion();
       renderQuestion();
     }
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setMode(btn.dataset.mode);
+      });
+    });
 
     function renderQuestion() {
       const q = questions[currentIndex];
