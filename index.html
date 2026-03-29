@@ -738,6 +738,7 @@
       color: var(--accent2);
       text-decoration: none;
     }
+    
   </style>
 </head>
 
@@ -924,40 +925,40 @@
         checks: ['구백사십육만 = 9,460,000', '칠천구백 = 7,900', 'លេខធំ — ត្រូវតែហ្លឿន!']
       },
       {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '폴 씨 핸드폰 번호가 몇 번이에요?', hint: '088-145-293', answer: '폴 씨 핸드폰 번호는 공팔팔에 일사오에 이구삼이에요.',
-        checks: ['공 (gong) = 0', 'ប្រើ 에 (e) ដើម្បីញែក group', '읽다 digit ម្តងមួយៗ']
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.', prompt: '폴 씨 핸드폰 번호가 몇 번이에요?', hint: '088-145-293', answer: '폴 씨 핸드폰 번호가 공팔팔에 일사오에 이구삼이에요.',
+        checks: ['공 (gong) = 0', 'ប្រើ 에 (e) ដើម្បីញែក group']
       },
       {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '수잔 씨 핸드폰 번호가 몇 번이에요?', hint: '077-123-456', answer: '수잔 씨 핸드폰 번호는 공칠칠에 일이삼에 사오육이에요.',
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.', prompt: '수잔 씨 핸드폰 번호가 몇 번이에요?', hint: '077-123-456', answer: '수잔 씨 핸드폰 번호가 공칠칠에 일이삼에 사오육이에요.',
         checks: ['공칠칠 — 공 = 0, 칠 = 7', '일이삼 — digit មួយៗ', '사오육 — ត្រឹមត្រូវ?']
       },
       {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '미나 씨 핸드폰 번호가 몇 번이에요?', hint: '010-987-543', answer: '미나 씨 핸드폰 번호는 공일공에 구팔칠에 오사삼이에요.',
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.', prompt: '미나 씨 핸드폰 번호가 몇 번이에요?', hint: '010-987-543', answer: '미나 씨 핸드폰 번호가 공일공에 구팔칠에 오사삼이에요.',
         checks: ['공일공 — 0,1,0', '구팔칠 — 9,8,7', '오사삼 — 5,4,3']
       },
       {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '앤디 씨 핸드폰 번호가 몇 번이에요?', hint: '096-349-7285', answer: '앤디 씨 핸드폰 번호는 공구육에 삼사구에 칠이팔오예요.',
-        checks: ['공구육 — 0,9,6', '삼사구 — 3,4,9', '칠이팔오 — group ចុង 4 digits']
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.', prompt: '앤디 씨 핸드폰 번호가 몇 번이에요?', hint: '096-349-7285', answer: '앤디 씨 핸드폰 번호가 공구육에 삼사구에 칠이팔오예요.',
+        checks: ['공구육 — 0,9,6', '삼사구 — 3,4,9', '칠이팔오 — 7,2,8,5']
       },
       {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호는 [번호]예요.', prompt: '소라 씨 핸드폰 번호가 몇 번이에요?', hint: '082-952-167', answer: '소라 씨 핸드폰 번호는 공팔이에 구오이에 일육칠이에요.',
+        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.', prompt: '소라 씨 핸드폰 번호가 몇 번이에요?', hint: '082-952-167', answer: '소라 씨 핸드폰 번호가 공팔이에 구오이에 일육칠이에요.',
         checks: ['공팔이 — 0,8,2', '구오이 — 9,5,2', '일육칠 — 1,6,7']
       },
       {
         tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '미나 씨가 어디에서 아침 식사해요?', hint: '아침 식사하다 → 식당', answer: '미나 씨가 아침에 식당에서 식사해요.',
-        checks: ['식당 (sikdang) = restaurant', 'ប្រើ 에서 (eseo) = at/in', 'ប្រព័ន្ធ: [ឈ្មោះ]씨가 [ទីកន្លែង]에서 [កិ្រយា]']
+        checks: ['식당 (sikdang) = restaurant', 'ប្រើ 에서 (eseo) = at/in', 'ប្រព័ន្ធ: [ឈ្មោះ]씨가 [ទីកន្លែង]에서']
       },
       {
         tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '앤디 씨가 어디에서 공책을 사요?', hint: '공책을 사다 → 문구점', answer: '앤디 씨가 문구점에서 공책을 사요.',
-        checks: ['문구점 (mungujeom) = stationery store', '사요 (sayo) = buys', 'ចំណាំ object 공책을 នៅ position ត្រឹមត្រូវ']
+        checks: ['문구점 (mungujeom) = stationery store', '사요 (sayo) = buys',]
       },
       {
         tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '한스 씨가 어디에서 수영해요?', hint: '수영하다 → 수영장', answer: '한스 씨가 수영장에서 수영해요.',
-        checks: ['수영장 (suyeongjang) = swimming pool', '수영해요 = swims', '한스는 vs 한스씨가 — difference?']
+        checks: ['수영장 (suyeongjang) = swimming pool', '수영해요 = swims']
       },
       {
         tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '투안 씨가 어디에서 영화를 봐요?', hint: '영화를 보다 → 극장', answer: '투안 씨가 극장에서 영화를 봐요.',
-        checks: ['극장 (geukjang) = cinema', '봐요 (bwayo) = watches', '영화를 — 를 particle ត្រឹមត្រូវ']
+        checks: ['극장 (geukjang) = cinema', '봐요 (bwayo) = watches']
       },
       {
         tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].', prompt: '이치로 씨가 어디에서 책을 읽어요?', hint: '책을 읽다 → 도서관', answer: '이치로 씨가 도서관에서 책을 읽어요.',
@@ -972,7 +973,7 @@
       { tag: '자유', pattern: '보통 [시간]에 먹어요.', prompt: '점심을 몇 시에 먹어요?', hint: 'ម៉ោងបាយថ្ងៃ', answer: '보통 열두 시에 먹어요.', checks: ['열두 시 (12:00)?'] },
       { tag: '자유', pattern: '가족이 [숫자]명이에요.', prompt: '가족이 몇 명이에요?', hint: 'ចំនួនសមាជិកគ្រួសារ', answer: '가족이 [숫자]명이에요.', checks: ['명 (count)?'] },
       { tag: '자유', pattern: '학교에서 공부해요.', prompt: '어디에서 한국어를 공부해요?', hint: 'ទីកន្លែងសិក្សា', answer: '학교에서 공부해요.', checks: ['에서 (at)?'] },
-      { tag: '자유', pattern: '액션 영화를 좋아해요.', prompt: '영화를 좋아해요?', hint: 'ចូលចិត្តរឿងអត់?', answer: '네, 좋아해요. 액션 영화를 좋아해요.', checks: ['좋아해요?'] },
+      { tag: '자유', pattern: '액션 영화를 좋아해요.', prompt: '영화를 좋아해요?', hint: 'ចូលចិត្តរឿងអត់?', answer: '네, 영화를 좋아해요.', checks: ['좋아해요?'] },
       { tag: '자유', pattern: '보통 아침 여덟 시에 와요.', prompt: '보통 언제 학교에 와요?', hint: 'ម៉ោងមកដល់សាលា', answer: '보통 아침 여덟 시에 와요.', checks: ['여덟 시 (8:00)?'] },
       { tag: '자유', pattern: '요즘 [동네]에 살아요.', prompt: '요즘 어디에 살아요?', hint: 'កន្លែងរស់នៅបច្ចុប្បន្ន', answer: '요즘 [동네]에 살아요.', checks: ['에 살아요?'] },
       { tag: '자유', pattern: '고향은 [나라/도시]예요.', prompt: '고향이 어디예요?', hint: 'ស្រុកកំណើត', answer: '고향은 [나라/도시]예요.', checks: ['고향 (hometown)?'] },
@@ -1187,6 +1188,7 @@
       document.getElementById('btn-record').className = 'btn-record';
       document.getElementById('btn-label').textContent = 'ថតម្តងទៀត';
       document.getElementById('waveform').classList.remove('active');
+      showSelfCheck();
     }
 
     function silentStopRecording() {
@@ -1288,6 +1290,22 @@
       window.speechSynthesis.speak(utter);
     }
 
+    function showSelfCheck() {
+      const q = questions[currentIndex];
+      const list = document.getElementById('self-check-items');
+
+      // Clear and populate checklist
+      list.innerHTML = q.checks.map(check => `<li>${check}</li>`).join('');
+
+      // Show the self-check section
+      document.getElementById('self-check').style.display = 'block';
+
+      // Also show the answer section (audio player will appear)
+      document.getElementById('answer-section').classList.add('visible');
+
+      // Hide any old feedback
+      document.getElementById('feedback-box').classList.remove('visible');
+    }
 
     function navigate(dir) {
       const next = currentIndex + dir;
