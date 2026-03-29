@@ -9,13 +9,13 @@ exports.handler = async (event) => {
     const systemText = body.system || '';
     const userText = body.messages?.[0]?.content || '';
 
+    // Combine system + user into one message (Gemini free tier doesn't always support system_instruction)
+    const combinedText = systemText + '\n\n' + userText;
+
     const geminiBody = {
-      system_instruction: {
-        parts: [{ text: systemText }]
-      },
       contents: [{
         role: 'user',
-        parts: [{ text: userText }]
+        parts: [{ text: combinedText }]
       }],
       generationConfig: {
         maxOutputTokens: 1000,
@@ -24,6 +24,17 @@ exports.handler = async (event) => {
     };
 
     const apiKey = process.env.GEMINI_API_KEY;
+
+    if (!apiKey) {
+      return {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          content: [{ type: 'text', text: 'GEMINI_API_KEY មិនទាន់បានកំណត់នៅ Netlify Environment Variables ទេ។' }]
+        }),
+      };
+    }
+
     const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
     const response = await fetch(url, {
@@ -34,20 +45,29 @@ exports.handler = async (event) => {
 
     const data = await response.json();
 
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    const converted = {
-      content: [{ type: 'text', text }]
-    };
+    // Extract text — handle all possible Gemini response shapes
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text
+      || data?.candidates?.[0]?.output
+      || '';
+
+    // If still empty, return the raw Gemini response so we can debug
+    const finalText = text || ('Gemini raw response: ' + JSON.stringify(data).slice(0, 500));
 
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(converted),
+      body: JSON.stringify({
+        content: [{ type: 'text', text: finalText }]
+      }),
     };
+
   } catch (err) {
     return {
-      statusCode: 500,
-      body: JSON.stringify({ error: err.message }),
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        content: [{ type: 'text', text: 'Server error: ' + err.message }]
+      }),
     };
   }
 };
