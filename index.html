@@ -10,14 +10,14 @@
     rel="stylesheet">
   <style>
     :root {
-      --ink: #1a1208;
-      --paper: #f5f0e8;
-      --paper2: #ede7d9;
-      --accent: #c0392b;
-      --accent2: #e67e22;
-      --muted: #8a7e6e;
-      --green: #27ae60;
-      --border: #c8b89a;
+      --ink: #0f172a;
+      --paper: #f8fafc;
+      --paper2: #f1f5f9;
+      --accent: #dc2626;
+      --accent2: #f97316;
+      --muted: #64748b;
+      --green: #16a34a;
+      --border: #e2e8f0;
     }
 
     * {
@@ -28,26 +28,25 @@
 
     body {
       font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-      background: var(--paper);
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
       color: var(--ink);
       min-height: 100vh;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(139, 124, 100, 0.08) 27px, rgba(139, 124, 100, 0.08) 28px);
     }
 
     header {
-      background: var(--ink);
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       color: var(--paper);
-      padding: 12px 16px;
+      padding: 20px 16px;
       display: flex;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      border-bottom: 3px solid var(--accent);
+      border-bottom: 1px solid var(--border);
       width: 100%;
       box-sizing: border-box;
       text-align: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     }
 
     @media (min-width: 600px) {
@@ -72,29 +71,28 @@
     }
 
     .progress-bar {
-      height: 3px;
-      background: var(--paper2);
+      height: 2px;
+      background: var(--border);
     }
 
     .progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--green));
       transition: width 0.5s ease;
     }
 
     .container {
-      max-width: 780px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 40px 24px;
+      padding: 32px 24px;
     }
 
     .question-card {
       background: white;
       border: 1px solid var(--border);
-      border-top: 4px solid var(--accent);
-      border-radius: 2px;
-      padding: 36px 40px;
-      box-shadow: 4px 4px 0 var(--paper2), 8px 8px 0 var(--border);
+      border-radius: 12px;
+      padding: 32px 36px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
       margin-bottom: 28px;
       animation: slideIn 0.35s ease;
     }
@@ -122,11 +120,13 @@
       font-family: 'DM Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.12em;
-      color: var(--accent);
+      color: white;
       text-transform: uppercase;
-      border: 1px solid var(--accent);
-      padding: 3px 10px;
-      border-radius: 1px;
+      background: linear-gradient(135deg, var(--accent), #e11d48);
+      border: none;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-weight: 600;
     }
 
     .q-counter {
@@ -153,13 +153,13 @@
     }
 
     .q-hint {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 14px 18px;
+      background: #f0f9ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 14px 16px;
       margin-top: 16px;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
     .q-hint .label {
@@ -183,22 +183,24 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), #e11d48);
       color: white;
       border: none;
-      padding: 14px 28px;
+      padding: 12px 24px;
       font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      border-radius: 2px;
-      transition: all 0.2s;
+      border-radius: 8px;
+      transition: all 0.3s;
       letter-spacing: 0.03em;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
     }
 
     .btn-record:hover {
-      background: #a93226;
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #b91c1c, #be123c);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
     }
 
     .btn-record.recording {
@@ -287,14 +289,15 @@
 
     /* Custom audio player */
     .audio-player-custom {
-      background: var(--paper2);
+      background: white;
       border: 1px solid var(--border);
-      border-radius: 2px;
+      border-radius: 8px;
       padding: 12px 16px;
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
 
     .audio-play-btn {
@@ -308,11 +311,13 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .audio-play-btn:hover {
       background: var(--accent);
+      transform: scale(1.05);
     }
 
     .audio-play-btn svg {
@@ -351,27 +356,29 @@
 
     .btn-check {
       width: 100%;
-      background: var(--green);
+      background: linear-gradient(135deg, var(--green), #15803d);
       color: white;
       border: none;
-      padding: 16px;
+      padding: 14px 16px;
       font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      border-radius: 2px;
+      border-radius: 8px;
       letter-spacing: 0.05em;
-      transition: all 0.2s;
+      transition: all 0.3s;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.2);
     }
 
     .btn-check:hover {
-      background: #229954;
-      transform: translateY(-1px);
+      background: linear-gradient(135deg, #15803d, #166534);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
     }
 
     .btn-check.speaking {
@@ -385,11 +392,11 @@
     }
 
     .model-answer-reveal {
-      background: white;
-      border: 1px solid var(--border);
+      background: #ecfdf5;
+      border: 1px solid #d1fae5;
       border-left: 4px solid var(--green);
-      border-radius: 2px;
-      padding: 18px 22px;
+      border-radius: 8px;
+      padding: 16px 20px;
       margin-bottom: 16px;
       animation: slideIn 0.3s ease;
     }
@@ -413,10 +420,11 @@
     .feedback-box {
       background: white;
       border: 1px solid var(--border);
-      border-radius: 2px;
+      border-radius: 8px;
       padding: 24px 28px;
       display: none;
       animation: slideIn 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
 
     .feedback-box.visible {
@@ -493,62 +501,68 @@
     }
 
     .btn-nav {
-      background: transparent;
-      border: 2px solid var(--ink);
+      background: white;
+      border: 1px solid var(--border);
       color: var(--ink);
-      padding: 11px 24px;
+      padding: 10px 20px;
       font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      border-radius: 2px;
+      border-radius: 8px;
       transition: all 0.2s;
       letter-spacing: 0.05em;
       flex: 1;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
 
     .btn-nav:hover {
-      background: var(--ink);
-      color: var(--paper);
+      background: var(--paper2);
+      border-color: var(--muted);
+      transform: translateY(-1px);
     }
 
     .btn-nav:disabled {
-      opacity: 0.3;
+      opacity: 0.4;
       cursor: not-allowed;
     }
 
     .btn-nav.primary {
-      background: var(--ink);
-      color: var(--paper);
-      border-color: var(--ink);
+      background: linear-gradient(135deg, var(--ink), #1e293b);
+      color: white;
+      border-color: transparent;
     }
 
     .btn-nav.primary:hover {
-      background: #2c2213;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      transform: translateY(-1px);
     }
 
     .mode-selector {
       display: flex;
-      gap: 0;
+      gap: 8px;
       margin-bottom: 28px;
-      border: 2px solid var(--ink);
-      border-radius: 2px;
+      border: none;
+      border-radius: 8px;
       overflow: hidden;
+      background: white;
+      padding: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
 
     .mode-btn {
       flex: 1;
-      padding: 10px;
+      padding: 10px 12px;
       border: none;
       background: transparent;
       font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      color: var(--ink);
+      color: var(--muted);
       letter-spacing: 0.04em;
       transition: all 0.2s;
-      border-right: 1px solid var(--ink);
+      border-radius: 6px;
     }
 
     .mode-btn:last-child {
@@ -556,8 +570,13 @@
     }
 
     .mode-btn.active {
-      background: var(--ink);
-      color: var(--paper);
+      background: linear-gradient(135deg, var(--ink), #1e293b);
+      color: white;
+    }
+
+    .mode-btn:hover:not(.active) {
+      background: var(--paper2);
+      color: var(--ink);
     }
 
     .spinner {
@@ -593,12 +612,12 @@
 
     .no-mic-msg {
       display: none;
-      background: #fff3cd;
-      border: 1px solid #ffc107;
-      color: #856404;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      color: #92400e;
       padding: 12px 16px;
       font-size: 13px;
-      border-radius: 2px;
+      border-radius: 8px;
       margin-bottom: 16px;
     }
 
@@ -606,22 +625,24 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      background: transparent;
+      background: white;
       border: 1.5px solid var(--accent2);
       color: var(--accent2);
-      padding: 6px 14px;
+      padding: 8px 16px;
       font-family: 'Noto Sans Khmer', serif;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      border-radius: 2px;
+      border-radius: 6px;
       transition: all 0.2s;
       margin-top: 12px;
+      box-shadow: 0 1px 3px rgba(249, 115, 22, 0.1);
     }
 
     .btn-speak:hover {
       background: var(--accent2);
       color: white;
+      box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
     }
 
     .btn-speak.speaking {
@@ -631,13 +652,13 @@
 
     /* Self-assessment panel (shown after recording since AI can't hear audio) */
     .self-check {
-      background: var(--paper);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      padding: 16px 20px;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 14px 16px;
       margin-bottom: 16px;
       font-size: 14px;
-      line-height: 1.8;
+      line-height: 1.6;
     }
 
     .self-check .label {
@@ -669,13 +690,14 @@
     }
 
     .api-banner {
-      background: #fffbf0;
-      border-bottom: 2px solid var(--accent2);
-      padding: 12px 24px;
+      background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     }
 
     .api-banner label {
@@ -715,17 +737,19 @@
       font-size: 12px;
       font-weight: 600;
       padding: 7px 16px;
-      background: var(--accent2);
+      background: linear-gradient(135deg, var(--accent2), #fb923c);
       color: white;
       border: none;
-      border-radius: 2px;
+      border-radius: 6px;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.2s;
+      transition: all 0.2s;
+      box-shadow: 0 1px 3px rgba(249, 115, 22, 0.2);
     }
 
     .api-save-btn:hover {
-      background: #d35400;
+      background: linear-gradient(135deg, #ea580c, #f97316);
+      box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);
     }
 
     .api-status {
@@ -755,1027 +779,632 @@
 
 <body>
 
-  <header>
-    <h1>តេស្តនិយាយភាសាកូរ៉េ — អនុវត្ត</h1>
-    <span>Korean Oral Test Practice · មីនា</span>
-  </header>
-  <div class="progress-bar">
-    <div class="progress-fill" id="progress"></div>
+<header>
+  <h1>តេស្តនិយាយភាសាកូរ៉េ — ខែមេសា</h1>
+  <span>Korean Oral Test · 4월 말하기</span>
+</header>
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<div class="container">
+
+  <div class="mode-selector">
+    <button class="mode-btn active" data-mode="all">ទាំងអស់</button>
+    <button class="mode-btn" data-mode="q01">Q01 이게/저게</button>
+    <button class="mode-btn" data-mode="q03">Q02 문법</button>
+    <button class="mode-btn" data-mode="q04">Q03 일상생활</button>
   </div>
 
-  </div>
-
-  <div class="container">
-
-    <div class="mode-selector">
-      <button class="mode-btn active" data-mode="all">ទាំងអស់</button>
-      <button class="mode-btn" data-mode="q01">Q01 ម៉ោង</button>
-      <button class="mode-btn" data-mode="q02">Q02 តម្លៃ</button>
-      <button class="mode-btn" data-mode="q03">Q03 លេខ</button>
-      <button class="mode-btn" data-mode="q04">Q04 ទីកន្លែង</button>
-      <button class="mode-btn" data-mode="free">សន្ទនា</button>
-    </div>
-
-    <div id="test-area">
-      <div class="question-card" id="question-card">
-        <div class="q-meta">
-          <span class="q-tag" id="q-tag">Q01</span>
-          <span class="q-counter" id="q-counter">1 / 30</span>
-        </div>
-        <div class="q-prompt" id="q-prompt">Loading...</div>
-        <div id="q-prompt-khmer" style="color: #666; font-size: 0.9em; margin-bottom: 10px;"></div>
-        <div class="q-pattern" id="q-pattern"></div>
-        <button class="btn-speak" id="btn-speak" onclick="speakQuestion()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          </svg>
-          <span id="speak-label">ស្តាប់សំណួរ</span>
-        </button>
-        <div class="q-hint" id="q-hint" style="display:none">
-          <div class="label">ព័ត៌មានជំនួយ / Input</div>
-          <div id="q-hint-text"></div>
-        </div>
+  <div id="test-area">
+    <div class="question-card" id="question-card">
+      <div class="q-meta">
+        <span class="q-tag" id="q-tag">Q01</span>
+        <span class="q-counter" id="q-counter">1 / 30</span>
       </div>
-
-      <div class="no-mic-msg" id="no-mic-msg">
-        ⚠️ មិនអាចចូលដំណើរការមីក្រូហ្វូនបានទេ។ សូមអនុញ្ញាតការចូលដំណើរការក្នុងការកំណត់កម្មវិធីរុករករបស់អ្នក។
-      </div>
-
-      <div class="controls">
-        <button class="btn-record" id="btn-record" onclick="toggleRecord()">
-          <div class="dot"></div>
-          <span id="btn-label">ចាប់ផ្តើមថត</span>
-        </button>
-        <div class="timer" id="timer">0:00</div>
-        <div class="waveform" id="waveform">
-          <div class="waveform-bar" style="animation-delay:0s"></div>
-          <div class="waveform-bar" style="animation-delay:0.1s"></div>
-          <div class="waveform-bar" style="animation-delay:0.2s"></div>
-          <div class="waveform-bar" style="animation-delay:0.15s"></div>
-          <div class="waveform-bar" style="animation-delay:0.05s"></div>
-          <div class="waveform-bar" style="animation-delay:0.25s"></div>
-          <div class="waveform-bar" style="animation-delay:0.1s"></div>
-        </div>
-      </div>
-
-      <div class="answer-section" id="answer-section">
-
-        <!-- Custom audio player -->
-        <div class="audio-player-custom" id="audio-player-custom">
-          <button class="audio-play-btn" id="audio-play-btn" onclick="toggleAudioPlay()">
-            <svg id="play-icon" width="14" height="14" viewBox="0 0 24 24">
-              <polygon points="5,3 19,12 5,21" />
-            </svg>
-          </button>
-          <div class="audio-progress-wrap" id="audio-progress-wrap" onclick="seekAudio(event)">
-            <div class="audio-progress-fill" id="audio-progress-fill"></div>
-          </div>
-          <div class="audio-time" id="audio-time">0:00</div>
-        </div>
-
-        <!-- Hidden native audio element -->
-        <audio id="audio-playback"></audio>
-
-        <!-- Self-check list shown before AI feedback -->
-        <div class="self-check" id="self-check" style="display:none">
-          <div class="label">ពិនិត្យខ្លួនឯង / Self-check</div>
-          <ul class="self-check-items" id="self-check-items"></ul>
-        </div>
-
-        <button class="btn-check" id="btn-check" onclick="speakAnswer()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-            stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          </svg>
-          <span id="check-label">ស្តាប់ចម្លើយគំរូ</span>
-        </button>
-
-        <div class="model-answer-reveal" id="model-answer-box" style="display:none">
-          <div class="label">ចម្លើយគំរូ / Model Answer</div>
-          <div id="model-answer-text"></div>
-          <div id="khmer-answer-text"></div>
-        </div>
-      </div>
-
-      <div class="nav-row" style="margin-top:20px;">
-        <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← ថយក្រោយ</button>
-        <button class="btn-nav primary" id="btn-next" onclick="navigate(1)">បន្ទាប់ →</button>
+      <div class="q-prompt" id="q-prompt">Loading...</div>
+      <div class="q-khmer" id="q-khmer"></div>
+      <div class="q-pattern" id="q-pattern"></div>
+      <button class="btn-speak" id="btn-speak" onclick="speakQuestion()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <span id="speak-label">ស្តាប់សំណួរ</span>
+      </button>
+      <div class="q-hint" id="q-hint">
+        <div class="label">ព័ត៌មានជំនួយ / Hint</div>
+        <div id="q-hint-text"></div>
       </div>
     </div>
 
-  </div>
-
-  <script>
-    // ── Question bank ──────────────────────────────────────────────
-    const QUESTIONS = [
-      {
-        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.',
-        prompt: '서울은 지금 몇 시예요?', promptKhmer: 'តើនៅសេអ៊ូលឥឡូវនេះម៉ោងប៉ុន្មាន?',
-        hint: '12:30', answer: '서울은 지금 열두 시 삼십 분이에요.',
-        checks: ['열두 (yeoldu) = 12 — ណាមួយ?', '삼십 (samsip) = 30 — បានអានត្រឹមត្រូវទេ?', 'ប្រើ 이에요 នៅចុង?'],
-        khmer: 'នៅសេអ៊ូលឥឡូវនេះម៉ោង ១២:៣០ នាទី។'
-      },
-      {
-        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.',
-        prompt: '베이징은 지금 몇 시예요?', promptKhmer: 'តើនៅប៉េកាំងឥឡូវនេះម៉ោងប៉ុន្មាន?',
-        hint: '4:50', answer: '베이징은 지금 네 시 오십 분이에요.',
-        checks: ['네 (ne) = 4', '오십 (osip) = 50', '베이징은 — 은 ត្រូវប្រើ'],
-        khmer: 'នៅប៉េកាំងឥឡូវនេះម៉ោង ៤:៥០ នាទី។'
-      },
-      {
-        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.',
-        prompt: '모스크바는 지금 몇 시예요?', promptKhmer: 'តើនៅមូស្គូឥឡូវនេះម៉ោងប៉ុន្មាន?',
-        hint: '5:23', answer: '모스크바는 지금 다섯 시 이십삼 분이에요.',
-        checks: ['다섯 (daseot) = 5', '이십삼 (isimsam) = 23', '모스크바는 — 는 ត្រូវប្រើ'],
-        khmer: 'នៅមូស្គូឥឡូវនេះម៉ោង ៥:២៣ នាទី។'
-      },
-      {
-        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.',
-        prompt: '도쿄는 지금 몇 시예요?', promptKhmer: 'តើនៅតូក្យូឥឡូវនេះម៉ោងប៉ុន្មាន?',
-        hint: '6:47', answer: '도쿄는 지금 여섯 시 사십칠 분이에요.',
-        checks: ['여섯 (yeoseot) = 6', '사십칠 (sasipchil) = 47', 'ប្រើ분 (bun) សម្រាប់នាទី'],
-        khmer: 'នៅតូក្យូឥឡូវនេះម៉ោង ៦:៤៧ នាទី។'
-      },
-      {
-        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.',
-        prompt: '샌프란시스코는 지금 몇 시예요?', promptKhmer: 'តើនៅសាន់ហ្វ្រាន់ស៊ីស្កូឥឡូវនេះម៉ោងប៉ុន្មាន?',
-        hint: '1:34', answer: '샌프란시스코는 지금 한 시 삼십사 분이에요.',
-        checks: ['한 (han) = 1', '삼십사 (samsipsa) = 34', 'ស្តាប់ត្រូវថា 샌프란시스코는 ហើយ'],
-        khmer: 'នៅសាន់ហ្វ្រាន់ស៊ីស្កូឥឡូវនេះម៉ោង ១:៣៤ នាទី។'
-      },
-      {
-        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.',
-        prompt: '파리는 지금 몇 시예요?', promptKhmer: 'តើនៅប៉ារីសឥឡូវនេះម៉ោងប៉ុន្មាន?',
-        hint: '2:45', answer: '파리는 지금 두 시 사십오 분이에요.',
-        checks: ['두 (du) = 2', '사십오 (sasipo) = 45', 'ប្រយ័ត្ន 사십오 vs 오십사'],
-        khmer: 'នៅប៉ារីសឥឡូវនេះម៉ោង ២:៤៥ នាទី។'
-      },
-      {
-        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.',
-        prompt: '프놈펜은 지금 몇 시예요?', promptKhmer: 'តើនៅភ្នំពេញឥឡូវនេះម៉ោងប៉ុន្មាន?',
-        hint: '3:16', answer: '프놈펜은 지금 세 시 십육 분이에요.',
-        checks: ['세 (se) = 3', '십육 (simnyuk) = 16'],
-        khmer: 'នៅភ្នំពេញឥឡូវនេះម៉ោង ៣:១៦ នាទី។'
-      },
-      {
-        tag: 'Q01', pattern: '[도시]은/는 지금 [시간]이에요.',
-        prompt: '런던은 지금 몇 시예요?', promptKhmer: 'តើនៅឡុងដ៍ឥឡូវនេះម៉ោងប៉ុន្មាន?',
-        hint: '7:28', answer: '런던은 지금 일곱 시 이십팔 분이에요.',
-        checks: ['일곱 (ilgop) = 7', '이십팔 (isippal) = 28', 'ប្រើ은 ជំនួស 는 ព្រោះ런던 ចប់ដោយស្រៈ'],
-        khmer: 'នៅឡុងដ៍ឥឡូវនេះម៉ោង ៧:២៨ នាទី។'
-      },
-
-      // --- Group 5: Prices (Q02) ---
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '24,700원', answer: '이만 사천칠백 원이에요.',
-        checks: ['이만 (iman) = 20,000', '사천 (sacheon) = 4,000', '칠백 (chilbaek) = 700'],
-        khmer: 'វាមានតម្លៃ ២៤,៧០០ វ៉ុន។'
-      },
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '3,500원', answer: '삼천오백 원이에요.',
-        checks: ['삼천 (samcheon) = 3,000', '오백 (obaek) = 500'],
-        khmer: 'វាមានតម្លៃ ៣,៥០០ វ៉ុន។'
-      },
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '1,200원', answer: '천이백 원이에요.',
-        checks: ['천 (cheon) = 1,000 — មិនបាច់និយាយ 일천', '이백 (ibaek) = 200'],
-        khmer: 'វាមានតម្លៃ ១,២០០ វ៉ុន។'
-      },
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '10,000원', answer: '만 원이에요.',
-        checks: ['만 (man) = 10,000 — ខ្លីណាស់!', 'មិនបាច់ 일만 — គ្រាន់តែ 만', 'ប្រើ 원 (won) ក្រោយ'],
-        khmer: 'វាមានតម្លៃ ១០,០០០ វ៉ុន។'
-      },
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '84,300원', answer: '팔만 사천삼백 원이에요.',
-        checks: ['팔만 (palman) = 80,000', '사천 (sacheon) = 4,000', '삼백 (sambaek) = 300'],
-        khmer: 'វាមានតម្លៃ ៨៤,៣០០ វ៉ុន។'
-      },
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '1,322,700원', answer: '백삼십이만 이천칠백 원이에요.',
-        checks: ['백삼십이만 = 1,320,000', '이천칠백 = 2,700', 'ចំណែក 만 គឺ crucial ក្នុងលេខធំ'],
-        khmer: 'វាមានតម្លៃ ១,៣២២,៧០០ វ៉ុន។'
-      },
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '234,800원', answer: '이십삼만 사천팔백 원이에요.',
-        checks: ['이십삼만 = 230,000', '사천 = 4,000', '팔백 = 800'],
-        khmer: 'វាមានតម្លៃ ២៣៤,៨០០ វ៉ុន។'
-      },
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '9,467,900원', answer: '구백사십육만 칠천구백 원이에요.',
-        checks: ['구백사십육만 = 9,460,000', '칠천구백 = 7,900'],
-        khmer: 'វាមានតម្លៃ ៩,៤៦៧,៩០០ វ៉ុន។'
-      },
-      {
-        tag: 'Q02', pattern: '[물건]이/가 [가격]이에요.',
-        prompt: '이게 얼마예요?', promptKhmer: 'តើអាហ្នឹងថ្លៃប៉ុន្មាន?',
-        hint: '852,300원', answer: '팔십오만 이천삼백 원이에요.',
-        checks: ['팔십오만 (850,000)', '이천삼백 (2,300)', 'កុំភ្លេច 원 (Won)'],
-        khmer: 'វាមានតម្លៃ ៨៥២,៣០០ វ៉ុន។'
-      },
-
-      // --- Group 6: Phone Numbers (Q03) ---
-      {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.',
-        prompt: '폴 씨 핸드폰 번호가 몇 번이에요?', promptKhmer: 'តើលេខទូរស័ព្ទរបស់លោក ផល គឺលេខប៉ុន្មាន?',
-        hint: '088-145-293', answer: '폴 씨 핸드폰 번호가 공팔팔에 일사오에 이구삼이에요.',
-        checks: ['공 (gong) = 0', 'ប្រើ 에 (e) ដើម្បីញែក group'],
-        khmer: 'លេខទូរស័ព្ទរបស់លោក ផល គឺ ០៨៨-១៤៥-២៩៣។'
-      },
-      {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.',
-        prompt: '수잔 씨 핸드폰 번호가 몇 번이에요?', promptKhmer: 'តើលេខទូរស័ព្ទរបស់កញ្ញា ស៊ូហ្សាន គឺលេខប៉ុន្មាន?',
-        hint: '077-123-456', answer: '수잔 씨 핸드폰 번호가 공칠칠에 일이삼에 사오육이에요.',
-        checks: ['공칠칠 — 공 = 0, 칠 = 7', '일이삼 — digit មួយៗ', '사오육 — ត្រឹមត្រូវ?'],
-        khmer: 'លេខទូរស័ព្ទរបស់កញ្ញា ស៊ូហ្សាន គឺ ០៧៧-១២៣-៤៥៦។'
-      },
-      {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.',
-        prompt: '미나 씨 핸드폰 번호가 몇 번이에요?', promptKhmer: 'តើលេខទូរស័ព្ទរបស់កញ្ញា មីណា គឺលេខប៉ុន្មាន?',
-        hint: '010-987-543', answer: '미나 씨 핸드폰 번호가 공일공에 구팔칠에 오사삼이에요.',
-        checks: ['공일공 — 0,1,0', '구팔칠 — 9,8,7', '오사삼 — 5,4,3'],
-        khmer: 'លេខទូរស័ព្ទរបស់កញ្ញា មីណា គឺ ០១០-៩៨៧-៥៤៣។'
-      },
-      {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.',
-        prompt: '앤디 씨 핸드폰 번호가 몇 번이에요?', promptKhmer: 'តើលេខទូរស័ព្ទរបស់លោក អ៊ែនឌី គឺលេខប៉ុន្មាន?',
-        hint: '096-349-7285', answer: '앤디 씨 핸드폰 번호가 공구육에 삼사구에 칠이팔오예요.',
-        checks: ['공구육 — 0,9,6', '삼사구 — 3,4,9', '칠이팔오 — 7,2,8,5'],
-        khmer: 'លេខទូរស័ព្ទរបស់លោក អ៊ែនឌី គឺ ០៩៦-៣៤៩-៧២៨៥។'
-      },
-      {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.',
-        prompt: '소라 씨 핸드폰 번호가 몇 번이에요?', promptKhmer: 'តើលេខទូរស័ព្ទរបស់កញ្ញា សូរ៉ា គឺលេខប៉ុន្មាន?',
-        hint: '082-952-167', answer: '소라 씨 핸드폰 번호가 공팔이에 구오이에 일육칠이에요.',
-        checks: ['공팔이 — 0,8,2', '구오이 — 9,5,2', '일육칠 — 1,6,7'],
-        khmer: 'លេខទូរស័ព្ទរបស់កញ្ញា សូរ៉ា គឺ ០៨២-៩៥២-១៦៧។'
-      },
-      {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.',
-        prompt: '이리나 씨 핸드폰 번호가 몇 번이에요?', promptKhmer: 'តើលេខទូរស័ព្ទរបស់កញ្ញា អ៊ីរីណា គឺលេខប៉ុន្មាន?',
-        hint: '011-985-372', answer: '이리나 씨 핸드폰 번호가 공일일에 구팔오에 삼칠이예요.',
-        checks: ['공일일 (011)', '구팔오 (985)', '삼칠이 (372)'],
-        khmer: 'លេខទូរស័ព្ទរបស់កញ្ញា អ៊ីរីណា គឺ ០១១-៩៨៥-៣៧២។'
-      },
-      {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.',
-        prompt: '한스 씨 핸드폰 번호가 몇 번이에요?', promptKhmer: 'តើលេខទូរស័ព្ទរបស់លោក ហាន់ គឺលេខប៉ុន្មាន?',
-        hint: '078-965-123', answer: '한스 씨 핸드폰 번호가 공칠팔에 구육오에 일이삼이에요.',
-        checks: ['공칠팔 (078)', '구육오 (965)', '일이삼 (123)'],
-        khmer: 'លេខទូរស័ព្ទរបស់លោក ហាន់ គឺ ០៧៨-៩៦៥-១២៣។'
-      },
-      {
-        tag: 'Q03', pattern: '[이름] 씨 핸드폰 번호가 [번호]예요.',
-        prompt: '완 씨 핸드폰 번호가 몇 번이에요?', promptKhmer: 'តើលេខទូរស័ព្ទរបស់លោក វ៉ាន់ គឺលេខប៉ុន្មាន?',
-        hint: '012-354-867', answer: '완 씨 핸드폰 번호가 공일이에 삼오사에 팔육칠이에요.',
-        checks: ['공일이 (012)', '삼오사 (354)', '팔육칠 (867)'],
-        khmer: 'លេខទូរស័ព្ទរបស់លោក វ៉ាន់ គឺ ០១២-៣៥៤-៨៦៧។'
-      },
-
-      // --- Group 7: Locations & Actions (Q04) ---
-      {
-        tag: 'Q04', pattern: '[이름] 씨가 [장ស]에서 [동사].',
-        prompt: '미나 씨가 어디에서 아침 식사해요?', promptKhmer: 'តើកញ្ញា មីណា ញ៉ាំអាហារពេលព្រឹកនៅឯណា?',
-        hint: '아침 식사하다 → 식당', answer: '미나 씨가 아침에 식당에서 식사해요.',
-        checks: ['식당 (sikdang) = restaurant', 'ប្រើ 에서 (eseo) = at/in', '[ឈ្មោះ]씨가 [ទីកន្លែង]에서'],
-        khmer: 'កញ្ញា មីណា ញ៉ាំអាហារពេលព្រឹកនៅឯភោជនីយដ្ឋាន។'
-      },
-      {
-        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].',
-        prompt: '앤디 씨가 어디에서 공책을 사요?', promptKhmer: 'តើលោក អ៊ែនឌី ទិញសៀវភៅសរសេរនៅឯណា?',
-        hint: '공책을 사다 → 문구점', answer: '앤디 씨가 문구점에서 공책을 사요.',
-        checks: ['문구점 (mungujeom) = stationery store', '사요 (sayo) = buys',],
-        khmer: 'លោក អ៊ែនឌី ទិញសៀវភៅសរសេរនៅហាងលក់សម្ភារៈសិក្សា។'
-      },
-      {
-        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].',
-        prompt: '한스 씨가 어디에서 수영해요?', promptKhmer: 'តើលោក ហាន់ ហែលទឹកនៅឯណា?',
-        hint: '수영하다 → 수영장', answer: '한스 씨가 수영장에서 수영해요.',
-        checks: ['수영장 (suyeongjang) = swimming pool', '수영해요 = swims'],
-        khmer: 'លោក ហាន់ ហែលទឹកនៅអាងហែលទឹក។'
-      },
-      {
-        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].',
-        prompt: '투안 씨가 어디에서 영화를 봐요?', promptKhmer: 'តើលោក ទួន មើលកុននៅឯណា?',
-        hint: '영화를 보다 → 극장', answer: '투안 씨가 극장에서 영화를 봐요.',
-        checks: ['극장 (geukjang) = cinema', '봐요 (bwayo) = watches'],
-        khmer: 'លោក ទួន មើលកុននៅរោងកុន។'
-      },
-      {
-        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].',
-        prompt: '이치로 씨가 어디에서 책을 읽어요?', promptKhmer: 'តើលោក អ៊ីឈីរ៉ូ អានសៀវភៅនៅឯណា?',
-        hint: '책을 읽다 → 도서관', answer: '이치로 씨가 도서관에서 책을 읽어요.',
-        checks: ['도서관 (doseogwan) = library', '읽어요 (ilgeoyo) = reads', 'ប្រើ 에서 ជំនួស 에 ព្រោះមានសកម្មភាព'],
-        khmer: 'លោក អ៊ីឈីរ៉ូ អានសៀវភៅនៅបណ្ណាល័យ។'
-      },
-      {
-        tag: 'Q04', pattern: '[이름] 씨가 [장소]에서 [동사].',
-        prompt: '완 씨가 어디에서 한국어를 배워요?', promptKhmer: 'តើលោក វ៉ាន់ រៀនភាសាកូរ៉េនៅឯណា?',
-        hint: '한국어를 배우다 → 학교', answer: '완 씨가 학교에서 한국어를 배워요.',
-        checks: ['학교 (hakgyo) = school', '배워요 (baeweoyo) = learns', '한국어를 — 를 particle'],
-        khmer: 'លោក វ៉ាន់ រៀនភាសាកូរ៉េនៅសាលារៀន។'
-      },
-      // --- Group 1: Personal Basics ---
-      {
-        tag: '자유',
-        pattern: '저는 [이름]이에요.',
-        prompt: '자기소개해 주세요.',
-        promptKhmer: 'សូមណែនាំខ្លួនអ្នកបន្តិច។',
-        hint: 'ឈ្មោះ, ប្រទេស',
-        answer: '안녕하세요. 저는 [이름]이에요. 캄보디아 사람이에요.',
-        checks: ['ឈ្មោះ?', 'ប្រទេស?'],
-        khmer: 'សួស្តី។ ខ្ញុំឈ្មោះ [ឈ្មោះ]។ ខ្ញុំជាជនជាតិកម្ពុជា។'
-      },
-      {
-        tag: '자유',
-        pattern: '저는 [나이]살이에요.',
-        prompt: '몇 살이에요?',
-        promptKhmer: 'តើអ្នកអាយុប៉ុន្មានឆ្នាំ?',
-        hint: 'អាយុ',
-        answer: '저는 [나이]살이에요.',
-        checks: ['លេខកូរ៉េ (Pure Korean)?'],
-        khmer: 'ខ្ញុំអាយុ [អាយុ] ឆ្នាំ។'
-      },
-      {
-        tag: '자유',
-        pattern: '보통 [시간]에 먹어요.',
-        prompt: '점심을 몇 시에 먹어요?',
-        promptKhmer: 'តើអ្នកញ៉ាំបាយថ្ងៃត្រង់នៅម៉ោងប៉ុន្មាន?',
-        hint: 'ម៉ោងបាយថ្ងៃ',
-        answer: '보통 열두 시에 점심을 먹어요.',
-        checks: ['열두 시 (12:00)?'],
-        khmer: 'ជាធម្មតា ខ្ញុំញ៉ាំបាយថ្ងៃត្រង់នៅម៉ោង ១២។'
-      },
-      {
-        tag: '자유',
-        pattern: '가족이 [숫자]명이에요.',
-        prompt: '가족이 몇 명이에요?',
-        promptKhmer: 'តើគ្រួសាររបស់អ្នកមានសមាជិកប៉ុន្មាននាក់?',
-        hint: 'ចំនួនសមាជិកគ្រួសារ',
-        answer: '가족이 [숫자]명이에요.',
-        checks: ['명 (count)?'],
-        khmer: 'គ្រួសាររបស់ខ្ញុំមានសមាជិក [ចំនួន] នាក់។'
-      },
-      {
-        tag: '자유',
-        pattern: '학교에서 공부해요.',
-        prompt: '어디에서 한국어를 공부해요?',
-        promptKhmer: 'តើអ្នករៀនភាសាកូរ៉េនៅឯណា?',
-        hint: 'ទីកន្លែងសិក្សា',
-        answer: '학교에서 한국어를 공부해요.',
-        checks: ['에서 (at)?'],
-        khmer: 'ខ្ញុំរៀនភាសាកូរ៉េនៅសាលា។'
-      },
-      {
-        tag: '자유',
-        pattern: '영화를 좋아해요.',
-        prompt: '영화를 좋아해요?',
-        promptKhmer: 'តើអ្នកចូលចិត្តមើលកុនដែរឬទេ?',
-        hint: 'ចូលចិត្តរឿងអត់?',
-        answer: '네, 영화를 좋아해요.',
-        checks: ['좋아해요?'],
-        khmer: 'បាទ/ចាស ខ្ញុំចូលចិត្តមើលកុន។'
-      },
-      {
-        tag: '자유',
-        pattern: '보통 아침 여덟 시에 와요.',
-        prompt: '보통 언제 학교에 와요?',
-        promptKhmer: 'តើជាធម្មតាអ្នកមកសាលានៅពេលណា?',
-        hint: 'ម៉ោងមកដល់សាលា',
-        answer: '보통 아침 여덟 시에 학교에 와요.',
-        checks: ['여덟 시 (8:00)?'],
-        khmer: 'ជាធម្មតា ខ្ញុំមកសាលានៅម៉ោង ៨ ព្រឹក។'
-      },
-      {
-        tag: '자유',
-        pattern: '요즘 [동네]에 살아요.',
-        prompt: '요즘 어디에 살아요?',
-        promptKhmer: 'តើសព្វថ្ងៃនេះអ្នករស់នៅឯណា?',
-        hint: 'កន្លែងរស់នៅបច្ចុប្បន្ន',
-        answer: '요즘 프놈펜에 살아요.',
-        checks: ['에 살아요?'],
-        khmer: 'សព្វថ្ងៃនេះ ខ្ញុំរស់នៅភ្នំពេញ។'
-      },
-      {
-        tag: '자유',
-        pattern: '제 고향은 프놈펜이에요.',
-        prompt: '고향이 어디예요?',
-        promptKhmer: 'តើស្រុកកំណើតរបស់អ្នកនៅឯណា?',
-        hint: 'ស្រុកកំណើត',
-        answer: '제 고향은 프놈펜이에요.',
-        checks: ['고향 (hometown)?'],
-        khmer: 'ស្រុកកំណើតរបស់ខ្ញុំគឺនៅភ្នំពេញ។'
-      },
-      {
-        tag: '자유',
-        pattern: '[년/월]에 왔어요.',
-        prompt: '언제 프놈펜에 왔어요?',
-        promptKhmer: 'តើអ្នកមកដល់ភ្នំពេញតាំងពីពេលណា?',
-        hint: 'ពេលមកដល់ភ្នំពេញ',
-        answer: '작년에 프놈펜에 왔어요.',
-        checks: ['왔어요 (past)?'],
-        khmer: 'ខ្ញុំបានមកភ្នំពេញកាលពីឆ្នាំមុន។'
-      },
-
-      // --- Group 2: Opinions & Daily Life ---
-      {
-        tag: '자유',
-        pattern: '조금 어려워요.',
-        prompt: '한국어 공부가 재미있어요?',
-        promptKhmer: 'តើការរៀនភាសាកូរ៉េសប្បាយដែរឬទេ?',
-        hint: 'តើការរៀនភាសាកូរ៉េសប្បាយទេ?',
-        answer: '네, 재미있어요. 그런데 조금 어려워요.',
-        checks: ['재미있어요?', '어려워요?'],
-        khmer: 'បាទ/ចាស សប្បាយរៀនណាស់។ ប៉ុន្តែវាពិបាកបន្តិច។'
-      },
-      {
-        tag: '자유',
-        pattern: '네, 많아요.',
-        prompt: '친구가 많아요?',
-        promptKhmer: 'តើអ្នកមានមិត្តភក្តិច្រើនដែរឬទេ?',
-        hint: 'មិត្តភក្តិច្រើនអត់?',
-        answer: '네, 친구가 많아요.',
-        checks: ['많아요 vs 많지 않아요?'],
-        khmer: 'បាទ/ចាស ខ្ញុំមានមិត្តភក្តិច្រើន។'
-      },
-      {
-        tag: '자유',
-        pattern: '보통 친구를 만나요.',
-        prompt: '보통 주말에 뭐 해요?',
-        promptKhmer: 'តើជាធម្មតាអ្នកធ្វើអ្វីខ្លះនៅចុងសប្តាហ៍?',
-        hint: 'សកម្មភាពចុងសប្តាហ៍',
-        answer: '보통 친구를 만나요. 그리고 집에서 쉬어요.',
-        checks: ['만나요?', '쉬어요?'],
-        khmer: 'ជាធម្មតាខ្ញុំជួបមិត្តភក្តិ ហើយសម្រាកនៅផ្ទះ។'
-      },
-      {
-        tag: '자유',
-        pattern: '네, 좋아해요.',
-        prompt: '한국 음식을 좋아해요?',
-        promptKhmer: 'តើអ្នកចូលចិត្តម្ហូបកូរ៉េដែរឬទេ?',
-        hint: 'ចូលចិត្តម្ហូបកូរ៉េអត់?',
-        answer: '네, 한국 음식을 아주 좋아해요.',
-        checks: ['좋아해요?'],
-        khmer: 'បាទ/ចាស ខ្ញុំចូលចិត្តម្ហូបកូរ៉េខ្លាំងណាស់។'
-      },
-      {
-        tag: '자유',
-        pattern: '비빔밥을 좋아해요.',
-        prompt: '무슨 음식을 좋아해요?',
-        promptKhmer: 'តើអ្នកចូលចិត្តម្ហូបអ្វី?',
-        hint: 'ម្ហូបដែលចូលចិត្ត',
-        answer: '저는 비빔밥을 좋아해요.',
-        checks: ['ម្ហូបអ្វី?'],
-        khmer: 'ខ្ញុំចូលចិត្តញ៉ាំប៊ីប៊ីមបាប់ (Bibimbap)។'
-      },
-      {
-        tag: '자유',
-        pattern: '네, 먹어 봤어요.',
-        prompt: '한국 음식을 먹어 봤어요?',
-        promptKhmer: 'តើអ្នកធ្លាប់ញ៉ាំម្ហូបកូរ៉េដែរឬទេ?',
-        hint: 'ធ្លាប់ញ៉ាំអត់?',
-        answer: '네, 먹어 봤어요.',
-        checks: ['~어/아 봤어요?'],
-        khmer: 'បាទ/ចាស ខ្ញុំធ្លាប់ញ៉ាំរួចហើយ។'
-      },
-      {
-        tag: '자유',
-        pattern: '맛있어요!',
-        prompt: '김치를 먹어 봤어요?',
-        promptKhmer: 'តើអ្នកធ្លាប់ញ៉ាំគីមឈីដែរឬទេ?',
-        hint: 'ធ្លាប់ញ៉ាំគីមឈីអត់?',
-        answer: '네, 먹어 봤어요. 정말 맛있어요.',
-        checks: ['맛있어요?'],
-        khmer: 'បាទ/ចាស ខ្ញុំធ្លាប់ញ៉ាំហើយ។ វាពិតជាឆ្ងាញ់ណាស់។'
-      },
-      {
-        tag: '자유',
-        pattern: '카페에서 만나요.',
-        prompt: '보통 어디에서 친구를 만나요?',
-        promptKhmer: 'តើជាធម្មតាអ្នកជួបមិត្តភក្តិនៅឯណា?',
-        hint: 'កន្លែងជួបមិត្តភក្តិ',
-        answer: '보통 카페에서 친구를 만나요.',
-        checks: ['에서 (at)?'],
-        khmer: 'ជាធម្មតា ខ្ញុំជួបមិត្តភក្តិនៅហាងកាហ្វេ។'
-      },
-      {
-        tag: '자유',
-        pattern: '쇼핑해요.',
-        prompt: '주말에 뭐 해요?',
-        promptKhmer: 'តើអ្នកធ្វើអ្វីខ្លះនៅចុងសប្តាហ៍?',
-        hint: 'ធ្វើអ្វីខ្លះចុងសប្តាហ៍',
-        answer: '쇼핑을 해요. 그리고 영화를 봐요.',
-        checks: ['쇼핑해요?'],
-        khmer: 'ខ្ញុំទៅដើរទិញឥវ៉ាន់ ហើយមើលកុន។'
-      },
-      {
-        tag: '자유',
-        pattern: '가끔 가요.',
-        prompt: '주말에 극장에 자주 가요?',
-        promptKhmer: 'តើអ្នកទៅរោងកុនញឹកញាប់ដែរឬទេនៅចុងសប្តាហ៍?',
-        hint: 'ទៅរោងកុនញឹកអត់?',
-        answer: '아니요, 가끔 가요.',
-        checks: ['가끔 (sometimes)?'],
-        khmer: 'ទេ យូរៗទៅម្តង។'
-      },
-
-      // --- Group 3: Preferences & Hobbies ---
-      {
-        tag: '자유',
-        pattern: '극장에 가요.',
-        prompt: '보통 주말에 어디에 가요?',
-        promptKhmer: 'តើជាធម្មតាអ្នកទៅណានៅចុងសប្តាហ៍?',
-        hint: 'តើអ្នកទៅណានៅចុងសប្តាហ៍?',
-        answer: '보통 극장에 가요. 거기에서 영화를 봐요.',
-        checks: ['극장 (cinema)', '영화를 봐요 (watch movie)'],
-        khmer: 'ជាធម្មតាខ្ញុំទៅរោងកុន។ ខ្ញុំមើលកុននៅទីនោះ។'
-      },
-      {
-        tag: '자유',
-        pattern: '제 꿈은 [직업]이에요.',
-        prompt: '꿈이 뭐예요?',
-        promptKhmer: 'តើអ្វីទៅជាក្តីសុបិនរបស់អ្នក?',
-        hint: 'សុបិន្ត/អាជីព',
-        answer: '제 꿈은 개발자예요.',
-        checks: ['꿈 (dream)?'],
-        khmer: 'ក្តីសុបិនរបស់ខ្ញុំ គឺចង់ក្លាយជាអ្នកបង្កើតកម្មវិធី (Developer)។'
-      },
-      {
-        tag: '자유',
-        pattern: '네, 조금 알아요.',
-        prompt: '한국 노래를 알아요?',
-        promptKhmer: 'តើអ្នកស្គាល់បទចម្រៀងកូរ៉េដែរឬទេ?',
-        hint: 'ស្គាល់បទចម្រៀងកូរ៉េអត់?',
-        answer: '네, 조금 알아요.',
-        checks: ['조금 알아요?'],
-        khmer: 'បាទ/ចាស ខ្ញុំស្គាល់ខ្លះៗដែរ។'
-      },
-      {
-        tag: '자유',
-        pattern: 'K-pop을 좋아해요.',
-        prompt: '노래를 좋아해요?',
-        promptKhmer: 'តើអ្នកចូលចិត្តចម្រៀងដែរឬទេ?',
-        hint: 'ចូលចិត្តច្រៀង/ស្តាប់ចម្រៀងអត់?',
-        answer: '네, 좋아해요. 특히 K-pop을 좋아해요.',
-        checks: ['좋아해요?'],
-        khmer: 'បាទ/ចាស ខ្ញុំចូលចិត្ត។ ជាពិសេសគឺចូលចិត្តតន្ត្រី K-pop។'
-      },
-      {
-        tag: '자유',
-        pattern: '팝 음악을 좋아해요.',
-        prompt: '어떤 음악을 좋아해요?',
-        promptKhmer: 'តើអ្នកចូលចិត្តតន្ត្រីប្រភេទអ្វី?',
-        hint: 'ប្រភេទតន្ត្រី',
-        answer: '저는 팝 음악을 좋아해요.',
-        checks: ['팝 (Pop)?'],
-        khmer: 'ខ្ញុំចូលចិត្តតន្ត្រីប្រភេទ Pop។'
-      },
-      {
-        tag: '자유',
-        pattern: '집에 가요.',
-        prompt: '보통 수업 후에 뭐 해요?',
-        promptKhmer: 'តើជាធម្មតាអ្នកធ្វើអ្វីខ្លះក្រោយពេលចេញពីរៀន?',
-        hint: 'ធ្វើអ្វីក្រោយចេញពីរៀន',
-        answer: '수업 후에 집에 가요. 가끔 친구와 밥을 먹어요.',
-        checks: ['수업 후 (after class)?'],
-        khmer: 'បន្ទាប់ពីចេញពីរៀន ខ្ញុំត្រឡប់ទៅផ្ទះ។ ពេលខ្លះខ្ញុំញ៉ាំបាយជាមួយមិត្តភក្តិ។'
-      },
-      {
-        tag: '자유',
-        pattern: '영화를 봐요.',
-        prompt: '시간이 있을 때 뭐 해요?',
-        promptKhmer: 'តើអ្នកធ្វើអ្វីខ្លះនៅពេលមានពេលទំនេរ?',
-        hint: 'ពេលមានពេលទំនេរ',
-        answer: '시간이 있을 때 영화를 봐요.',
-        checks: ['~을 때 (when)?'],
-        khmer: 'នៅពេលមានពេលទំនេរ ខ្ញុំមើលកុន។'
-      },
-      {
-        tag: '자유',
-        pattern: '네, 있어요.',
-        prompt: '보통 주말에 시간이 있어요?',
-        promptKhmer: 'តើអ្នកមានពេលទំនេរនៅចុងសប្តាហ៍ដែរឬទេ?',
-        hint: 'មានពេលនៅចុងសប្តាហ៍អត់?',
-        answer: '네, 주말에 시간이 있어요.',
-        checks: ['있어요?'],
-        khmer: 'បាទ/ចាស នៅចុងសប្តាហ៍ខ្ញុំមានពេលទំនេរ។'
-      },
-      {
-        tag: '자유',
-        pattern: '아니요, 안 바빠요.',
-        prompt: '이번 주 토요일에 바빠요?',
-        promptKhmer: 'តើថ្ងៃសៅរ៍សប្តាហ៍នេះអ្នករវល់ដែរឬទេ?',
-        hint: 'រវល់អត់ថ្ងៃសៅរ៍នេះ?',
-        answer: '아니요, 이번 주 토요일에 안 바빠요.',
-        checks: ['안 바빠요?'],
-        khmer: 'ទេ ថ្ងៃសៅរ៍សប្តាហ៍នេះ ខ្ញុំមិនរវល់ទេ។'
-      },
-      {
-        tag: '자유',
-        pattern: '카페에서 만나요.',
-        prompt: '보통 어디에서 친구를 만나요?',
-        promptKhmer: 'តើជាធម្មតាអ្នកជួបមិត្តភក្តិនៅឯណា?',
-        hint: 'កន្លែងជួបមិត្តភក្តិ',
-        answer: '카페에서 친구를 만나요.',
-        checks: ['카페 (cafe)?'],
-        khmer: 'ខ្ញុំជួបមិត្តភក្តិនៅហាងកាហ្វេ។'
-      }
-    ];
-
-    const MODES = {
-      all: QUESTIONS,
-      q01: QUESTIONS.filter(q => q.tag === 'Q01'),
-      q02: QUESTIONS.filter(q => q.tag === 'Q02'),
-      q03: QUESTIONS.filter(q => q.tag === 'Q03'),
-      q04: QUESTIONS.filter(q => q.tag === 'Q04'),
-      free: QUESTIONS.filter(q => q.tag === '자유'),
-    };
-
-    let currentMode = 'all';
-    let questions = [...QUESTIONS];
-    let currentIndex = 0;
-
-    let mediaRecorder = null;
-    let audioChunks = [];
-    let audioBlob = null;
-    let recordingInterval = null;
-    let recordSeconds = 0;
-    let isRecording = false;
-    let audioContext = null;
-    let currentAudio = null;
-
-    // ── Get best supported MIME type ──────────────────────────────
-    function getSupportedMimeType() {
-      const types = [
-        'audio/mp4',
-        'audio/webm;codecs=opus',
-        'audio/webm',
-        'audio/ogg;codecs=opus',
-        'audio/ogg',
-      ];
-      for (const type of types) {
-        if (MediaRecorder.isTypeSupported(type)) return type;
-      }
-      return '';
-    }
-
-    function setMode(mode) {
-      currentMode = mode;
-      questions = [...MODES[mode]];
-      currentIndex = 0;
-
-      document.querySelectorAll('.mode-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.mode === mode);
-      });
-
-      resetQuestion();
-      renderQuestion();
-    }
-    document.querySelectorAll('.mode-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        setMode(btn.dataset.mode);
-      });
-    });
-
-    function renderQuestion() {
-      const q = questions[currentIndex];
-      document.getElementById('q-tag').textContent = q.tag;
-      document.getElementById('q-counter').textContent = `${currentIndex + 1} / ${questions.length}`;
-
-
-      const promptEl = document.getElementById('q-prompt');
-
-      promptEl.innerHTML = `
-    ${q.prompt} 
-    <div style="color: #888; font-size: 1rem; font-weight: normal;">
-      (${q.promptKhmer || ""})
+    <div class="no-mic-msg" id="no-mic-msg">
+      ⚠️ មិនអាចចូលដំណើរការមីក្រូហ្វូនបានទេ។ សូមអនុញ្ញាតការចូលដំណើរការក្នុងការកំណត់របស់អ្នក។
     </div>
-  `;
 
-      document.getElementById('q-pattern').textContent = 'គំរូ: ' + q.pattern;
-      document.getElementById('q-hint').style.display = 'block';
-      document.getElementById('q-hint-text').textContent = q.hint;
-      document.getElementById('model-answer-text').textContent = q.answer;
+    <div class="controls">
+      <button class="btn-record" id="btn-record" onclick="toggleRecord()">
+        <div class="dot"></div>
+        <span id="btn-label">ចាប់ផ្តើមថត</span>
+      </button>
+      <div class="timer" id="timer">0:00</div>
+      <div class="waveform" id="waveform">
+        <div class="waveform-bar" style="animation-delay:0s"></div>
+        <div class="waveform-bar" style="animation-delay:0.1s"></div>
+        <div class="waveform-bar" style="animation-delay:0.2s"></div>
+        <div class="waveform-bar" style="animation-delay:0.15s"></div>
+        <div class="waveform-bar" style="animation-delay:0.05s"></div>
+        <div class="waveform-bar" style="animation-delay:0.25s"></div>
+        <div class="waveform-bar" style="animation-delay:0.1s"></div>
+      </div>
+    </div>
 
-      const khmerAnsEl = document.getElementById('khmer-answer-text');
-      if (khmerAnsEl) {
-        khmerAnsEl.textContent = q.khmer || "";
-      }
+    <div class="answer-section" id="answer-section">
+      <div class="audio-player-custom" id="audio-player-custom">
+        <button class="audio-play-btn" id="audio-play-btn" onclick="toggleAudioPlay()">
+          <svg id="play-icon" width="14" height="14" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </button>
+        <div class="audio-progress-wrap" id="audio-progress-wrap" onclick="seekAudio(event)">
+          <div class="audio-progress-fill" id="audio-progress-fill"></div>
+        </div>
+        <div class="audio-time" id="audio-time">0:00</div>
+      </div>
+      <audio id="audio-playback"></audio>
 
-      document.getElementById('progress').style.width = ((currentIndex + 1) / questions.length * 100) + '%';
-      document.getElementById('btn-prev').disabled = currentIndex === 0;
-      document.getElementById('btn-next').disabled = currentIndex === questions.length - 1;
-      resetQuestion();
-    }
+      <div class="self-check" id="self-check" style="display:none">
+        <div class="label">ពិនិត្យខ្លួនឯង / Self-check</div>
+        <ul class="self-check-items" id="self-check-items"></ul>
+      </div>
 
+      <button class="btn-check" id="btn-check" onclick="speakAnswer()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <span id="check-label">ស្តាប់ចម្លើយគំរូ</span>
+      </button>
 
-    function resetQuestion() {
-      stopSpeech();
-      silentStopRecording();
-      stopAudio();
-      document.getElementById('answer-section').classList.remove('visible');
-      document.getElementById('feedback-box')?.classList.remove('visible');
-      document.getElementById('model-answer-box').style.display = 'none';
-      document.getElementById('self-check').style.display = 'none';
-      document.getElementById('btn-record').className = 'btn-record';
-      document.getElementById('btn-label').textContent = 'ចាប់ផ្តើមថត';
-      document.getElementById('timer').textContent = '0:00';
-      document.getElementById('waveform').classList.remove('active');
-      document.getElementById('audio-progress-fill').style.width = '0%';
-      document.getElementById('audio-time').textContent = '0:00';
-      audioBlob = null;
-      audioChunks = [];
-      isRecording = false;
-    }
+      <div class="model-answer-reveal" id="model-answer-box" style="display:none">
+        <div class="label">ចម្លើយគំរូ / Model Answer</div>
+        <div id="model-answer-text"></div>
+        <div id="khmer-answer-text"></div>
+      </div>
+    </div>
 
-    async function toggleRecord() {
-      if (isRecording) {
-        stopRecording();
-      } else {
-        await startRecording();
-      }
-    }
+    <div class="nav-row" style="margin-top:20px;">
+      <button class="btn-nav" id="btn-prev" onclick="navigate(-1)">← ថយក្រោយ</button>
+      <button class="btn-nav primary" id="btn-next" onclick="navigate(1)">បន្ទាប់ →</button>
+    </div>
+  </div>
+</div>
 
-    async function startRecording() {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-        audioChunks = [];
+<script>
+const QUESTIONS = [
+  // ── Q01: 이게/저게 뭐예요? ─────────────────────────────────────
+  {
+    tag: 'Q01',
+    pattern: '이게/저게 [명사]이에요/예요.',
+    prompt: '이게 뭐예요?',
+    promptKhmer: 'តើអ្វីដែលនៅខាងនេះ?',
+    hint: '책 (សៀវភៅ)',
+    answer: '이게 책이에요.',
+    checks: ['책 (chaek) = សៀវភៅ', '이게 = this (here)', 'ចប់ ក → 이에요'],
+    khmer: 'អ្វីដែលនៅខាងនេះ គឺជាសៀវភៅ។'
+  },
+  {
+    tag: 'Q01',
+    pattern: '이게/저게 [명사]이에요/예요.',
+    prompt: '저게 뭐예요?',
+    promptKhmer: 'តើអ្វីដែលនៅទីនោះ?',
+    hint: '가방 (កាប)',
+    answer: '저게 가방이에요.',
+    checks: ['저게 = that (over there)', '가방 (gabang) = កាប', 'ចប់ ង → 이에요'],
+    khmer: 'អ្វីដែលនៅទីនោះ គឺជាកាប។'
+  },
+  {
+    tag: 'Q01',
+    pattern: '이게/저게 [명사]이에요/예요.',
+    prompt: '이게 뭐예요?',
+    promptKhmer: 'តើអ្វីដែលនៅខាងនេះ?',
+    hint: '우산 (ឆ័ត្រ)',
+    answer: '이게 우산이에요.',
+    checks: ['우산 (usan) = ឆ័ត្រ', '이게 = this', '우산 ចប់ ន → 이에요'],
+    khmer: 'អ្វីដែលនៅខាងនេះ គឺជាឆ័ត្រ។'
+  },
+  {
+    tag: 'Q01',
+    pattern: '이게/저게 [명사]이에요/예요.',
+    prompt: '저게 뭐예요?',
+    promptKhmer: 'តើអ្វីដែលនៅទីនោះ?',
+    hint: '의자 (កៅអី)',
+    answer: '저게 의자예요.',
+    checks: ['의자 (euija) = កៅអី', '저게 = that (far)', '의자 ចប់ ស្រៈ → 예요'],
+    khmer: 'អ្វីដែលនៅទីនោះ គឺជាកៅអី។'
+  },
+  {
+    tag: 'Q01',
+    pattern: '이게/저게 [명사]이에요/예요.',
+    prompt: '이게 뭐예요?',
+    promptKhmer: 'តើអ្វីដែលនៅខាងនេះ?',
+    hint: '연필 (ខ្មៅដៃ)',
+    answer: '이게 연필이에요.',
+    checks: ['연필 (yeonpil) = ខ្មៅដៃ', 'ចប់ ល → 이에요', 'រឹមមាត់ត្រូវ'],
+    khmer: 'អ្វីដែលនៅខាងនេះ គឺជាខ្មៅដៃ។'
+  },
+  {
+    tag: 'Q01',
+    pattern: '이게/저게 [명사]이에요/예요.',
+    prompt: '저게 뭐예요?',
+    promptKhmer: 'តើអ្វីដែលនៅទីនោះ?',
+    hint: '휴대폰 (ទូរស័ព្ទ)',
+    answer: '저게 휴대폰이에요.',
+    checks: ['휴대폰 (hyudaepon) = ទូរស័ព្ទ', 'ចប់ ន → 이에요'],
+    khmer: 'អ្វីដែលនៅទីនោះ គឺជាទូរស័ព្ទ។'
+  },
+  {
+    tag: 'Q01',
+    pattern: '이게/저게 [명사]이에요/예요.',
+    prompt: '이게 뭐예요?',
+    promptKhmer: 'តើអ្វីដែលនៅខាងនេះ?',
+    hint: '지갑 (កាបូបលុយ)',
+    answer: '이게 지갑이에요.',
+    checks: ['지갑 (jigap) = កាបូបលុយ', 'ចប់ ប → 이에요'],
+    khmer: 'អ្វីដែលនៅខាងនេះ គឺជាកាបូបលុយ។'
+  },
+  {
+    tag: 'Q01',
+    pattern: '이게/저게 [명사]이에요/예요.',
+    prompt: '저게 뭐예요?',
+    promptKhmer: 'តើអ្វីដែលនៅទីនោះ?',
+    hint: '컴퓨터 (កុំព្យូទ័រ)',
+    answer: '저게 컴퓨터예요.',
+    checks: ['컴퓨터 (keompyuteo) = កុំព្យូទ័រ', 'ចប់ ស្រៈ → 예요'],
+    khmer: 'អ្វីដែលនៅទីនោះ គឺជាកុំព្យូទ័រ។'
+  },
 
-        const mimeType = getSupportedMimeType();
-        const options = mimeType ? { mimeType } : {};
+  // ── Q03: Grammar patterns (Slide 4) ──────────────────────────
+  {
+    tag: 'Q03',
+    pattern: '저는 [직업]이/가 되고 싶어요. [이유]이기 때문이에요.',
+    prompt: '앞으로 무엇이 되고 싶어요? 왜요?',
+    promptKhmer: 'តើអ្នកចង់ក្លាយជាអ្វីនៅថ្ងៃអនាគត? ហេតុអ្វី?',
+    hint: '개발자 / 컴퓨터를 좋아해요',
+    answer: '저는 개발자가 되고 싶어요. 컴퓨터를 좋아하기 때문이에요.',
+    checks: ['되고 싶어요 = want to become', '기 때문이에요 = because', '개발자 (gaebalja) = developer'],
+    khmer: 'ខ្ញុំចង់ក្លាយជាអ្នកបង្កើតកម្មវិធី។ ព្រោះខ្ញុំចូលចិត្តកុំព្យូទ័រ។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '[교통수단](으)로 학교에 와요. [시간]이 걸려요.',
+    prompt: '학교에 어떻게 와요? 시간이 얼마나 걸려요?',
+    promptKhmer: 'តើអ្នកមកសាលារបៀបណា? ចំណាយពេលប៉ុន្មាន?',
+    hint: '오토바이로 / 15분',
+    answer: '오토바이로 와요. 15분이 걸려요.',
+    checks: ['(으)로 = by (transport)', '오토바이로 = by motorbike', '걸려요 = it takes (time)'],
+    khmer: 'ខ្ញុំមកដោយម៉ូតូ។ ចំណាយពេល ១៥ នាទី។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '[목적](으)러 HRD센터에 와요.',
+    prompt: '왜 HRD센터에 와요?',
+    promptKhmer: 'តើហេតុអ្វីបានអ្នកមក HRD Center?',
+    hint: '한국어를 배우다',
+    answer: '한국어를 배우러 HRD센터에 와요.',
+    checks: ['(으)러 가다/오다 = go/come to do', '배우러 = to learn', '한국어를 배우러 오다'],
+    khmer: 'ខ្ញុំមក HRD Center ដើម្បីរៀនភាសាកូរ៉េ។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '아침에 [음식]도 먹어요.',
+    prompt: '아침에 보통 무엇을 먹어요?',
+    promptKhmer: 'តើអ្នកញ៉ាំអ្វីជាធម្មតានៅពេលព្រឹក?',
+    hint: '밥 / 국',
+    answer: '밥을 먹어요. 국도 먹어요.',
+    checks: ['도 = also / too', '국 (guk) = ស៊ុប', '밥 (bap) = បាយ'],
+    khmer: 'ខ្ញុំញ៉ាំបាយ។ ខ្ញុំញ៉ាំស៊ុបផងដែរ។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '아니요, [verb]안 했어요. [다른 동사]었/았어요.',
+    prompt: '어제 어머니하고 같이 쇼핑했어요?',
+    promptKhmer: 'តើម្សិលមិញអ្នកទៅដើរទិញឥវ៉ាន់ជាមួយម្តាយទេ?',
+    hint: '아니요 / 집에서 쉬었어요',
+    answer: '아니요, 쇼핑 안 했어요. 집에서 쉬었어요.',
+    checks: ['안 + verb = negation', '쉬었어요 = rested (past)', '쇼핑 안 했어요 = did not shop'],
+    khmer: 'ទេ ខ្ញុំមិនបានទៅដើរទិញឥវ៉ាន់ទេ។ ខ្ញុំសម្រាកនៅផ្ទះ។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '[약] 드세요. 그리고 [행동](으)세요.',
+    prompt: '머리가 아파요. 어떻게 해요?',
+    promptKhmer: 'ឈឺក្បាល។ តើគួរធ្វើអ្វី?',
+    hint: '약을 드세요 / 쉬세요',
+    answer: '약을 드세요. 그리고 쉬세요.',
+    checks: ['(으)세요 = polite command', '약을 드세요 = please take medicine', '쉬세요 = please rest'],
+    khmer: 'សូមញ៉ាំថ្នាំ។ ហើយសូមសម្រាក។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '[장소]이/가 [위치]에 있어요.',
+    prompt: '……….이/가 어디에 있어요?',
+    promptKhmer: '(ម្ចាស់ [ឈ្មោះ]) នៅឯណា?',
+    hint: '교실 / 2층',
+    answer: '교실이 2층에 있어요.',
+    checks: ['교실 (gyosil) = ថ្នាក់រៀន', '2층 (i-cheung) = ជាន់ ២', '이 있어요 ← ចប់ ល'],
+    khmer: 'ថ្នាក់រៀននៅជាន់ ២។'
+  },
 
-        mediaRecorder = new MediaRecorder(stream, options);
+  // ── Q04: Daily life conversation (Slide 5) ───────────────────
+  {
+    tag: 'Q04',
+    pattern: '일상생활을 이야기해 주세요.',
+    prompt: '일상생활을 이야기해 주세요.',
+    promptKhmer: 'សូមនិយាយអំពីជីវិតប្រចាំថ្ងៃរបស់អ្នក។',
+    hint: '아침에 일어나요 / 학교에 와요 / 저녁에 공부해요',
+    answer: '저는 아침 7시에 일어나요. 오토바이로 학교에 와요. 저녁에 집에서 공부해요.',
+    checks: ['일어나요 = wake up', 'ខ្ញុំ = 저', 'ប្រើ에서 ចំពោះទីកន្លែង+សកម្មភាព'],
+    khmer: 'ខ្ញុំក្រោកពីគេងម៉ោង ៧ ព្រឹក។ ខ្ញុំមកសាលាដោយម៉ូតូ។ ពេលល្ងាចខ្ញុំរៀននៅផ្ទះ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '한국어 공부가 [형용사]어요/아요.',
+    prompt: '한국어 공부가 어땠어요?',
+    promptKhmer: 'តើការរៀនភាសាកូរ៉េយ៉ាងម៉េចដែរ?',
+    hint: '재미있어요 / 조금 어려워요',
+    answer: '재미있어요. 그런데 조금 어려워요.',
+    checks: ['재미있어요 = fun/interesting', '어려워요 = difficult', '그런데 = but/however'],
+    khmer: 'វាគួរឱ្យចាប់អារម្មណ៍។ ប៉ុន្តែពិបាកបន្តិច។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '집에서 [동사]어요/아요.',
+    prompt: '보통 집에서 뭐 해요?',
+    promptKhmer: 'តើជាធម្មតាអ្នកធ្វើអ្វីនៅផ្ទះ?',
+    hint: 'TV를 봐요 / 음악을 들어요',
+    answer: '보통 집에서 TV를 봐요. 음악도 들어요.',
+    checks: ['봐요 = watch', '들어요 = listen', '도 = also'],
+    khmer: 'ជាធម្មតាខ្ញុំមើល TV នៅផ្ទះ។ ខ្ញុំក៏ស្តាប់តន្ត្រីផងដែរ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '네/아니요, [자주/가끔/안] [동사]어요/아요.',
+    prompt: '커피를 자주 마셔요?',
+    promptKhmer: 'តើអ្នកញ៉ាំកាហ្វេញឹកញាប់ដែរឬទេ?',
+    hint: '네, 매일 마셔요. / 아니요, 가끔 마셔요.',
+    answer: '아니요, 가끔 마셔요.',
+    checks: ['가끔 = sometimes', '자주 = often', '매일 = every day'],
+    khmer: 'ទេ ខ្ញុំញ៉ាំម្តងម្កាល។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '저는 [음료수]를/을 좋아해요.',
+    prompt: '어떤 음료수를 좋아해요?',
+    promptKhmer: 'តើអ្នកចូលចិត្តភេសជ្ជៈអ្វី?',
+    hint: '물 / 주스 / 우유',
+    answer: '저는 물을 좋아해요. 주스도 좋아해요.',
+    checks: ['물 = ទឹក', '주스 = juice', '우유 (uyu) = ទឹកដោះគោ'],
+    khmer: 'ខ្ញុំចូលចិត្តទឹក។ ខ្ញុំក៏ចូលចិត្ត juice ផងដែរ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '네, 한국에 가고 싶어요. [이유] 때문이에요.',
+    prompt: '한국에 가고 싶어요? 왜요?',
+    promptKhmer: 'តើអ្នកចង់ទៅប្រទេសកូរ៉េទេ? ហេតុអ្វី?',
+    hint: '네, 가고 싶어요. 한국 음식을 먹고 싶어요.',
+    answer: '네, 한국에 가고 싶어요. 한국 음식을 먹고 싶기 때문이에요.',
+    checks: ['가고 싶어요 = want to go', '먹고 싶어요 = want to eat', '기 때문이에요 = because'],
+    khmer: 'បាទ/ចាស ខ្ញុំចង់ទៅ។ ព្រោះខ្ញុំចង់ញ៉ាំម្ហូបកូរ៉េ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '네/아니요, 여행을 [좋아해요/안 좋아해요].',
+    prompt: '여행을 좋아해요?',
+    promptKhmer: 'តើអ្នកចូលចិត្តធ្វើដំណើរទេ?',
+    hint: '네, 좋아해요. / 아니요, 안 좋아해요.',
+    answer: '네, 여행을 좋아해요. 새로운 곳에 가고 싶어요.',
+    checks: ['여행 (yeohaeng) = ការធ្វើដំណើរ', '새로운 곳 = ទីកន្លែងថ្មី', '가고 싶어요 = want to go'],
+    khmer: 'បាទ/ចាស ខ្ញុំចូលចិត្តធ្វើដំណើរ។ ខ្ញុំចង់ទៅកន្លែងថ្មីៗ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '시간이 있으면 [장소]에 가고 싶어요.',
+    prompt: '시간이 있어요. 그럼 어디에 가고 싶어요?',
+    promptKhmer: 'អ្នកមានពេលទំនេរ។ ចង់ទៅណា?',
+    hint: '바다 / 카페 / 공원',
+    answer: '시간이 있으면 바다에 가고 싶어요.',
+    checks: ['바다 (bada) = សមុទ្រ', '가고 싶어요 = want to go', '(으)면 = if'],
+    khmer: 'ប្រសិនបើខ្ញុំមានពេល ខ្ញុំចង់ទៅសមុទ្រ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '점심에 보통 [음식]을/를 먹어요.',
+    prompt: '점심은 보통 뭐 먹어요?',
+    promptKhmer: 'តើអ្នកញ៉ាំអ្វីជាធម្មតានៅពេលថ្ងៃត្រង់?',
+    hint: '밥 / 국수',
+    answer: '보통 밥을 먹어요. 국수도 먹어요.',
+    checks: ['국수 (guksu) = នំបញ្ចុក/mì', '밥 = បាយ', '도 = also'],
+    khmer: 'ជាធម្មតាខ្ញុំញ៉ាំបាយ។ ខ្ញុំក៏ញ៉ាំ noodles ផងដែរ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '네/아니요, 매운 음식을 [잘 먹어요/못 먹어요].',
+    prompt: '매운 음식 잘 먹어요?',
+    promptKhmer: 'តើអ្នកញ៉ាំម្ហូបហឹរបានល្អទេ?',
+    hint: '네, 잘 먹어요. / 아니요, 조금 매워요.',
+    answer: '네, 매운 음식을 잘 먹어요. 캄보디아 음식도 매워요.',
+    checks: ['잘 먹어요 = eat well', '못 먹어요 = cannot eat', '매워요 = it is spicy'],
+    khmer: 'បាទ/ចាស ខ្ញុំញ៉ាំម្ហូបហឹរបានល្អ។ ម្ហូបខ្មែរក៏ហឹរដែរ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '시간이 있을 때 [동사]고 싶어요.',
+    prompt: '시간이 있을 때 뭐 하고 싶어요?',
+    promptKhmer: 'តើអ្នកចង់ធ្វើអ្វីខ្លះ នៅពេលមានពេលទំនេរ?',
+    hint: '쉬다 / 친구를 만나다',
+    answer: '시간이 있을 때 친구를 만나고 싶어요.',
+    checks: ['~고 싶어요 = want to do', '~을 때 = when', '만나다 → 만나고 싶어요'],
+    khmer: 'នៅពេលមានពេលទំនេរ ខ្ញុំចង់ជួបមិត្តភក្តិ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '보통 주말에 [장소]에 가고 싶어요. 왜냐하면 [이유] 때문이에요.',
+    prompt: '보통 주말에 어디에 가고 싶어요? 왜요?',
+    promptKhmer: 'ចុងសប្តាហ៍ចង់ទៅណា? ហេតុអ្វី?',
+    hint: '카페 / 조용해요',
+    answer: '카페에 가고 싶어요. 조용하기 때문이에요.',
+    checks: ['가고 싶어요 = want to go', '조용하다 = quiet', 'N + 기 때문이에요 = because'],
+    khmer: 'ខ្ញុំចង់ទៅហាងកាហ្វេ។ ព្រោះវាស្ងាត់ស្ងៀម។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '왜냐하면 [이유]기 때문이에요.',
+    prompt: '왜 친구를 만나고 싶어요?',
+    promptKhmer: 'ហេតុអ្វីចង់ជួបមិត្ត?',
+    hint: '재미있어요 / 보고 싶어요',
+    answer: '왜냐하면 친구가 보고 싶기 때문이에요.',
+    checks: ['보고 싶어요 = miss (someone)', '왜냐하면 ~ 기 때문이에요 = because...', '친구가 보고 싶다'],
+    khmer: 'ព្រោះខ្ញុំ miss មិត្តភក្តិ។'
+  },
+  {
+    tag: 'Q04',
+    pattern: '저는 [장소]에 살아요.',
+    prompt: '집이 어디에 있어요?',
+    promptKhmer: 'តើផ្ទះរបស់អ្នកនៅឯណា?',
+    hint: '프놈펜 / 동네 이름',
+    answer: '저는 프놈펜에 살아요.',
+    checks: ['에 살아요 = live in', '프놈펜 = ភ្នំពេញ', '저는 = as for me'],
+    khmer: 'ខ្ញុំរស់នៅភ្នំពេញ។'
+  }
+];
 
-        mediaRecorder.ondataavailable = e => {
-          if (e.data && e.data.size > 0) audioChunks.push(e.data);
-        };
+const MODES = {
+  all: QUESTIONS,
+  q01: QUESTIONS.filter(q => q.tag === 'Q01'),
+  q02: QUESTIONS.filter(q => q.tag === 'Q02'),
+  q03: QUESTIONS.filter(q => q.tag === 'Q03'),
+  q04: QUESTIONS.filter(q => q.tag === 'Q04'),
+};
 
-        mediaRecorder.onstop = () => {
-          stream.getTracks().forEach(t => t.stop());
+let currentMode = 'all';
+let questions = [...QUESTIONS];
+let currentIndex = 0;
+let mediaRecorder = null;
+let audioChunks = [];
+let audioBlob = null;
+let recordingInterval = null;
+let recordSeconds = 0;
+let isRecording = false;
 
-          const mime = mediaRecorder.mimeType || mimeType || 'audio/webm';
-          audioBlob = new Blob(audioChunks, { type: mime });
+function getSupportedMimeType() {
+  const types = ['audio/mp4','audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/ogg'];
+  for (const type of types) { if (MediaRecorder.isTypeSupported(type)) return type; }
+  return '';
+}
 
-          // Revoke any previous URL
-          const audioEl = document.getElementById('audio-playback');
-          if (audioEl.src) URL.revokeObjectURL(audioEl.src);
+function setMode(mode) {
+  currentMode = mode;
+  questions = [...MODES[mode]];
+  currentIndex = 0;
+  document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
+  resetQuestion();
+  renderQuestion();
+}
+document.querySelectorAll('.mode-btn').forEach(btn => btn.addEventListener('click', () => setMode(btn.dataset.mode)));
 
-          const url = URL.createObjectURL(audioBlob);
-          audioEl.src = url;
-          audioEl.load();
+function renderQuestion() {
+  const q = questions[currentIndex];
+  document.getElementById('q-tag').textContent = q.tag;
+  document.getElementById('q-counter').textContent = `${currentIndex + 1} / ${questions.length}`;
+  document.getElementById('q-prompt').textContent = q.prompt;
+  document.getElementById('q-khmer').textContent = q.promptKhmer || '';
+  document.getElementById('q-pattern').textContent = 'គំរូ: ' + q.pattern;
+  document.getElementById('q-hint-text').textContent = q.hint;
+  document.getElementById('model-answer-text').textContent = q.answer;
+  document.getElementById('khmer-answer-text').textContent = q.khmer || '';
+  document.getElementById('progress').style.width = ((currentIndex + 1) / questions.length * 100) + '%';
+  document.getElementById('btn-prev').disabled = currentIndex === 0;
+  document.getElementById('btn-next').disabled = currentIndex === questions.length - 1;
+  resetQuestion();
+}
 
-          // Setup custom player events
-          audioEl.onloadedmetadata = () => {
-            document.getElementById('audio-time').textContent = formatTime(audioEl.duration || 0);
-          };
-          audioEl.ontimeupdate = updateAudioProgress;
-          audioEl.onended = () => {
-            document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-          };
-          audioEl.onerror = (e) => {
-            console.warn('Audio element error:', e);
-            // Show native audio as fallback
-            audioEl.style.display = 'block';
-            document.getElementById('audio-player-custom').style.display = 'none';
-          };
+function resetQuestion() {
+  stopSpeech();
+  silentStopRecording();
+  stopAudio();
+  document.getElementById('answer-section').classList.remove('visible');
+  document.getElementById('model-answer-box').style.display = 'none';
+  document.getElementById('self-check').style.display = 'none';
+  document.getElementById('btn-record').className = 'btn-record';
+  document.getElementById('btn-label').textContent = 'ចាប់ផ្តើមថត';
+  document.getElementById('timer').textContent = '0:00';
+  document.getElementById('waveform').classList.remove('active');
+  document.getElementById('audio-progress-fill').style.width = '0%';
+  document.getElementById('audio-time').textContent = '0:00';
+  audioBlob = null; audioChunks = []; isRecording = false;
+}
 
-          document.getElementById('answer-section').classList.add('visible');
-          document.getElementById('feedback-box').classList.remove('visible');
+async function toggleRecord() {
+  if (isRecording) stopRecording(); else await startRecording();
+}
 
-          // Show self-check list
-          const q = questions[currentIndex];
-          const list = document.getElementById('self-check-items');
-          list.innerHTML = q.checks.map(c => `<li>${c}</li>`).join('');
-          document.getElementById('self-check').style.display = 'block';
-        };
-
-        // Collect data every 250ms for reliability
-        mediaRecorder.start(250);
-        isRecording = true;
-        recordSeconds = 0;
-
-        document.getElementById('btn-record').className = 'btn-record recording';
-        document.getElementById('btn-label').textContent = 'ឈប់ថត';
-        document.getElementById('waveform').classList.add('active');
-        document.getElementById('no-mic-msg').style.display = 'none';
-
-        recordingInterval = setInterval(() => {
-          recordSeconds++;
-          const m = Math.floor(recordSeconds / 60);
-          const s = recordSeconds % 60;
-          document.getElementById('timer').textContent = `${m}:${String(s).padStart(2, '0')}`;
-          if (recordSeconds >= 30) stopRecording();
-        }, 1000);
-
-      } catch (e) {
-        console.error('Mic error:', e);
-        document.getElementById('no-mic-msg').style.display = 'block';
-      }
-    }
-
-    function stopRecording() {
-      if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
-      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-        mediaRecorder.stop();
-      }
-      isRecording = false;
-      document.getElementById('btn-record').className = 'btn-record';
-      document.getElementById('btn-label').textContent = 'ថតម្តងទៀត';
-      document.getElementById('waveform').classList.remove('active');
-      showSelfCheck();
-    }
-
-    function silentStopRecording() {
-      if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
-      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-        try { mediaRecorder.stop(); } catch (e) { }
-      }
-      isRecording = false;
-    }
-
-    // ── Custom audio player controls ──────────────────────────────
-    function toggleAudioPlay() {
-      const audio = document.getElementById('audio-playback');
-      if (!audio.src) return;
-      if (audio.paused) {
-        audio.play().catch(e => {
-          console.warn('Play failed:', e);
-          audio.style.display = 'block';
-          document.getElementById('audio-player-custom').style.display = 'none';
-          audio.play();
-        });
-        document.getElementById('play-icon').innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-      } else {
-        audio.pause();
-        document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-      }
-    }
-
-    function stopAudio() {
-      const audio = document.getElementById('audio-playback');
-      audio.pause();
-      try { audio.currentTime = 0; } catch (e) { }
-      document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
-      document.getElementById('audio-progress-fill').style.width = '0%';
-    }
-
-    function updateAudioProgress() {
-      const audio = document.getElementById('audio-playback');
-      if (audio.duration) {
-        const pct = (audio.currentTime / audio.duration) * 100;
-        document.getElementById('audio-progress-fill').style.width = pct + '%';
-        document.getElementById('audio-time').textContent = formatTime(audio.currentTime);
-      }
-    }
-
-    function seekAudio(e) {
-      const audio = document.getElementById('audio-playback');
-      if (!audio.duration) return;
-      const rect = e.currentTarget.getBoundingClientRect();
-      const pct = (e.clientX - rect.left) / rect.width;
-      audio.currentTime = pct * audio.duration;
-    }
-
-    function formatTime(s) {
-      if (!s || isNaN(s)) return '0:00';
-      const m = Math.floor(s / 60);
-      const sec = Math.floor(s % 60);
-      return `${m}:${String(sec).padStart(2, '0')}`;
-    }
-
-    // ── Speak model answer ───────────────────────────────────────
-    let answerUtterance = null;
-
-    function speakAnswer() {
-      const q = questions[currentIndex];
-      const btn = document.getElementById('btn-check');
-      const label = document.getElementById('check-label');
-
-      // Show the answer text
-      document.getElementById('model-answer-box').style.display = 'block';
-      document.getElementById('model-answer-text').textContent = q.answer;
-
-      // Stop if already speaking
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        btn.classList.remove('speaking');
-        label.textContent = 'ស្តាប់ចម្លើយគំរូ';
-        return;
-      }
-
-      const utter = new SpeechSynthesisUtterance(q.answer);
-      utter.lang = 'ko-KR';
-      utter.rate = 0.65;
-      utter.pitch = 1;
-
-      const voices = window.speechSynthesis.getVoices();
-      const korVoice = voices.find(v => v.lang.startsWith('ko'));
-      if (korVoice) utter.voice = korVoice;
-
-      utter.onstart = () => {
-        btn.classList.add('speaking');
-        label.textContent = 'កំពុងនិយាយ... (ចុចដើម្បីឈប់)';
-      };
-      utter.onend = utter.onerror = () => {
-        btn.classList.remove('speaking');
-        label.textContent = 'ស្តាប់ម្តងទៀត 🔁';
-      };
-
-      window.speechSynthesis.speak(utter);
-    }
-
-    function showSelfCheck() {
+async function startRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    audioChunks = [];
+    const mimeType = getSupportedMimeType();
+    const options = mimeType ? { mimeType } : {};
+    mediaRecorder = new MediaRecorder(stream, options);
+    mediaRecorder.ondataavailable = e => { if (e.data && e.data.size > 0) audioChunks.push(e.data); };
+    mediaRecorder.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      const mime = mediaRecorder.mimeType || mimeType || 'audio/webm';
+      audioBlob = new Blob(audioChunks, { type: mime });
+      const audioEl = document.getElementById('audio-playback');
+      if (audioEl.src) URL.revokeObjectURL(audioEl.src);
+      const url = URL.createObjectURL(audioBlob);
+      audioEl.src = url; audioEl.load();
+      audioEl.onloadedmetadata = () => { document.getElementById('audio-time').textContent = formatTime(audioEl.duration || 0); };
+      audioEl.ontimeupdate = updateAudioProgress;
+      audioEl.onended = () => { document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>'; };
+      document.getElementById('answer-section').classList.add('visible');
       const q = questions[currentIndex];
       const list = document.getElementById('self-check-items');
-
-      // Clear and populate checklist
-      list.innerHTML = q.checks.map(check => `<li>${check}</li>`).join('');
-
-      // Show the self-check section
+      list.innerHTML = q.checks.map(c => `<li>${c}</li>`).join('');
       document.getElementById('self-check').style.display = 'block';
+    };
+    mediaRecorder.start(250);
+    isRecording = true; recordSeconds = 0;
+    document.getElementById('btn-record').className = 'btn-record recording';
+    document.getElementById('btn-label').textContent = 'ឈប់ថត';
+    document.getElementById('waveform').classList.add('active');
+    document.getElementById('no-mic-msg').style.display = 'none';
+    recordingInterval = setInterval(() => {
+      recordSeconds++;
+      const m = Math.floor(recordSeconds / 60), s = recordSeconds % 60;
+      document.getElementById('timer').textContent = `${m}:${String(s).padStart(2,'0')}`;
+      if (recordSeconds >= 60) stopRecording();
+    }, 1000);
+  } catch(e) {
+    console.error('Mic error:', e);
+    document.getElementById('no-mic-msg').style.display = 'block';
+  }
+}
 
-      // Also show the answer section (audio player will appear)
-      document.getElementById('answer-section').classList.add('visible');
+function stopRecording() {
+  if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+  isRecording = false;
+  document.getElementById('btn-record').className = 'btn-record';
+  document.getElementById('btn-label').textContent = 'ថតម្តងទៀត';
+  document.getElementById('waveform').classList.remove('active');
+}
 
-      // Hide any old feedback
-      document.getElementById('feedback-box').classList.remove('visible');
-    }
+function silentStopRecording() {
+  if (recordingInterval) { clearInterval(recordingInterval); recordingInterval = null; }
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') { try { mediaRecorder.stop(); } catch(e){} }
+  isRecording = false;
+}
 
-    function navigate(dir) {
-      const next = currentIndex + dir;
-      if (next < 0 || next >= questions.length) return;
-      currentIndex = next;
-      renderQuestion();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+function toggleAudioPlay() {
+  const audio = document.getElementById('audio-playback');
+  if (!audio.src) return;
+  if (audio.paused) {
+    audio.play();
+    document.getElementById('play-icon').innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+  } else {
+    audio.pause();
+    document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+  }
+}
 
-    function speakQuestion() {
-      const q = questions[currentIndex];
-      const btn = document.getElementById('btn-speak');
-      const label = document.getElementById('speak-label');
+function stopAudio() {
+  const audio = document.getElementById('audio-playback');
+  audio.pause(); try { audio.currentTime = 0; } catch(e){}
+  document.getElementById('play-icon').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+  document.getElementById('audio-progress-fill').style.width = '0%';
+}
 
-      if (window.speechSynthesis.speaking) {
-        window.speechSynthesis.cancel();
-        btn.classList.remove('speaking');
-        label.textContent = 'ស្តាប់សំណួរ';
-        return;
-      }
+function updateAudioProgress() {
+  const audio = document.getElementById('audio-playback');
+  if (audio.duration) {
+    document.getElementById('audio-progress-fill').style.width = (audio.currentTime / audio.duration * 100) + '%';
+    document.getElementById('audio-time').textContent = formatTime(audio.currentTime);
+  }
+}
 
-      const utter = new SpeechSynthesisUtterance(q.prompt);
-      utter.lang = 'ko-KR';
-      utter.rate = 0.65;
-      utter.pitch = 1;
+function seekAudio(e) {
+  const audio = document.getElementById('audio-playback');
+  if (!audio.duration) return;
+  const rect = e.currentTarget.getBoundingClientRect();
+  audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+}
 
-      const voices = window.speechSynthesis.getVoices();
-      const korVoice = voices.find(v => v.lang.startsWith('ko'));
-      if (korVoice) utter.voice = korVoice;
+function formatTime(s) {
+  if (!s || isNaN(s)) return '0:00';
+  return `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+}
 
-      utter.onstart = () => { btn.classList.add('speaking'); label.textContent = 'កំពុងនិយាយ...'; };
-      utter.onend = utter.onerror = () => { btn.classList.remove('speaking'); label.textContent = 'ស្តាប់សំណួរ'; };
+function speakAnswer() {
+  const q = questions[currentIndex];
+  const btn = document.getElementById('btn-check');
+  const label = document.getElementById('check-label');
+  document.getElementById('model-answer-box').style.display = 'block';
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    btn.classList.remove('speaking'); label.textContent = 'ស្តាប់ចម្លើយគំរូ'; return;
+  }
+  const utter = new SpeechSynthesisUtterance(q.answer);
+  utter.lang = 'ko-KR'; utter.rate = 0.65; utter.pitch = 1;
+  const korVoice = window.speechSynthesis.getVoices().find(v => v.lang.startsWith('ko'));
+  if (korVoice) utter.voice = korVoice;
+  utter.onstart = () => { btn.classList.add('speaking'); label.textContent = 'កំពុងនិយាយ... (ចុចដើម្បីឈប់)'; };
+  utter.onend = utter.onerror = () => { btn.classList.remove('speaking'); label.textContent = 'ស្តាប់ម្តងទៀត 🔁'; };
+  window.speechSynthesis.speak(utter);
+}
 
-      window.speechSynthesis.speak(utter);
-    }
+function speakQuestion() {
+  const q = questions[currentIndex];
+  const btn = document.getElementById('btn-speak');
+  const label = document.getElementById('speak-label');
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel(); btn.classList.remove('speaking'); label.textContent = 'ស្តាប់សំណួរ'; return;
+  }
+  const utter = new SpeechSynthesisUtterance(q.prompt);
+  utter.lang = 'ko-KR'; utter.rate = 0.65;
+  const korVoice = window.speechSynthesis.getVoices().find(v => v.lang.startsWith('ko'));
+  if (korVoice) utter.voice = korVoice;
+  utter.onstart = () => { btn.classList.add('speaking'); label.textContent = 'កំពុងនិយាយ...'; };
+  utter.onend = utter.onerror = () => { btn.classList.remove('speaking'); label.textContent = 'ស្តាប់សំណួរ'; };
+  window.speechSynthesis.speak(utter);
+}
 
-    function stopSpeech() {
-      if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel();
-      const btn = document.getElementById('btn-check');
-      if (btn) { btn.classList.remove('speaking'); }
-      const lbl = document.getElementById('check-label');
-      if (lbl) lbl.textContent = 'ស្តាប់ចម្លើយគំរូ';
-      const btnSpeak = document.getElementById('btn-speak');
-      const label = document.getElementById('speak-label');
-      if (btnSpeak) btnSpeak.classList.remove('speaking');
-      if (label) label.textContent = 'ស្តាប់សំណួរ';
-    }
+function stopSpeech() {
+  if (window.speechSynthesis?.speaking) window.speechSynthesis.cancel();
+  const btn = document.getElementById('btn-check');
+  if (btn) btn.classList.remove('speaking');
+  const lbl = document.getElementById('check-label');
+  if (lbl) lbl.textContent = 'ស្តាប់ចម្លើយគំរូ';
+  const btnSpeak = document.getElementById('btn-speak');
+  if (btnSpeak) btnSpeak.classList.remove('speaking');
+  const speakLbl = document.getElementById('speak-label');
+  if (speakLbl) speakLbl.textContent = 'ស្តាប់សំណួរ';
+}
 
-    if (window.speechSynthesis) {
-      window.speechSynthesis.getVoices();
-      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-    }
+function navigate(dir) {
+  const next = currentIndex + dir;
+  if (next < 0 || next >= questions.length) return;
+  currentIndex = next;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-    renderQuestion();
-  </script>
+if (window.speechSynthesis) {
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+}
+
+renderQuestion();
+</script>
 </body>
 
 </html>
