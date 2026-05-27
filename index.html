@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>តេស្តនិយាយភាសាកូរ៉េ — អនុវត្ត</title>
+  <title>តេស្តនិយាយភាសាកូរ៉េ — ខែឧសភា</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+Khmer:wght@300;400;600;700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,700;1,500&display=swap"
     rel="stylesheet">
@@ -20,11 +20,7 @@
       --border: #e2e8f0;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
@@ -46,14 +42,7 @@
       width: 100%;
       box-sizing: border-box;
       text-align: center;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-
-    @media (min-width: 600px) {
-      header {
-        gap: 12px;
-        padding: 16px 16px;
-      }
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
 
     header h1 {
@@ -70,51 +59,31 @@
       letter-spacing: 0.1em;
     }
 
-    .progress-bar {
-      height: 2px;
-      background: var(--border);
-    }
-
+    .progress-bar { height: 2px; background: var(--border); }
     .progress-fill {
       height: 100%;
       background: linear-gradient(90deg, var(--accent), var(--accent2), var(--green));
       transition: width 0.5s ease;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 32px 24px;
-    }
+    .container { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
 
     .question-card {
       background: white;
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 32px 36px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
       margin-bottom: 28px;
       animation: slideIn 0.35s ease;
     }
 
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    .q-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+    .q-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
 
     .q-tag {
       font-family: 'DM Mono', monospace;
@@ -129,19 +98,11 @@
       font-weight: 600;
     }
 
-    .q-counter {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
-    }
+    .q-counter { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); }
 
-    .q-prompt {
-      font-size: 19px;
-      font-weight: 600;
-      line-height: 1.5;
-      margin-bottom: 12px;
-      color: var(--ink);
-    }
+    .q-prompt { font-size: 19px; font-weight: 600; line-height: 1.5; margin-bottom: 12px; color: var(--ink); }
+
+    .q-khmer { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
 
     .q-pattern {
       font-size: 13px;
@@ -171,608 +132,144 @@
       margin-bottom: 4px;
     }
 
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
+    .controls { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
 
     .btn-record {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
       background: linear-gradient(135deg, var(--accent), #e11d48);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: all 0.3s;
-      letter-spacing: 0.03em;
-      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+      color: white; border: none; padding: 12px 24px;
+      font-family: 'Noto Sans Khmer', serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; border-radius: 8px; transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(220,38,38,0.2);
     }
 
     .btn-record:hover {
       background: linear-gradient(135deg, #b91c1c, #be123c);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+      box-shadow: 0 4px 12px rgba(220,38,38,0.3);
     }
 
-    .btn-record.recording {
-      background: var(--green);
-      animation: pulse 1.2s infinite;
-    }
-
-    .btn-record.recording:hover {
-      background: #229954;
-    }
+    .btn-record.recording { background: var(--green); animation: pulse 1.2s infinite; }
+    .btn-record.recording:hover { background: #229954; }
 
     @keyframes pulse {
-
-      0%,
-      100% {
-        box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.4);
-      }
-
-      50% {
-        box-shadow: 0 0 0 8px rgba(39, 174, 96, 0);
-      }
+      0%, 100% { box-shadow: 0 0 0 0 rgba(39,174,96,0.4); }
+      50%       { box-shadow: 0 0 0 8px rgba(39,174,96,0); }
     }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      background: white;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .dot { width: 10px; height: 10px; background: white; border-radius: 50%; flex-shrink: 0; }
+    .btn-record.recording .dot { border-radius: 2px; }
 
-    .btn-record.recording .dot {
-      border-radius: 2px;
-    }
+    .timer { font-family: 'DM Mono', monospace; font-size: 22px; font-weight: 300; color: var(--ink); min-width: 60px; letter-spacing: 0.05em; }
 
-    .timer {
-      font-family: 'DM Mono', monospace;
-      font-size: 22px;
-      font-weight: 300;
-      color: var(--ink);
-      min-width: 60px;
-      letter-spacing: 0.05em;
-    }
+    .waveform { display: flex; align-items: center; gap: 3px; height: 30px; opacity: 0; transition: opacity 0.3s; }
+    .waveform.active { opacity: 1; }
+    .waveform-bar { width: 3px; background: var(--accent); border-radius: 2px; animation: wave 0.8s ease-in-out infinite; min-height: 4px; }
+    @keyframes wave { 0%,100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
 
-    .waveform {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      height: 30px;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
+    .answer-section { display: none; }
+    .answer-section.visible { display: block; animation: slideIn 0.3s ease; }
 
-    .waveform.active {
-      opacity: 1;
-    }
-
-    .waveform-bar {
-      width: 3px;
-      background: var(--accent);
-      border-radius: 2px;
-      animation: wave 0.8s ease-in-out infinite;
-      min-height: 4px;
-    }
-
-    @keyframes wave {
-
-      0%,
-      100% {
-        transform: scaleY(0.3);
-      }
-
-      50% {
-        transform: scaleY(1);
-      }
-    }
-
-    .answer-section {
-      display: none;
-    }
-
-    .answer-section.visible {
-      display: block;
-      animation: slideIn 0.3s ease;
-    }
-
-    /* Custom audio player */
     .audio-player-custom {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      background: white; border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
     .audio-play-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--ink);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.2s;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 36px; height: 36px; border-radius: 50%; background: var(--ink);
+      border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+    .audio-play-btn:hover { background: var(--accent); transform: scale(1.05); }
+    .audio-play-btn svg { fill: white; }
 
-    .audio-play-btn:hover {
-      background: var(--accent);
-      transform: scale(1.05);
-    }
-
-    .audio-play-btn svg {
-      fill: white;
-    }
-
-    .audio-progress-wrap {
-      flex: 1;
-      height: 4px;
-      background: var(--border);
-      border-radius: 2px;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .audio-progress-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 2px;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-
-    .audio-time {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      min-width: 40px;
-      text-align: right;
-    }
-
-    /* Hidden native audio for fallback */
-    audio {
-      display: none;
-    }
+    .audio-progress-wrap { flex: 1; height: 4px; background: var(--border); border-radius: 2px; cursor: pointer; position: relative; }
+    .audio-progress-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; transition: width 0.1s linear; }
+    .audio-time { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 40px; text-align: right; }
+    audio { display: none; }
 
     .btn-check {
       width: 100%;
       background: linear-gradient(135deg, var(--green), #15803d);
-      color: white;
-      border: none;
-      padding: 14px 16px;
-      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 8px;
-      letter-spacing: 0.05em;
-      transition: all 0.3s;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.2);
+      color: white; border: none; padding: 14px 16px;
+      font-family: 'Noto Sans Khmer', serif; font-size: 15px; font-weight: 600;
+      cursor: pointer; border-radius: 8px; transition: all 0.3s;
+      margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 2px 8px rgba(22,163,74,0.2);
     }
-
-    .btn-check:hover {
-      background: linear-gradient(135deg, #15803d, #166534);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
-    }
-
-    .btn-check.speaking {
-      background: var(--accent2);
-      animation: pulse 1.2s infinite;
-    }
-
-    .btn-check:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .btn-check:hover { background: linear-gradient(135deg, #15803d, #166534); transform: translateY(-2px); }
+    .btn-check.speaking { background: var(--accent2); animation: pulse 1.2s infinite; }
+    .btn-check:disabled { opacity: 0.5; cursor: not-allowed; }
 
     .model-answer-reveal {
-      background: #ecfdf5;
-      border: 1px solid #d1fae5;
-      border-left: 4px solid var(--green);
-      border-radius: 8px;
-      padding: 16px 20px;
-      margin-bottom: 16px;
-      animation: slideIn 0.3s ease;
+      background: #ecfdf5; border: 1px solid #d1fae5; border-left: 4px solid var(--green);
+      border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; animation: slideIn 0.3s ease;
     }
-
     .model-answer-reveal .label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 8px;
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 8px;
     }
+    .model-answer-reveal #model-answer-text { font-size: 18px; font-weight: 700; color: var(--ink); line-height: 1.6; }
+    .model-answer-reveal #khmer-answer-text { font-size: 14px; color: var(--muted); margin-top: 4px; }
 
-    .model-answer-reveal #model-answer-text {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.6;
-    }
-
-    .feedback-box {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px 28px;
-      display: none;
-      animation: slideIn 0.3s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    }
-
-    .feedback-box.visible {
-      display: block;
-    }
-
-    .feedback-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .score-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 13px;
-      font-weight: 400;
-      padding: 4px 12px;
-      border-radius: 1px;
-    }
-
-    .score-great {
-      background: #d5f5e3;
-      color: #1a7a44;
-      border: 1px solid #27ae60;
-    }
-
-    .score-ok {
-      background: #fef9e7;
-      color: #7d6608;
-      border: 1px solid #f0b429;
-    }
-
-    .score-retry {
-      background: #fdedec;
-      color: #922b21;
-      border: 1px solid var(--accent);
-    }
-
-    .feedback-text {
-      font-size: 14px;
-      line-height: 1.8;
-      color: var(--ink);
-      white-space: pre-wrap;
-    }
-
-    .model-answer {
-      margin-top: 16px;
-      background: var(--paper);
-      border-left: 3px solid var(--accent);
-      padding: 12px 16px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .model-answer .label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .nav-row {
-      display: flex;
-      gap: 12px;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 8px;
-    }
+    .nav-row { display: flex; gap: 12px; justify-content: space-between; align-items: center; margin-top: 8px; }
 
     .btn-nav {
-      background: white;
-      border: 1px solid var(--border);
-      color: var(--ink);
-      padding: 10px 20px;
-      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: all 0.2s;
-      letter-spacing: 0.05em;
-      flex: 1;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      background: white; border: 1px solid var(--border); color: var(--ink);
+      padding: 10px 20px; font-family: 'Noto Sans Khmer', serif; font-size: 14px; font-weight: 600;
+      cursor: pointer; border-radius: 8px; transition: all 0.2s; flex: 1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
-
-    .btn-nav:hover {
-      background: var(--paper2);
-      border-color: var(--muted);
-      transform: translateY(-1px);
-    }
-
-    .btn-nav:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
-
-    .btn-nav.primary {
-      background: linear-gradient(135deg, var(--ink), #1e293b);
-      color: white;
-      border-color: transparent;
-    }
-
-    .btn-nav.primary:hover {
-      background: linear-gradient(135deg, #1e293b, #334155);
-      transform: translateY(-1px);
-    }
+    .btn-nav:hover { background: var(--paper2); border-color: var(--muted); transform: translateY(-1px); }
+    .btn-nav:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-nav.primary { background: linear-gradient(135deg, var(--ink), #1e293b); color: white; border-color: transparent; }
+    .btn-nav.primary:hover { background: linear-gradient(135deg, #1e293b, #334155); }
 
     .mode-selector {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 28px;
-      border: none;
-      border-radius: 8px;
-      overflow: hidden;
-      background: white;
-      padding: 4px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap;
+      background: white; padding: 4px; border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
 
     .mode-btn {
-      flex: 1;
-      padding: 10px 12px;
-      border: none;
-      background: transparent;
-      font-family: 'Noto Sans Khmer', 'Noto Serif KR', serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      color: var(--muted);
-      letter-spacing: 0.04em;
-      transition: all 0.2s;
-      border-radius: 6px;
+      flex: 1; min-width: 80px; padding: 9px 8px; border: none; background: transparent;
+      font-family: 'Noto Sans Khmer', serif; font-size: 12px; font-weight: 600;
+      cursor: pointer; color: var(--muted); transition: all 0.2s; border-radius: 6px; white-space: nowrap;
     }
+    .mode-btn.active { background: linear-gradient(135deg, var(--ink), #1e293b); color: white; }
+    .mode-btn:hover:not(.active) { background: var(--paper2); color: var(--ink); }
 
-    .mode-btn:last-child {
-      border-right: none;
+    .self-check {
+      background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px;
+      padding: 14px 16px; margin-bottom: 16px; font-size: 14px; line-height: 1.6;
     }
-
-    .mode-btn.active {
-      background: linear-gradient(135deg, var(--ink), #1e293b);
-      color: white;
+    .self-check .label {
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 8px;
     }
-
-    .mode-btn:hover:not(.active) {
-      background: var(--paper2);
-      color: var(--ink);
-    }
-
-    .spinner {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .skeleton {
-      background: linear-gradient(90deg, var(--paper2) 25%, var(--border) 50%, var(--paper2) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.2s infinite;
-      border-radius: 2px;
-      height: 16px;
-      margin-bottom: 8px;
-    }
-
-    @keyframes shimmer {
-      to {
-        background-position: -200% 0;
-      }
-    }
+    .self-check-items { list-style: none; }
+    .self-check-items li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; }
+    .self-check-items li::before { content: '☐'; font-size: 16px; line-height: 1.2; color: var(--accent); flex-shrink: 0; }
 
     .no-mic-msg {
-      display: none;
-      background: #fef3c7;
-      border: 1px solid #fde68a;
-      color: #92400e;
-      padding: 12px 16px;
-      font-size: 13px;
-      border-radius: 8px;
-      margin-bottom: 16px;
+      display: none; background: #fef3c7; border: 1px solid #fde68a; color: #92400e;
+      padding: 12px 16px; font-size: 13px; border-radius: 8px; margin-bottom: 16px;
     }
 
     .btn-speak {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: white;
-      border: 1.5px solid var(--accent2);
-      color: var(--accent2);
-      padding: 8px 16px;
-      font-family: 'Noto Sans Khmer', serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: 6px;
-      transition: all 0.2s;
-      margin-top: 12px;
-      box-shadow: 0 1px 3px rgba(249, 115, 22, 0.1);
+      display: inline-flex; align-items: center; gap: 7px;
+      background: white; border: 1.5px solid var(--accent2); color: var(--accent2);
+      padding: 8px 16px; font-family: 'Noto Sans Khmer', serif; font-size: 13px; font-weight: 600;
+      cursor: pointer; border-radius: 6px; transition: all 0.2s; margin-top: 12px;
     }
+    .btn-speak:hover { background: var(--accent2); color: white; }
+    .btn-speak.speaking { background: var(--accent2); color: white; }
 
-    .btn-speak:hover {
-      background: var(--accent2);
-      color: white;
-      box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
-    }
-
-    .btn-speak.speaking {
-      background: var(--accent2);
-      color: white;
-    }
-
-    /* Self-assessment panel (shown after recording since AI can't hear audio) */
-    .self-check {
-      background: #fef3c7;
-      border: 1px solid #fde68a;
-      border-radius: 8px;
-      padding: 14px 16px;
-      margin-bottom: 16px;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .self-check .label {
-      font-family: 'DM Mono', monospace;
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .self-check-items {
-      list-style: none;
-    }
-
-    .self-check-items li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
-    .self-check-items li::before {
-      content: '☐';
-      font-size: 16px;
-      line-height: 1.2;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .api-banner {
-      background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    }
-
-    .api-banner label {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      text-transform: uppercase;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .api-banner input {
-      flex: 1;
-      min-width: 180px;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      padding: 7px 12px;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      background: white;
-      color: var(--ink);
-      outline: none;
-    }
-
-    .api-banner input:focus {
-      border-color: var(--accent2);
-    }
-
-    .api-banner input.saved {
-      border-color: var(--green);
-      background: #f0faf4;
-    }
-
-    .api-save-btn {
-      font-family: 'Noto Sans Khmer', serif;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 7px 16px;
-      background: linear-gradient(135deg, var(--accent2), #fb923c);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s;
-      box-shadow: 0 1px 3px rgba(249, 115, 22, 0.2);
-    }
-
-    .api-save-btn:hover {
-      background: linear-gradient(135deg, #ea580c, #f97316);
-      box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);
-    }
-
-    .api-status {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--green);
-      display: none;
-    }
-
-    .api-status.visible {
-      display: inline;
-    }
-
-    .api-help {
-      font-size: 11px;
-      color: var(--muted);
-      width: 100%;
-      margin-top: 2px;
-    }
-
-    .api-help a {
-      color: var(--accent2);
-      text-decoration: none;
+    .date-badge {
+      font-family: 'DM Mono', monospace; font-size: 11px; color: #94a3b8;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+      padding: 3px 10px; border-radius: 4px;
     }
   </style>
 </head>
@@ -780,8 +277,9 @@
 <body>
 
 <header>
-  <h1>តេស្តនិយាយភាសាកូរ៉េ — ខែមេសា</h1>
-  <span>Korean Oral Test · 4월 말하기</span>
+  <h1>តេស្តនិយាយភាសាកូរ៉េ — ខែឧសភា</h1>
+  <span>Korean Oral Test · 5월 말하기</span>
+  <span class="date-badge">2026년 5월 28일</span>
 </header>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 
@@ -789,9 +287,12 @@
 
   <div class="mode-selector">
     <button class="mode-btn active" data-mode="all">ទាំងអស់</button>
-    <button class="mode-btn" data-mode="q01">Q01 이게/저게</button>
-    <button class="mode-btn" data-mode="q03">Q02 문법</button>
-    <button class="mode-btn" data-mode="q04">Q03 일상생활</button>
+    <button class="mode-btn" data-mode="q01">Q01 ~거예요</button>
+    <button class="mode-btn" data-mode="q02">Q02 어떤~</button>
+    <button class="mode-btn" data-mode="q03">Q03 수있어요</button>
+    <button class="mode-btn" data-mode="q04">Q04 지않아요</button>
+    <button class="mode-btn" data-mode="q05">Q05 지금</button>
+    <button class="mode-btn" data-mode="q07">Q06 자유대화</button>
   </div>
 
   <div id="test-area">
@@ -880,290 +381,409 @@
 
 <script>
 const QUESTIONS = [
-  // ── Q01: 이게/저게 뭐예요? ─────────────────────────────────────
+
+  // ── Q01: 내일 뭐 할 거예요? (Future tense ~ㄹ/을 거예요) ────────────
   {
     tag: 'Q01',
-    pattern: '이게/저게 [명사]이에요/예요.',
-    prompt: '이게 뭐예요?',
-    promptKhmer: 'តើអ្វីដែលនៅខាងនេះ?',
-    hint: '수건 (កន្សែង)',
-    answer: '이게 수건이에요.',
-    checks: ['수건 (sukorn) = កន្សែង', '이게 = this (here)', 'ចប់ → 이에요'],
-    khmer: 'អ្វីដែលនៅខាងនេះ គឺជាកន្សែង។'
-  },
-  {
-    tag: 'Q01',
-    pattern: '이게/저게 [명사]이에요/예요.',
-    prompt: '저게 뭐예요?',
-    promptKhmer: 'តើអ្វីដែលនៅទីនោះ?',
-    hint: '정수기 (ម៉ាស៊ីនច្រុះទឺក)',
-    answer: '저게 정수기에요.',
-    checks: ['저게 = that (over there)', '정수기 (jongsuki) = ម៉ាស៊ីនច្រុះទឺក', 'ចប់ → 에요'],
-    khmer: 'អ្វីដែលនៅទីនោះ គឺជាម៉ាស៊ីនច្រុះទឺក។'
-  },
-  {
-    tag: 'Q01',
-    pattern: '이게/저게 [명사]이에요/예요.',
-    prompt: '이게 뭐예요?',
-    promptKhmer: 'តើអ្វីដែលនៅខាងនេះ?',
-    hint: '냉장고 (ទូទឺកកក)',
-    answer: '이게 냉장고에요.',
-    checks: ['냉장고  (nengjangko) = ទូទឺកកក', '이게 = this', '우산 ចប់ → 에요'],
-    khmer: 'អ្វីដែលនៅខាងនេះ គឺជាទូទឺកកក។'
-  },
-  {
-    tag: 'Q01',
-    pattern: '이게/저게 [명사]이에요/예요.',
-    prompt: '저게 뭐예요?',
-    promptKhmer: 'តើអ្វីដែលនៅទីនោះ?',
-    hint: '전자레인지 (Microwave)',
-    answer: '저게 전자레인지예요.',
-    checks: ['전자레인지 (chon cha re in ji) = microwave', '저게 = that (far)', '의자 ចប់ → 예요'],
-    khmer: 'អ្វីដែលនៅទីនោះ គឺជា Microwave។'
-  },
-  {
-    tag: 'Q01',
-    pattern: '이게/저게 [명사]이에요/예요.',
-    prompt: '이게 뭐예요?',
-    promptKhmer: 'តើអ្វីដែលនៅខាងនេះ?',
-    hint: '변기 (បង្គន់)',
-    answer: '이게 변기에요.',
-    checks: ['변기 (pyonki) = បង្គន់', 'ចប់ → 에요'],
-    khmer: 'អ្វីដែលនៅខាងនេះ គឺជាបង្គន់។'
-  },
-  {
-    tag: 'Q01',
-    pattern: '이게/저게 [명사]이에요/예요.',
-    prompt: '저게 뭐예요?',
-    promptKhmer: 'តើអ្វីដែលនៅទីនោះ?',
-    hint: '휴지 (ក្រដាស)',
-    answer: '저게 휴지에요.',
-    checks: ['휴지 (hyuji) = ក្រដាស', 'ចប់ → 에요'],
-    khmer: 'អ្វីដែលនៅទីនោះ គឺជាក្រដាស។'
-  },
-  {
-    tag: 'Q01',
-    pattern: '이게/저게 [명사]이에요/예요.',
-    prompt: '이게 뭐예요?',
-    promptKhmer: 'តើអ្វីដែលនៅខាងនេះ?',
-    hint: '주전자 (កំសៀវដាំទឺក)',
-    answer: '이게 주전자에요.',
-    checks: ['주전자 (chuchonja) = កំសៀវដាំទឺក', 'ចប់ → 에요'],
-    khmer: 'អ្វីដែលនៅខាងនេះ គឺជាកំសៀវដាំទឺក។'
-  },
-  {
-    tag: 'Q01',
-    pattern: '이게/저게 [명사]이에요/예요.',
-    prompt: '저게 뭐예요?',
-    promptKhmer: 'តើអ្វីដែលនៅទីនោះ?',
-    hint: '냄비 (ឆ្នាំង)',
-    answer: '저게 냄비예요.',
-    checks: ['냄비 (nembi) = ឆ្នាំង', 'ចប់ → 예요'],
-    khmer: 'អ្វីដែលនៅទីនោះ គឺជាឆ្នាំង។'
+    pattern: '~ㄹ/을 거예요 (미래)',
+    prompt: '내일 뭐 할 거예요?',
+    promptKhmer: 'ថ្ងៃស្អែកនឹងធ្វើអ្វី?',
+    hint: '친구를 만나다 / 공부하다 / 집에서 쉬다',
+    answer: '내일 친구를 만날 거예요.',
+    checks: [
+      '만나다 → 만날 거예요 (verb + ㄹ 거예요)',
+      '미래 = ㄹ/을 거예요',
+      '내일 = ថ្ងៃស្អែក'
+    ],
+    khmer: 'ថ្ងៃស្អែកខ្ញុំនឹងជួបមិត្ត។'
   },
 
-  // ── Q03: Grammar patterns (Slide 4) ──────────────────────────
+  // ── Q02: 어떤 _____ 샀어요? (Adjective + noun) ─────────────────────
   {
-    tag: 'Q03',
-    pattern: '저는 [직업]이/가 되고 싶어요. [이유]이기 때문이에요.',
-    prompt: '앞으로 무엇이 되고 싶어요? 왜요?',
-    promptKhmer: 'តើអ្នកចង់ក្លាយជាអ្វីនៅថ្ងៃអនាគត? ហេតុអ្វី?',
-    hint: '개발자 / 컴퓨터를 좋아해요',
-    answer: '저는 개발자가 되고 싶어요. 컴퓨터를 좋아하기 때문이에요.',
-    checks: ['되고 싶어요 = want to become', '기 때문이에요 = because', '개발자 (gaebalja) = developer'],
-    khmer: 'ខ្ញុំចង់ក្លាយជាអ្នកបង្កើតកម្មវិធី។ ព្រោះខ្ញុំចូលចិត្តកុំព្យូទ័រ។'
+    tag: 'Q02',
+    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
+    prompt: '어떤 치마 샀어요?',
+    promptKhmer: 'ទិញសំពត់ (skirt) ប្រភេទណា?',
+    hint: '길다 → 긴 치마',
+    answer: '긴 치마를 샀어요.',
+    checks: [
+      '길다 → 긴 (adjective form before noun)',
+      '치마 = skirt / សំពត់',
+      '받침 없는 형용사 + ㄴ → 긴, 짧은, 작은'
+    ],
+    khmer: 'ខ្ញុំទិញសំពត់វែង។'
   },
   {
-    tag: 'Q03',
-    pattern: '[교통수단](으)로 학교에 와요. [시간]이 걸려요.',
-    prompt: '학교에 어떻게 와요? 시간이 얼마나 걸려요?',
-    promptKhmer: 'តើអ្នកមកសាលារបៀបណា? ចំណាយពេលប៉ុន្មាន?',
-    hint: '오토바이로 / 15분',
-    answer: '오토바이로 와요. 15분이 걸려요.',
-    checks: ['(으)로 = by (transport)', '오토바이로 = by motorbike', '걸려요 = it takes (time)'],
-    khmer: 'ខ្ញុំមកដោយម៉ូតូ។ ចំណាយពេល ១៥ នាទី។'
+    tag: 'Q02',
+    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
+    prompt: '어떤 꽃다발 샀어요?',
+    promptKhmer: 'ទិញចង្កោមផ្កា (bouquet) ប្រភេទណា?',
+    hint: '아름답다 → 아름다운 꽃다발',
+    answer: '아름다운 꽃다발을 샀어요.',
+    checks: [
+      '아름답다 → 아름다운 (ㅂ 불규칙: ㅂ → 우 + ㄴ)',
+      '꽃다발 = ចង្កោមផ្កា',
+      'ㅂ 불규칙 형용사: 아름답다, 덥다, 춥다...'
+    ],
+    khmer: 'ខ្ញុំទិញចង្កោមផ្កាស្អាត។'
   },
   {
-    tag: 'Q03',
-    pattern: '[목적](으)러 HRD센터에 와요.',
-    prompt: '왜 HRD센터에 와요?',
-    promptKhmer: 'តើហេតុអ្វីបានអ្នកមក HRD Center?',
-    hint: '한국어를 배우다',
-    answer: '한국어를 배우러 HRD센터에 와요.',
-    checks: ['(으)러 가다/오다 = go/come to do', '배우러 = to learn', '한국어를 배우러 오다'],
-    khmer: 'ខ្ញុំមក HRD Center ដើម្បីរៀនភាសាកូរ៉េ។'
+    tag: 'Q02',
+    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
+    prompt: '어떤 전자레인지 샀어요?',
+    promptKhmer: 'ទិញ Microwave ប្រភេទណា?',
+    hint: '작다 → 작은 전자레인지',
+    answer: '작은 전자레인지를 샀어요.',
+    checks: [
+      '작다 → 작은 (받침 있음 → 은)',
+      '전자레인지 = microwave',
+      '크다 ↔ 작다 = big ↔ small'
+    ],
+    khmer: 'ខ្ញុំទិញ microwave តូច។'
   },
   {
-    tag: 'Q03',
-    pattern: '아침에 [음식]도 먹어요.',
-    prompt: '아침에 보통 무엇을 먹어요?',
-    promptKhmer: 'តើអ្នកញ៉ាំអ្វីជាធម្មតានៅពេលព្រឹក?',
-    hint: '밥 / 국',
-    answer: '밥을 먹어요. 국도 먹어요.',
-    checks: ['도 = also / too', '국 (guk) = ស៊ុប', '밥 (bap) = បាយ'],
-    khmer: 'ខ្ញុំញ៉ាំបាយ។ ខ្ញុំញ៉ាំស៊ុបផងដែរ។'
+    tag: 'Q02',
+    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
+    prompt: '어떤 구두 샀어요?',
+    promptKhmer: 'ទិញស្បែកជើង (dress shoes) ប្រភេទណា?',
+    hint: '높다 → 높은 구두',
+    answer: '높은 구두를 샀어요.',
+    checks: [
+      '높다 → 높은 (받침 있음 → 은)',
+      '구두 = ស្បែកជើងស្ករបម',
+      '높다 = tall/high'
+    ],
+    khmer: 'ខ្ញុំទិញស្បែកជើងខ្ពស់។'
   },
   {
-    tag: 'Q03',
-    pattern: '아니요, [verb]안 했어요. [다른 동사]었/았어요.',
-    prompt: '어제 어머니하고 같이 쇼핑했어요?',
-    promptKhmer: 'តើម្សិលមិញអ្នកទៅដើរទិញឥវ៉ាន់ជាមួយម្តាយទេ?',
-    hint: '아니요 / 집에서 쉬었어요',
-    answer: '아니요, 쇼핑 안 했어요. 집에서 쉬었어요.',
-    checks: ['안 + verb = negation', '쉬었어요 = rested (past)', '쇼핑 안 했어요 = did not shop'],
-    khmer: 'ទេ ខ្ញុំមិនបានទៅដើរទិញឥវ៉ាន់ទេ។ ខ្ញុំសម្រាកនៅផ្ទះ។'
+    tag: 'Q02',
+    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
+    prompt: '어떤 바지 샀어요?',
+    promptKhmer: 'ទិញខោ (pants) ប្រភេទណា?',
+    hint: '짧다 → 짧은 바지',
+    answer: '짧은 바지를 샀어요.',
+    checks: [
+      '짧다 → 짧은 (받침 있음 → 은)',
+      '바지 = ខោ',
+      '길다 (long) ↔ 짧다 (short)'
+    ],
+    khmer: 'ខ្ញុំទិញខោខ្លី។'
   },
   {
-    tag: 'Q03',
-    pattern: '[약] 드세요. 그리고 [행동](으)세요.',
-    prompt: '머리가 아파요. 어떻게 해요?',
-    promptKhmer: 'ឈឺក្បាល។ តើគួរធ្វើអ្វី?',
-    hint: '약을 드세요 / 쉬세요',
-    answer: '약을 드세요. 그리고 쉬세요.',
-    checks: ['(으)세요 = polite command', '약을 드세요 = please take medicine', '쉬세요 = please rest'],
-    khmer: 'សូមញ៉ាំថ្នាំ។ ហើយសូមសម្រាក។'
+    tag: 'Q02',
+    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
+    prompt: '어떤 DVD 샀어요?',
+    promptKhmer: 'ទិញ DVD ប្រភេទណា?',
+    hint: '재미없다 → 재미없는 DVD',
+    answer: '재미없는 DVD를 샀어요.',
+    checks: [
+      '재미없다 → 재미없는 (없다 → 없는)',
+      '재미없다 = boring / not interesting',
+      '재미있다 (fun) ↔ 재미없다 (boring)'
+    ],
+    khmer: 'ខ្ញុំទិញ DVD គួរឱ្យធុញ។'
+  },
+  {
+    tag: 'Q02',
+    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
+    prompt: '어떤 자동차 샀어요?',
+    promptKhmer: 'ទិញរថយន្ត (car) ប្រភេទណា?',
+    hint: '비싸다 → 비싼 자동차',
+    answer: '비싼 자동차를 샀어요.',
+    checks: [
+      '비싸다 → 비싼 (아/어 → 없애고 + ㄴ)',
+      '자동차 = រថយន្ត',
+      '비싸다 (expensive) ↔ 싸다 (cheap)'
+    ],
+    khmer: 'ខ្ញុំទិញរថយន្តថ្លៃ។'
+  },
+  {
+    tag: 'Q02',
+    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
+    prompt: '어떤 음식 샀어요?',
+    promptKhmer: 'ទិញម្ហូប (food) ប្រភេទណា?',
+    hint: '맛있다 → 맛있는 음식',
+    answer: '맛있는 음식을 샀어요.',
+    checks: [
+      '맛있다 → 맛있는 (있다 → 있는)',
+      '맛있다 = delicious',
+      '음식 = ម្ហូប'
+    ],
+    khmer: 'ខ្ញុំទិញម្ហូបឆ្ងាញ់។'
   },
 
-  // ── Q04: Daily life conversation (Slide 5) ───────────────────
+  // ── Q03: ~ㄹ/을 수 있어요/없어요 (can / cannot) ─────────────────────
+  {
+    tag: 'Q03',
+    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
+    prompt: '같이 테니스를 칠 수 있어요?',
+    promptKhmer: 'លេងតេនីសជាមួយគ្នាបានទេ? (O = YES)',
+    hint: '네! → 칠 수 있어요',
+    answer: '네, 같이 테니스를 칠 수 있어요.',
+    checks: [
+      '치다 → 칠 수 있어요 (ㄹ 거예요처럼 → ㄹ)',
+      '수 있다 = can / able to',
+      '같이 = together / ជាមួយគ្នា'
+    ],
+    khmer: 'បាទ/ចាស ខ្ញុំអាចលេងតេនីសជាមួយគ្នាបាន។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
+    prompt: '저녁에 같이 운동할 수 있어요?',
+    promptKhmer: 'ពេលល្ងាចហ្វឹកហ្វឺនជាមួយគ្នាបានទេ? (X = NO)',
+    hint: '아니요! → 운동할 수 없어요',
+    answer: '미안해요. 저녁에 운동할 수 없어요.',
+    checks: [
+      '운동하다 → 운동할 수 없어요',
+      '수 없다 = cannot / unable',
+      '미안해요 = I am sorry / សូមទោស'
+    ],
+    khmer: 'សូមទោស។ ខ្ញុំមិនអាចហ្វឹកហ្វឺនពេលល្ងាចបានទេ។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
+    prompt: '한국 음식을 만들 수 있어요?',
+    promptKhmer: 'ធ្វើម្ហូបកូរ៉េបានទេ? (X = NO)',
+    hint: '아니요! → 만들 수 없어요',
+    answer: '미안해요. 한국 음식을 만들 수 없어요.',
+    checks: [
+      '만들다 → 만들 수 없어요 (ㄹ 어간 → 그냥 수)',
+      '만들다 = to make / ធ្វើ',
+      '한국 음식 = ម្ហូបកូរ៉េ'
+    ],
+    khmer: 'សូមទោស។ ខ្ញុំមិនអាចធ្វើម្ហូបកូរ៉េបានទេ។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
+    prompt: '한국어 책을 읽을 수 있어요?',
+    promptKhmer: 'អានសៀវភៅភាសាកូរ៉េបានទេ? (O = YES)',
+    hint: '네! → 읽을 수 있어요',
+    answer: '네, 한국어 책을 읽을 수 있어요.',
+    checks: [
+      '읽다 → 읽을 수 있어요 (받침 있음 → 을 수)',
+      '책 = សៀវភៅ',
+      '읽다 = to read'
+    ],
+    khmer: 'បាទ/ចាស ខ្ញុំអាចអានសៀវភៅភាសាកូរ៉េបាន។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
+    prompt: '중국어 노래를 부를 수 있어요?',
+    promptKhmer: 'ច្រៀងបទចិនបានទេ? (X = NO)',
+    hint: '아니요! → 부를 수 없어요',
+    answer: '미안해요. 중국어 노래를 부를 수 없어요.',
+    checks: [
+      '부르다 → 부를 수 없어요 (르 불규칙 applies before ㄹ/을)',
+      '노래를 부르다 = to sing a song',
+      '중국어 = ភាសាចិន'
+    ],
+    khmer: 'សូមទោស។ ខ្ញុំមិនអាចច្រៀងបទចិនបានទេ។'
+  },
+
+  // ── Q04: ~지 않아요 (Negative form) ──────────────────────────────────
   {
     tag: 'Q04',
-    pattern: '일상생활을 이야기해 주세요.',
-    prompt: '일상생활을 이야기해 주세요.',
-    promptKhmer: 'សូមនិយាយអំពីជីវិតប្រចាំថ្ងៃរបស់អ្នក។',
-    hint: '아침에 일어나요 / 학교에 와요 / 저녁에 공부해요',
-    answer: '저는 아침 7시에 일어나요. 오토바이로 학교에 와요. 저녁에 집에서 공부해요.',
-    checks: ['일어나요 = wake up', 'ខ្ញុំ = 저', 'ប្រើ에서 ចំពោះទីកន្លែង+សកម្មភាព'],
-    khmer: 'ខ្ញុំក្រោកពីគេងម៉ោង ៧ ព្រឹក។ ខ្ញុំមកសាលាដោយម៉ូតូ។ ពេលល្ងាចខ្ញុំរៀននៅផ្ទះ។'
+    pattern: '가: [형용사/동사]어요?\n나: 아니요, ~지 않아요.',
+    prompt: '불고기가 매워요?',
+    promptKhmer: 'Bulgogi ហឹរទេ? (X = NO)',
+    hint: '맵다 → 맵지 않아요',
+    answer: '아니요, 불고기가 맵지 않아요.',
+    checks: [
+      '맵다 → 맵지 않아요 (형용사 + 지 않아요)',
+      '맵다 = spicy / ហឹរ',
+      '불고기 = Korean BBQ beef'
+    ],
+    khmer: 'ទេ Bulgogi មិនហឹរទេ។'
   },
   {
     tag: 'Q04',
-    pattern: '한국어 공부가 [형용사]어요/아요.',
-    prompt: '한국어 공부가 어땠어요?',
-    promptKhmer: 'តើការរៀនភាសាកូរ៉េយ៉ាងម៉េចដែរ?',
-    hint: '재미있어요 / 조금 어려워요',
-    answer: '재미있어요. 그런데 조금 어려워요.',
-    checks: ['재미있어요 = fun/interesting', '어려워요 = difficult', '그런데 = but/however'],
-    khmer: 'វាគួរឱ្យចាប់អារម្មណ៍។ ប៉ុន្តែពិបាកបន្តិច។'
+    pattern: '가: [형용사/동사]어요?\n나: 아니요, ~지 않아요.',
+    prompt: '미니 씨가 예뻐요?',
+    promptKhmer: 'Mini ស្អាតទេ? (X = NO)',
+    hint: '예쁘다 → 예쁘지 않아요',
+    answer: '아니요, 미니 씨가 예쁘지 않아요.',
+    checks: [
+      '예쁘다 → 예쁘지 않아요',
+      '예쁘다 = pretty / ស្អាត',
+      'V/A + 지 않아요 = do not / is not'
+    ],
+    khmer: 'ទេ Mini មិនស្អាតទេ។'
   },
   {
     tag: 'Q04',
-    pattern: '집에서 [동사]어요/아요.',
-    prompt: '보통 집에서 뭐 해요?',
-    promptKhmer: 'តើជាធម្មតាអ្នកធ្វើអ្វីនៅផ្ទះ?',
-    hint: 'TV를 봐요 / 음악을 들어요',
-    answer: '보통 집에서 TV를 봐요. 음악도 들어요.',
-    checks: ['봐요 = watch', '들어요 = listen', '도 = also'],
-    khmer: 'ជាធម្មតាខ្ញុំមើល TV នៅផ្ទះ។ ខ្ញុំក៏ស្តាប់តន្ត្រីផងដែរ។'
+    pattern: '가: [동사]어요?\n나: 아니요, ~지 않아요.',
+    prompt: '매운 음식을 좋아해요?',
+    promptKhmer: 'ចូលចិត្តម្ហូបហឹរទេ? (X = NO)',
+    hint: '좋아하다 → 좋아하지 않아요',
+    answer: '아니요, 매운 음식을 좋아하지 않아요.',
+    checks: [
+      '좋아하다 → 좋아하지 않아요',
+      '좋아하다 = to like',
+      '매운 음식 = ម្ហូបហឹរ'
+    ],
+    khmer: 'ទេ ខ្ញុំមិនចូលចិត្តម្ហូបហឹរទេ។'
   },
   {
     tag: 'Q04',
-    pattern: '네/아니요, [자주/가끔/안] [동사]어요/아요.',
-    prompt: '커피를 자주 마셔요?',
-    promptKhmer: 'តើអ្នកញ៉ាំកាហ្វេញឹកញាប់ដែរឬទេ?',
-    hint: '네, 매일 마셔요. / 아니요, 가끔 마셔요.',
-    answer: '아니요, 가끔 마셔요.',
-    checks: ['가끔 = sometimes', '자주 = often', '매일 = every day'],
-    khmer: 'ទេ ខ្ញុំញ៉ាំម្តងម្កាល។'
+    pattern: '가: [형용사]아요/어요?\n나: 아니요, ~지 않아요.',
+    prompt: '오늘 바빠요?',
+    promptKhmer: 'ថ្ងៃនេះមមាញឹកទេ? (X = NO)',
+    hint: '바쁘다 → 바쁘지 않아요',
+    answer: '아니요, 오늘 바쁘지 않아요.',
+    checks: [
+      '바쁘다 → 바쁘지 않아요',
+      '바쁘다 = busy / មមាញឹក',
+      '오늘 = today / ថ្ងៃនេះ'
+    ],
+    khmer: 'ទេ ថ្ងៃនេះខ្ញុំមិនមមាញឹកទេ។'
   },
   {
     tag: 'Q04',
-    pattern: '저는 [음료수]를/을 좋아해요.',
-    prompt: '어떤 음료수를 좋아해요?',
-    promptKhmer: 'តើអ្នកចូលចិត្តភេសជ្ជៈអ្វី?',
-    hint: '물 / 주스 / 우유',
-    answer: '저는 물을 좋아해요. 주스도 좋아해요.',
-    checks: ['물 = ទឹក', '주스 = juice', '우유 (uyu) = ទឹកដោះគោ'],
-    khmer: 'ខ្ញុំចូលចិត្តទឹក។ ខ្ញុំក៏ចូលចិត្ត juice ផងដែរ។'
+    pattern: '가: [동사]아요/어요?\n나: 아니요, ~지 않아요.',
+    prompt: '보통 아침을 먹어요?',
+    promptKhmer: 'ជាធម្មតាញ៉ាំអាហារពេលព្រឹកទេ? (X = NO)',
+    hint: '먹다 → 먹지 않아요',
+    answer: '아니요, 보통 아침을 먹지 않아요.',
+    checks: [
+      '먹다 → 먹지 않아요',
+      '보통 = usually / ជាធម្មតា',
+      '아침 = breakfast / ពេលព្រឹក'
+    ],
+    khmer: 'ទេ ជាធម្មតាខ្ញុំមិនញ៉ាំអាហារពេលព្រឹកទេ។'
   },
   {
     tag: 'Q04',
-    pattern: '네, 한국에 가고 싶어요. [이유] 때문이에요.',
-    prompt: '한국에 가고 싶어요? 왜요?',
-    promptKhmer: 'តើអ្នកចង់ទៅប្រទេសកូរ៉េទេ? ហេតុអ្វី?',
-    hint: '네, 가고 싶어요. 한국 음식을 먹고 싶어요.',
-    answer: '네, 한국에 가고 싶어요. 한국 음식을 먹고 싶기 때문이에요.',
-    checks: ['가고 싶어요 = want to go', '먹고 싶어요 = want to eat', '기 때문이에요 = because'],
-    khmer: 'បាទ/ចាស ខ្ញុំចង់ទៅ។ ព្រោះខ្ញុំចង់ញ៉ាំម្ហូបកូរ៉េ។'
+    pattern: '가: [동사]아요/어요?\n나: 아니요, ~지 않아요.',
+    prompt: '매일 커피를 마셔요?',
+    promptKhmer: 'ញ៉ាំកាហ្វេរៀងរាល់ថ្ងៃទេ? (X = NO)',
+    hint: '마시다 → 마시지 않아요',
+    answer: '아니요, 매일 커피를 마시지 않아요.',
+    checks: [
+      '마시다 → 마시지 않아요',
+      '매일 = every day / រៀងរាល់ថ្ងៃ',
+      '커피 = ☕ kaahe'
+    ],
+    khmer: 'ទេ ខ្ញុំមិនញ៉ាំកាហ្វេរៀងរាល់ថ្ងៃទេ។'
+  },
+
+  // ── Q05: 지금 뭐 해요? (What are you doing now?) ─────────────────────
+  {
+    tag: 'Q05',
+    pattern: '지금 [동사]고 있어요.',
+    prompt: '지금 뭐 해요?',
+    promptKhmer: 'ឥឡូវកំពុងធ្វើអ្វី?',
+    hint: '공부하다 / 밥을 먹다 / 음악을 듣다',
+    answer: '지금 한국어를 공부하고 있어요.',
+    checks: [
+      '공부하다 → 공부하고 있어요 (present progressive)',
+      '~고 있어요 = is/am doing',
+      '지금 = now / ឥឡូវ'
+    ],
+    khmer: 'ឥឡូវខ្ញុំកំពុងរៀនភាសាកូរ៉េ។'
+  },
+
+  // ── Q07: 자유 대화 (Free Conversation Topics) ────────────────────────
+  {
+    tag: 'Q07',
+    pattern: '자유 대화 — 여러 표현 사용',
+    prompt: '주말 활동을 이야기해 주세요.',
+    promptKhmer: 'សូមនិយាយអំពីសកម្មភាពចុងសប្តាហ៍របស់អ្នក។',
+    hint: '보통 주말에 / 가끔 / 항상',
+    answer: '보통 주말에 친구를 만나요. 카페에 가서 이야기해요. 집에서 쉬기도 해요.',
+    checks: [
+      '보통 = usually, 가끔 = sometimes, 항상 = always',
+      '~아/어서 = and then (sequence)',
+      '~기도 하다 = also do'
+    ],
+    khmer: 'ជាធម្មតាចុងសប្តាហ៍ ខ្ញុំជួបមិត្ត។ ទៅហាងកាហ្វេនិយាយជាមួយគ្នា។ ក៏សម្រាកនៅផ្ទះដែរ។'
   },
   {
-    tag: 'Q04',
-    pattern: '네/아니요, 여행을 [좋아해요/안 좋아해요].',
-    prompt: '여행을 좋아해요?',
-    promptKhmer: 'តើអ្នកចូលចិត្តធ្វើដំណើរទេ?',
-    hint: '네, 좋아해요. / 아니요, 안 좋아해요.',
-    answer: '네, 여행을 좋아해요. 새로운 곳에 가고 싶어요.',
-    checks: ['여행 (yeohaeng) = ការធ្វើដំណើរ', '새로운 곳 = ទីកន្លែងថ្មី', '가고 싶어요 = want to go'],
-    khmer: 'បាទ/ចាស ខ្ញុំចូលចិត្តធ្វើដំណើរ។ ខ្ញុំចង់ទៅកន្លែងថ្មីៗ។'
+    tag: 'Q07',
+    pattern: '자유 대화',
+    prompt: '보통 어디에서 쇼핑을 해요?',
+    promptKhmer: 'ជាធម្មតាដើរទិញឥវ៉ាន់នៅណា?',
+    hint: '마트 / 쇼핑몰 / 온라인',
+    answer: '보통 마트에서 쇼핑을 해요. 가끔 온라인으로 사요.',
+    checks: [
+      '에서 = at (place of action)',
+      '온라인으로 = online / via internet',
+      '사요 = buy (사다 → 사요)'
+    ],
+    khmer: 'ជាធម្មតាខ្ញុំដើរទិញឥវ៉ាន់នៅ supermarket ។ ម្តងម្កាលទិញអនឡាញ។'
   },
   {
-    tag: 'Q04',
-    pattern: '시간이 있으면 [장소]에 가고 싶어요.',
-    prompt: '시간이 있어요. 그럼 어디에 가고 싶어요?',
-    promptKhmer: 'អ្នកមានពេលទំនេរ។ ចង់ទៅណា?',
-    hint: '바다 / 카페 / 공원',
-    answer: '시간이 있으면 바다에 가고 싶어요.',
-    checks: ['바다 (bada) = សមុទ្រ', '가고 싶어요 = want to go', '(으)면 = if'],
-    khmer: 'ប្រសិនបើខ្ញុំមានពេល ខ្ញុំចង់ទៅសមុទ្រ។'
+    tag: 'Q07',
+    pattern: '자유 대화',
+    prompt: '방학 때 뭐 하고 싶어요?',
+    promptKhmer: 'ពេលឈប់សម្រាក ចង់ធ្វើអ្វី?',
+    hint: '여행하고 싶어요 / 쉬고 싶어요 / 공부하고 싶어요',
+    answer: '방학 때 한국에 여행하고 싶어요. 한국 음식도 먹고 싶어요.',
+    checks: [
+      '~고 싶어요 = want to do',
+      '방학 = school holiday / 休假',
+      '여행하다 = to travel'
+    ],
+    khmer: 'ពេលឈប់សម្រាក ខ្ញុំចង់ដំណើរទៅប្រទេសកូរ៉េ។ ចង់ញ៉ាំម្ហូបកូរ៉េដែរ។'
   },
   {
-    tag: 'Q04',
-    pattern: '점심에 보통 [음식]을/를 먹어요.',
-    prompt: '점심은 보통 뭐 먹어요?',
-    promptKhmer: 'តើអ្នកញ៉ាំអ្វីជាធម្មតានៅពេលថ្ងៃត្រង់?',
-    hint: '밥 / 국수',
-    answer: '보통 밥을 먹어요. 국수도 먹어요.',
-    checks: ['국수 (guksu) = នំបញ្ចុក/mì', '밥 = បាយ', '도 = also'],
-    khmer: 'ជាធម្មតាខ្ញុំញ៉ាំបាយ។ ខ្ញុំក៏ញ៉ាំ noodles ផងដែរ។'
+    tag: 'Q07',
+    pattern: '자유 대화',
+    prompt: '스트레스 받을 때 어떻게 해요?',
+    promptKhmer: 'ពេលស្ត្រេស ធ្វើអ្វី?',
+    hint: '음악을 들어요 / 친구를 만나요 / 운동해요',
+    answer: '스트레스 받을 때 음악을 들어요. 그리고 친구를 만나요.',
+    checks: [
+      '~을 때 = when / at the time of',
+      '스트레스 받다 = to be stressed',
+      '그리고 = and then'
+    ],
+    khmer: 'ពេលស្ត្រេស ខ្ញុំស្តាប់តន្ត្រី។ ហើយជួបមិត្ត។'
   },
   {
-    tag: 'Q04',
-    pattern: '네/아니요, 매운 음식을 [잘 먹어요/못 먹어요].',
-    prompt: '매운 음식 잘 먹어요?',
-    promptKhmer: 'តើអ្នកញ៉ាំម្ហូបហឹរបានល្អទេ?',
-    hint: '네, 잘 먹어요. / 아니요, 조금 매워요.',
-    answer: '네, 매운 음식을 잘 먹어요. 캄보디아 음식도 매워요.',
-    checks: ['잘 먹어요 = eat well', '못 먹어요 = cannot eat', '매워요 = it is spicy'],
-    khmer: 'បាទ/ចាស ខ្ញុំញ៉ាំម្ហូបហឹរបានល្អ។ ម្ហូបខ្មែរក៏ហឹរដែរ។'
+    tag: 'Q07',
+    pattern: '자유 대화',
+    prompt: '오늘 날씨가 어때요?',
+    promptKhmer: 'អាកាសធាតុថ្ងៃនេះយ៉ាងម៉េច?',
+    hint: '더워요 / 맑아요 / 흐려요 / 비가 와요',
+    answer: '오늘 날씨가 더워요. 맑고 화창해요.',
+    checks: [
+      '날씨 = weather / អាកាសធាតុ',
+      '더워요 = hot, 맑아요 = clear',
+      '화창해요 = sunny and nice'
+    ],
+    khmer: 'ថ្ងៃនេះអាកាសធាតុក្តៅ។ ស្រស់ស្អាត។'
   },
   {
-    tag: 'Q04',
-    pattern: '시간이 있을 때 [동사]고 싶어요.',
-    prompt: '시간이 있을 때 뭐 하고 싶어요?',
-    promptKhmer: 'តើអ្នកចង់ធ្វើអ្វីខ្លះ នៅពេលមានពេលទំនេរ?',
-    hint: '쉬다 / 친구를 만나다',
-    answer: '시간이 있을 때 친구를 만나고 싶어요.',
-    checks: ['~고 싶어요 = want to do', '~을 때 = when', '만나다 → 만나고 싶어요'],
-    khmer: 'នៅពេលមានពេលទំនេរ ខ្ញុំចង់ជួបមិត្តភក្តិ។'
+    tag: 'Q07',
+    pattern: '자유 대화',
+    prompt: '좋아하는 카페나 장소가 있어요? 어디예요? 왜요?',
+    promptKhmer: 'មានហាងកាហ្វេ ឬកន្លែងដែលចូលចិត្តទេ? នៅណា? ហេតុអ្វី?',
+    hint: '네, 있어요. [장소]예요. 왜냐하면 [이유] 때문이에요.',
+    answer: '네, 있어요. 집 근처 카페예요. 조용하기 때문이에요.',
+    checks: [
+      '왜냐하면 ~ 기 때문이에요 = because',
+      '근처 = near / ជិត',
+      '조용하다 = quiet / ស្ងាត់ស្ងៀម'
+    ],
+    khmer: 'បាទ/ចាស មាន។ ជា café ជិតផ្ទះ។ ព្រោះវាស្ងាត់ស្ងៀម។'
   },
   {
-    tag: 'Q04',
-    pattern: '보통 주말에 [장소]에 가고 싶어요. 왜냐하면 [이유] 때문이에요.',
-    prompt: '보통 주말에 어디에 가고 싶어요? 왜요?',
-    promptKhmer: 'ចុងសប្តាហ៍ចង់ទៅណា? ហេតុអ្វី?',
-    hint: '카페 / 조용해요',
-    answer: '카페에 가고 싶어요. 조용하기 때문이에요.',
-    checks: ['가고 싶어요 = want to go', '조용하다 = quiet', 'N + 기 때문이에요 = because'],
-    khmer: 'ខ្ញុំចង់ទៅហាងកាហ្វេ។ ព្រោះវាស្ងាត់ស្ងៀម។'
-  },
-  {
-    tag: 'Q04',
-    pattern: '왜냐하면 [이유]기 때문이에요.',
-    prompt: '왜 친구를 만나고 싶어요?',
-    promptKhmer: 'ហេតុអ្វីចង់ជួបមិត្ត?',
-    hint: '재미있어요 / 보고 싶어요',
-    answer: '왜냐하면 친구가 보고 싶기 때문이에요.',
-    checks: ['보고 싶어요 = miss (someone)', '왜냐하면 ~ 기 때문이에요 = because...', '친구가 보고 싶다'],
-    khmer: 'ព្រោះខ្ញុំ miss មិត្តភក្តិ។'
-  },
-  {
-    tag: 'Q04',
-    pattern: '저는 [장소]에 살아요.',
-    prompt: '집이 어디에 있어요?',
-    promptKhmer: 'តើផ្ទះរបស់អ្នកនៅឯណា?',
-    hint: '프놈펜 / 동네 이름',
-    answer: '저는 프놈펜에 살아요.',
-    checks: ['에 살아요 = live in', '프놈펜 = ភ្នំពេញ', '저는 = as for me'],
-    khmer: 'ខ្ញុំរស់នៅភ្នំពេញ។'
+    tag: 'Q07',
+    pattern: '자유 대화',
+    prompt: '친구 생일에 보통 뭐 해요?',
+    promptKhmer: 'ថ្ងៃខួបកំណើតមិត្ត ជាធម្មតាធ្វើអ្វី?',
+    hint: '선물을 사요 / 같이 밥을 먹어요 / 파티를 해요',
+    answer: '친구 생일에 보통 선물을 사요. 같이 밥도 먹어요.',
+    checks: [
+      '생일 = birthday / ថ្ងៃខួបកំណើត',
+      '선물 = gift / អំណោយ',
+      '사다 → 사요 (irregular: 사다 ends in 아)'
+    ],
+    khmer: 'ថ្ងៃខួបកំណើតមិត្ត ខ្ញុំជាធម្មតាទិញអំណោយ។ ញ៉ាំបាយជាមួយគ្នាដែរ។'
   }
 ];
 
@@ -1173,6 +793,9 @@ const MODES = {
   q02: QUESTIONS.filter(q => q.tag === 'Q02'),
   q03: QUESTIONS.filter(q => q.tag === 'Q03'),
   q04: QUESTIONS.filter(q => q.tag === 'Q04'),
+  q05: QUESTIONS.filter(q => q.tag === 'Q05'),
+  q06: QUESTIONS.filter(q => q.tag === 'Q06'),
+  q07: QUESTIONS.filter(q => q.tag === 'Q07'),
 };
 
 let currentMode = 'all';
@@ -1396,5 +1019,4 @@ if (window.speechSynthesis) {
 renderQuestion();
 </script>
 </body>
-
 </html>
