@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>តេស្តនិយាយភាសាកូរ៉េ — ខែឧសភា</title>
+  <title>តេស្តនិយាយភាសាកូរ៉េ — ខែកញ្ញា</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+Khmer:wght@300;400;600;700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,700;1,500&display=swap"
     rel="stylesheet">
@@ -111,6 +111,38 @@
       border-left: 2px solid var(--border);
       padding-left: 10px;
       margin-bottom: 8px;
+    }
+
+    .q-images {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .q-images figure {
+      flex: 1;
+      min-width: 120px;
+      margin: 0;
+      text-align: center;
+    }
+
+    .q-images img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      display: block;
+    }
+
+    .q-images figcaption {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
     .q-hint {
@@ -277,9 +309,9 @@
 <body>
 
 <header>
-  <h1>តេស្តនិយាយភាសាកូរ៉េ — ខែឧសភា</h1>
-  <span>Korean Oral Test · 5월 말하기</span>
-  <span class="date-badge">2026년 5월 28일</span>
+  <h1>តេស្តនិយាយភាសាកូរ៉េ — ខែកញ្ញា</h1>
+  <span>Korean Oral Test · 9월 말하기</span>
+  <span class="date-badge">2026년 9월 28일</span>
 </header>
 <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 
@@ -287,12 +319,16 @@
 
   <div class="mode-selector">
     <button class="mode-btn active" data-mode="all">ទាំងអស់</button>
-    <button class="mode-btn" data-mode="q01">Q01 ~거예요</button>
-    <button class="mode-btn" data-mode="q02">Q02 어떤~</button>
-    <button class="mode-btn" data-mode="q03">Q03 수있어요</button>
-    <button class="mode-btn" data-mode="q04">Q04 지않아요</button>
-    <button class="mode-btn" data-mode="q05">Q05 지금</button>
-    <button class="mode-btn" data-mode="q07">Q06 자유대화</button>
+    <button class="mode-btn" data-mode="q01">Q01 ㄴ다음에</button>
+    <button class="mode-btn" data-mode="q02">Q02 고계세요</button>
+    <button class="mode-btn" data-mode="q03">Q03 가아니에요</button>
+    <button class="mode-btn" data-mode="q04">Q04 제일</button>
+    <button class="mode-btn" data-mode="q05">Q05 (으)려고</button>
+    <button class="mode-btn" data-mode="q06">Q06 더/보다</button>
+    <button class="mode-btn" data-mode="q07">Q07 부터~셨어요</button>
+    <button class="mode-btn" data-mode="q08">Q08 동안~셨어요</button>
+    <button class="mode-btn" data-mode="q09">Q09 ㄴ다음에②</button>
+    <button class="mode-btn" data-mode="q10">Q10 드릴게요</button>
   </div>
 
   <div id="test-area">
@@ -304,6 +340,7 @@
       <div class="q-prompt" id="q-prompt">Loading...</div>
       <div class="q-khmer" id="q-khmer"></div>
       <div class="q-pattern" id="q-pattern"></div>
+      <div class="q-images" id="q-images" style="display:none"></div>
       <button class="btn-speak" id="btn-speak" onclick="speakQuestion()">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
@@ -382,408 +419,308 @@
 <script>
 const QUESTIONS = [
 
-  // ── Q01: 내일 뭐 할 거예요? (Future tense ~ㄹ/을 거예요) ────────────
+  // ── Q01: ~ㄴ/은 다음에 ~ㄹ/을 거예요 (after ~, will ~) ─────────────────
   {
     tag: 'Q01',
-    pattern: '~ㄹ/을 거예요 (미래)',
-    prompt: '내일 뭐 할 거예요?',
-    promptKhmer: 'ថ្ងៃស្អែកនឹងធ្វើអ្វី?',
-    hint: '데이트를 하다 / 영화를 보다 / 맛있는 것을 먹다',
-    answer: '내일 데이트를 할 거예요.',
+    pattern: 'V + ㄴ/은 다음에 ~ㄹ/을 거예요.',
+    prompt: '한국어 수업이 끝난 다음에 뭐 할 거예요?',
+    promptKhmer: 'បន្ទាប់ពីម៉ោងសិក្សាភាសាកូរ៉េចប់ អ្នកនឹងធ្វើអ្វី?',
+    hint: '끝나다 → 끝난 다음에 / 집에 가다 → 집에 갈 거예요',
+    answer: '한국어 수업이 끝난 다음에 집에 가서 숙제를 할 거예요.',
     checks: [
-      '하다 → 할 거예요 (verb + ㄹ 거예요)',
-      '미래 = ㄹ/을 거예요',
-      '내일 = ថ្ងៃស្អែក'
+      '끝나다 → 끝난 다음에 (동사 + ㄴ/은 다음에)',
+      '다음에 = after / បន្ទាប់ពី',
+      '가다 → 갈 거예요 (미래 ㄹ/을 거예요)'
     ],
-    khmer: 'ថ្ងៃស្អែកខ្ញុំនឹងទៅដើរលេង (ណាត់ជួបគូស្នេហ៍)។'
+    khmer: 'បន្ទាប់ពីម៉ោងសិក្សាភាសាកូរ៉េចប់ ខ្ញុំនឹងទៅផ្ទះ ហើយធ្វើកិច្ចការផ្ទះ។'
   },
 
-  // ── Q02: 어떤 _____ 샀어요? (Adjective + noun) ─────────────────────
+  // ── Q02: 존댓말 — 고 있다 → 고 계시다 (honorific present progressive) ──
   {
     tag: 'Q02',
-    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
-    prompt: '어떤 치마 샀어요?',
-    promptKhmer: 'ទិញសំពត់ (skirt) ប្រភេទណា?',
-    hint: '길다 → 긴 치마',
-    answer: '긴 치마를 샀어요.',
+    pattern: '(사람)께서 지금 [동사]고 계세요. (존댓말: 고 있다 → 고 계시다)',
+    prompt: '미나 씨 어머니께서 지금 뭐 하고 계세요?',
+    promptKhmer: 'ឥឡូវម្តាយរបស់លោកគ្រូ/អ្នកគ្រូ Mina កំពុងធ្វើអ្វី? (និយាយអោយគោរព)',
+    hint: '요리하다 → 요리하고 계세요',
+    answer: '미나 씨 어머니께서 지금 요리하고 계세요.',
     checks: [
-      '길다 → 긴 (adjective form before noun)',
-      '치마 = skirt / សំពត់',
-      '받침 없는 형용사 + ㄴ → 긴, 짧은, 작은'
+      '있다 (반말/평서) → 계시다 (존댓말)',
+      '~고 있어요 → ~고 계세요 (윗사람에게 사용)',
+      '께서 = subject honorific particle (은/는 대신)'
     ],
-    khmer: 'ខ្ញុំទិញសំពត់វែង។'
-  },
-  {
-    tag: 'Q02',
-    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
-    prompt: '어떤 꽃다발 샀어요?',
-    promptKhmer: 'ទិញចង្កោមផ្កា (bouquet) ប្រភេទណា?',
-    hint: '아름답다 → 아름다운 꽃다발',
-    answer: '아름다운 꽃다발을 샀어요.',
-    checks: [
-      '아름답다 → 아름다운 (ㅂ 불규칙: ㅂ → 우 + ㄴ)',
-      '꽃다발 = ចង្កោមផ្កា',
-      'ㅂ 불규칙 형용사: 아름답다, 덥다, 춥다...'
-    ],
-    khmer: 'ខ្ញុំទិញចង្កោមផ្កាស្អាត។'
-  },
-  {
-    tag: 'Q02',
-    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
-    prompt: '어떤 전자레인지 샀어요?',
-    promptKhmer: 'ទិញ Microwave ប្រភេទណា?',
-    hint: '작다 → 작은 전자레인지',
-    answer: '작은 전자레인지를 샀어요.',
-    checks: [
-      '작다 → 작은 (받침 있음 → 은)',
-      '전자레인지 = microwave',
-      '크다 ↔ 작다 = big ↔ small'
-    ],
-    khmer: 'ខ្ញុំទិញ microwave តូច។'
-  },
-  {
-    tag: 'Q02',
-    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
-    prompt: '어떤 구두 샀어요?',
-    promptKhmer: 'ទិញស្បែកជើង (dress shoes) ប្រភេទណា?',
-    hint: '높다 → 높은 구두',
-    answer: '높은 구두를 샀어요.',
-    checks: [
-      '높다 → 높은 (받침 있음 → 은)',
-      '구두 = ស្បែកជើងស្ករបម',
-      '높다 = tall/high'
-    ],
-    khmer: 'ខ្ញុំទិញស្បែកជើងខ្ពស់។'
-  },
-  {
-    tag: 'Q02',
-    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
-    prompt: '어떤 바지 샀어요?',
-    promptKhmer: 'ទិញខោ (pants) ប្រភេទណា?',
-    hint: '짧다 → 짧은 바지',
-    answer: '짧은 바지를 샀어요.',
-    checks: [
-      '짧다 → 짧은 (받침 있음 → 은)',
-      '바지 = ខោ',
-      '길다 (long) ↔ 짧다 (short)'
-    ],
-    khmer: 'ខ្ញុំទិញខោខ្លី។'
-  },
-  {
-    tag: 'Q02',
-    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
-    prompt: '어떤 DVD 샀어요?',
-    promptKhmer: 'ទិញ DVD ប្រភេទណា?',
-    hint: '재미없다 → 재미없는 DVD',
-    answer: '재미없는 DVD를 샀어요.',
-    checks: [
-      '재미없다 → 재미없는 (없다 → 없는)',
-      '재미없다 = boring / not interesting',
-      '재미있다 (fun) ↔ 재미없다 (boring)'
-    ],
-    khmer: 'ខ្ញុំទិញ DVD គួរឱ្យធុញ។'
-  },
-  {
-    tag: 'Q02',
-    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
-    prompt: '어떤 자동차 샀어요?',
-    promptKhmer: 'ទិញរថយន្ត (car) ប្រភេទណា?',
-    hint: '비싸다 → 비싼 자동차',
-    answer: '비싼 자동차를 샀어요.',
-    checks: [
-      '비싸다 → 비싼 (아/어 → 없애고 + ㄴ)',
-      '자동차 = រថយន្ត',
-      '비싸다 (expensive) ↔ 싸다 (cheap)'
-    ],
-    khmer: 'ខ្ញុំទិញរថយន្តថ្លៃ។'
-  },
-  {
-    tag: 'Q02',
-    pattern: '어떤 [명사] 샀어요? → [형용사] [명사]를/을 샀어요.',
-    prompt: '어떤 음식 샀어요?',
-    promptKhmer: 'ទិញម្ហូប (food) ប្រភេទណា?',
-    hint: '맛있다 → 맛있는 음식',
-    answer: '맛있는 음식을 샀어요.',
-    checks: [
-      '맛있다 → 맛있는 (있다 → 있는)',
-      '맛있다 = delicious',
-      '음식 = ម្ហូប'
-    ],
-    khmer: 'ខ្ញុំទិញម្ហូបឆ្ងាញ់។'
+    khmer: 'ឥឡូវនេះម្តាយរបស់ Mina កំពុងធ្វើម្ហូប។ (ប្រើទម្រង់គោរព)'
   },
 
-  // ── Q03: ~ㄹ/을 수 있어요/없어요 (can / cannot) ─────────────────────
+  // ── Q03: 이게 ~이에요/예요? (*이/가 아니에요, negation + correction) ──
   {
     tag: 'Q03',
-    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
-    prompt: '같이 테니스를 칠 수 있어요?',
-    promptKhmer: 'លេងតេនីសជាមួយគ្នាបានទេ? (O = YES)',
-    hint: '네! → 칠 수 있어요',
-    answer: '네, 같이 테니스를 칠 수 있어요.',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
+    prompt: '이게 사과예요?',
+    promptKhmer: 'នេះជាផ្លែប៉ោមមែនទេ?',
+    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
+    hint: '사과 X → 연필 O',
+    answer: '아니요, 사과가 아니에요. 연필이에요.',
     checks: [
-      '치다 → 칠 수 있어요 (ㄹ 거예요처럼 → ㄹ)',
-      '수 있다 = can / able to',
-      '같이 = together / ជាមួយគ្នា'
+      '이/가 아니에요 = is not (negation of 이다)',
+      '사과 = apple / ប៉ោម, 연필 = pencil / ខ្មៅដៃ',
+      '받침 있음 → 이 아니에요, 받침 없음 → 가 아니에요'
     ],
-    khmer: 'បាទ/ចាស ខ្ញុំអាចលេងតេនីសជាមួយគ្នាបាន។'
+    khmer: 'ទេ វាមិនមែនជាផ្លែប៉ោមទេ។ វាជាខ្មៅដៃ។'
   },
   {
     tag: 'Q03',
-    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
-    prompt: '저녁에 같이 운동할 수 있어요?',
-    promptKhmer: 'ពេលល្ងាចហ្វឹកហ្វឺនជាមួយគ្នាបានទេ? (X = NO)',
-    hint: '아니요! → 운동할 수 없어요',
-    answer: '미안해요. 저녁에 운동할 수 없어요.',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
+    prompt: '이게 시계예요?',
+    promptKhmer: 'នេះជានាឡិកាមែនទេ?',
+    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
+    hint: '시계 X → 가방 O',
+    answer: '아니요, 시계가 아니에요. 가방이에요.',
     checks: [
-      '운동하다 → 운동할 수 없어요',
-      '수 없다 = cannot / unable',
-      '미안해요 = I am sorry / សូមទោស'
+      '시계 = clock / នាឡិកា, 가방 = bag / កាបូប',
+      '받침 있음 (시계 X, actually 없음) → 가 아니에요',
+      '이게 = 이것이 (this thing)의 줄임말'
     ],
-    khmer: 'សូមទោស។ ខ្ញុំមិនអាចហ្វឹកហ្វឺនពេលល្ងាចបានទេ។'
+    khmer: 'ទេ វាមិនមែនជានាឡិកាទេ។ វាជាកាបូប។'
   },
   {
     tag: 'Q03',
-    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
-    prompt: '한국 음식을 만들 수 있어요?',
-    promptKhmer: 'ធ្វើម្ហូបកូរ៉េបានទេ? (X = NO)',
-    hint: '아니요! → 만들 수 없어요',
-    answer: '미안해요. 한국 음식을 만들 수 없어요.',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
+    prompt: '이게 칠판이에요?',
+    promptKhmer: 'នេះជាក្តារខៀនមែនទេ?',
+    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
+    hint: '칠판 X → 책상 O',
+    answer: '아니요, 칠판이 아니에요. 책상이에요.',
     checks: [
-      '만들다 → 만들 수 없어요 (ㄹ 어간 → 그냥 수)',
-      '만들다 = to make / ធ្វើ',
-      '한국 음식 = ម្ហូបកូរ៉េ'
+      '칠판 = blackboard / ក្តារខៀន, 책상 = desk / តុ',
+      '받침 있음 → 이 아니에요',
+      '노트 / 공책 = notebook도 함께 학습'
     ],
-    khmer: 'សូមទោស។ ខ្ញុំមិនអាចធ្វើម្ហូបកូរ៉េបានទេ។'
+    khmer: 'ទេ វាមិនមែនជាក្តារខៀនទេ។ វាជាតុ។'
   },
   {
     tag: 'Q03',
-    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
-    prompt: '한국어 책을 읽을 수 있어요?',
-    promptKhmer: 'អានសៀវភៅភាសាកូរ៉េបានទេ? (O = YES)',
-    hint: '네! → 읽을 수 있어요',
-    answer: '네, 한국어 책을 읽을 수 있어요.',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
+    prompt: '이게 공책이에요?',
+    promptKhmer: 'នេះជាសៀវភៅកត់ត្រាមែនទេ?',
+    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
+    hint: '공책 X → 책 O',
+    answer: '아니요, 공책이 아니에요. 책이에요.',
     checks: [
-      '읽다 → 읽을 수 있어요 (받침 있음 → 을 수)',
-      '책 = សៀវភៅ',
-      '읽다 = to read'
+      '공책 = notebook / សៀវភៅកត់ត្រា, 책 = book / សៀវភៅ',
+      '받침 있음 → 이 아니에요',
+      '연필, 가방, 시계, 책상, 사과도 같이 복습'
     ],
-    khmer: 'បាទ/ចាស ខ្ញុំអាចអានសៀវភៅភាសាកូរ៉េបាន។'
-  },
-  {
-    tag: 'Q03',
-    pattern: '가: 같이 [동사]ㄹ/을 수 있어요?\n나: 네/아니요, [동사]ㄹ/을 수 있어요/없어요.',
-    prompt: '중국어 노래를 부를 수 있어요?',
-    promptKhmer: 'ច្រៀងបទចិនបានទេ? (X = NO)',
-    hint: '아니요! → 부를 수 없어요',
-    answer: '미안해요. 중국어 노래를 부를 수 없어요.',
-    checks: [
-      '부르다 → 부를 수 없어요 (르 불규칙 applies before ㄹ/을)',
-      '노래를 부르다 = to sing a song',
-      '중국어 = ភាសាចិន'
-    ],
-    khmer: 'សូមទោស។ ខ្ញុំមិនអាចច្រៀងបទចិនបានទេ។'
+    khmer: 'ទេ វាមិនមែនជាសៀវភៅកត់ត្រាទេ។ វាជាសៀវភៅ។'
   },
 
-  // ── Q04: ~지 않아요 (Negative form) ──────────────────────────────────
+  // ── Q04: 중에서 누가 제일 ~ (superlative among a group) ────────────────
   {
     tag: 'Q04',
-    pattern: '가: [형용사/동사]어요?\n나: 아니요, ~지 않아요.',
-    prompt: '불고기가 매워요?',
-    promptKhmer: 'Bulgogi ហឹរទេ? (X = NO)',
-    hint: '맵다 → 맵지 않아요',
-    answer: '아니요, 불고기가 맵지 않아요.',
+    pattern: '[그룹] 중에서 누가 제일 [형용사/동사]?',
+    prompt: '여러분의 반 친구 중에서 누가 학교에 제일 일찍 와요?',
+    promptKhmer: 'ក្នុងចំណោមមិត្តរួមថ្នាក់របស់អ្នក នរណាមកដល់សាលារៀនមុនគេ?',
+    hint: '중에서 = among / 제일 = the most / 일찍 = early',
+    answer: '우리 반 친구 중에서 다니엘 씨가 학교에 제일 일찍 와요.',
     checks: [
-      '맵다 → 맵지 않아요 (형용사 + 지 않아요)',
-      '맵다 = spicy / ហឹរ',
-      '불고기 = Korean BBQ beef'
+      '중에서 누가 제일 ~ = who is the most ~ among',
+      '제일 = 가장 (superlative)',
+      '일찍 오다 = to come early'
     ],
-    khmer: 'ទេ Bulgogi មិនហឹរទេ។'
-  },
-  {
-    tag: 'Q04',
-    pattern: '가: [형용사/동사]어요?\n나: 아니요, ~지 않아요.',
-    prompt: '미니 씨가 예뻐요?',
-    promptKhmer: 'Mini ស្អាតទេ? (X = NO)',
-    hint: '예쁘다 → 예쁘지 않아요',
-    answer: '아니요, 미니 씨가 예쁘지 않아요.',
-    checks: [
-      '예쁘다 → 예쁘지 않아요',
-      '예쁘다 = pretty / ស្អាត',
-      'V/A + 지 않아요 = do not / is not'
-    ],
-    khmer: 'ទេ Mini មិនស្អាតទេ។'
-  },
-  {
-    tag: 'Q04',
-    pattern: '가: [동사]어요?\n나: 아니요, ~지 않아요.',
-    prompt: '매운 음식을 좋아해요?',
-    promptKhmer: 'ចូលចិត្តម្ហូបហឹរទេ? (X = NO)',
-    hint: '좋아하다 → 좋아하지 않아요',
-    answer: '아니요, 매운 음식을 좋아하지 않아요.',
-    checks: [
-      '좋아하다 → 좋아하지 않아요',
-      '좋아하다 = to like',
-      '매운 음식 = ម្ហូបហឹរ'
-    ],
-    khmer: 'ទេ ខ្ញុំមិនចូលចិត្តម្ហូបហឹរទេ។'
-  },
-  {
-    tag: 'Q04',
-    pattern: '가: [형용사]아요/어요?\n나: 아니요, ~지 않아요.',
-    prompt: '오늘 바빠요?',
-    promptKhmer: 'ថ្ងៃនេះមមាញឹកទេ? (X = NO)',
-    hint: '바쁘다 → 바쁘지 않아요',
-    answer: '아니요, 오늘 바쁘지 않아요.',
-    checks: [
-      '바쁘다 → 바쁘지 않아요',
-      '바쁘다 = busy / មមាញឹក',
-      '오늘 = today / ថ្ងៃនេះ'
-    ],
-    khmer: 'ទេ ថ្ងៃនេះខ្ញុំមិនមមាញឹកទេ។'
-  },
-  {
-    tag: 'Q04',
-    pattern: '가: [동사]아요/어요?\n나: 아니요, ~지 않아요.',
-    prompt: '보통 아침을 먹어요?',
-    promptKhmer: 'ជាធម្មតាញ៉ាំអាហារពេលព្រឹកទេ? (X = NO)',
-    hint: '먹다 → 먹지 않아요',
-    answer: '아니요, 보통 아침을 먹지 않아요.',
-    checks: [
-      '먹다 → 먹지 않아요',
-      '보통 = usually / ជាធម្មតា',
-      '아침 = breakfast / ពេលព្រឹក'
-    ],
-    khmer: 'ទេ ជាធម្មតាខ្ញុំមិនញ៉ាំអាហារពេលព្រឹកទេ។'
-  },
-  {
-    tag: 'Q04',
-    pattern: '가: [동사]아요/어요?\n나: 아니요, ~지 않아요.',
-    prompt: '매일 커피를 마셔요?',
-    promptKhmer: 'ញ៉ាំកាហ្វេរៀងរាល់ថ្ងៃទេ? (X = NO)',
-    hint: '마시다 → 마시지 않아요',
-    answer: '아니요, 매일 커피를 마시지 않아요.',
-    checks: [
-      '마시다 → 마시지 않아요',
-      '매일 = every day / រៀងរាល់ថ្ងៃ',
-      '커피 = ☕ kaahe'
-    ],
-    khmer: 'ទេ ខ្ញុំមិនញ៉ាំកាហ្វេរៀងរាល់ថ្ងៃទេ។'
+    khmer: 'ក្នុងចំណោមមិត្តរួមថ្នាក់ខ្ញុំ លោក Daniel មកដល់សាលារៀនមុនគេ។'
   },
 
-  // ── Q05: 지금 뭐 해요? (What are you doing now?) ─────────────────────
+  // ── Q05: ~(으)려고 (in order to / with the intention of) ────────────
   {
     tag: 'Q05',
-    pattern: '지금 [동사]고 있어요.',
-    prompt: '지금 뭐 해요?',
-    promptKhmer: 'ឥឡូវកំពុងធ្វើអ្វី?',
-    hint: '공부하다 / 밥을 먹다 / 음악을 듣다',
-    answer: '지금 한국어를 공부하고 있어요.',
+    pattern: 'V + (으)려고 [행동]해요.',
+    prompt: '여러분은 한국어를 잘하려고 무엇을 해요?',
+    promptKhmer: 'ដើម្បីនិយាយភាសាកូរ៉េបានពូកែ អ្នកធ្វើអ្វី?',
+    hint: '잘하다 → 잘하려고 / 단어를 외우다',
+    answer: '한국어를 잘하려고 매일 단어를 외우고 한국 드라마를 봐요.',
     checks: [
-      '공부하다 → 공부하고 있어요 (present progressive)',
-      '~고 있어요 = is/am doing',
-      '지금 = now / ឥឡូវ'
+      'V + (으)려고 = in order to / with the goal of',
+      '외우다 = to memorize / ទន្ទេញ',
+      '받침 없음 → 려고, 받침 있음 → 으려고'
     ],
-    khmer: 'ឥឡូវខ្ញុំកំពុងរៀនភាសាកូរ៉េ។'
+    khmer: 'ដើម្បីនិយាយភាសាកូរ៉េបានពូកែ ខ្ញុំទន្ទេញពាក្យរៀងរាល់ថ្ងៃ ហើយមើលរឿងភាគកូរ៉េ។'
   },
 
-  // ── Q07: 자유 대화 (Free Conversation Topics) ────────────────────────
+  // ── Q06: 자유대화(비교) — A하고 B 중에서 뭐가/언제 더 ~? (comparison) ──
   {
-    tag: 'Q07',
-    pattern: '자유 대화 — 여러 표현 사용',
-    prompt: '주말 활동을 이야기해 주세요.',
-    promptKhmer: 'សូមនិយាយអំពីសកម្មភាពចុងសប្តាហ៍របស់អ្នក។',
-    hint: '보통 주말에 / 가끔 / 항상',
-    answer: '보통 주말에 친구를 만나요. 카페에 가서 이야기해요. 집에서 쉬기도 해요.',
+    tag: 'Q06',
+    pattern: 'A하고 B 중에서 뭐가 더 [형용사]요? → A가 B보다 더 [형용사]요.',
+    prompt: '개하고 고양이 중에서 뭐가 더 커요?',
+    promptKhmer: 'ក្នុងចំណោមឆ្កែ និងឆ្មា មួយណាធំជាង?',
+    images: [{ src: 'images/compare-dog-cat.jpg', label: '개 / ឆ្កែ ↔ 고양이 / ឆ្មា' }],
+    hint: '크다 → 커요 / A가 B보다 더 커요',
+    answer: '개가 고양이보다 더 커요.',
     checks: [
-      '보통 = usually, 가끔 = sometimes, 항상 = always',
-      '~아/어서 = and then (sequence)',
-      '~기도 하다 = also do'
+      'A가 B보다 더 [형용사]요 = A is more ~ than B',
+      '보다 = than / ជាង',
+      '크다 → 커요 (으 탈락)'
     ],
-    khmer: 'ជាធម្មតាចុងសប្តាហ៍ ខ្ញុំជួបមិត្ត។ ទៅហាងកាហ្វេនិយាយជាមួយគ្នា។ ក៏សម្រាកនៅផ្ទះដែរ។'
+    khmer: 'ឆ្កែធំជាងឆ្មា។'
   },
   {
-    tag: 'Q07',
-    pattern: '자유 대화',
-    prompt: '보통 어디에서 쇼핑을 해요?',
-    promptKhmer: 'ជាធម្មតាដើរទិញឥវ៉ាន់នៅណា?',
-    hint: '마트 / 쇼핑몰 / 온라인',
-    answer: '보통 마트에서 쇼핑을 해요. 가끔 온라인으로 사요.',
-    checks: [
-      '에서 = at (place of action)',
-      '온라인으로 = online / via internet',
-      '사요 = buy (사다 → 사요)'
+    tag: 'Q06',
+    pattern: 'A하고 B 중에서 뭐가 더 [형용사]요? → A가 B보다 더 [형용사]요.',
+    prompt: '서강 한국어 1A 책하고 2A 책 중에서 뭐가 더 어려워요?',
+    promptKhmer: 'ក្នុងចំណោមសៀវភៅ Sogang Korean 1A និង 2A មួយណាពិបាកជាង?',
+    images: [
+      { src: 'images/compare-book-1a.jpg', label: '1A' },
+      { src: 'images/compare-book-2a.jpg', label: '2A' }
     ],
-    khmer: 'ជាធម្មតាខ្ញុំដើរទិញឥវ៉ាន់នៅ supermarket ។ ម្តងម្កាលទិញអនឡាញ។'
+    hint: '어렵다 → 어려워요 (ㅂ 불규칙)',
+    answer: '2A 책이 1A 책보다 더 어려워요.',
+    checks: [
+      '어렵다 → 어려워요 (ㅂ 불규칙: ㅂ → 워요)',
+      '쉽다 (easy) ↔ 어렵다 (difficult)',
+      'A가 B보다 더 어려워요'
+    ],
+    khmer: 'សៀវភៅ 2A ពិបាកជាងសៀវភៅ 1A។'
   },
   {
-    tag: 'Q07',
-    pattern: '자유 대화',
-    prompt: '방학 때 뭐 하고 싶어요?',
-    promptKhmer: 'ពេលឈប់សម្រាក ចង់ធ្វើអ្វី?',
-    hint: '여행하고 싶어요 / 쉬고 싶어요 / 공부하고 싶어요',
-    answer: '방학 때 한국에 여행하고 싶어요. 한국 음식도 먹고 싶어요.',
-    checks: [
-      '~고 싶어요 = want to do',
-      '방학 = school holiday / 休假',
-      '여행하다 = to travel'
+    tag: 'Q06',
+    pattern: 'A하고 B 중에서 언제 더 [형용사]요? → A가 B보다 더 [형용사]요.',
+    prompt: '여름하고 봄 중에서 언제 더 더워요?',
+    promptKhmer: 'ក្នុងចំណោមរដូវក្តៅ និងរដូវផ្ការីក ពេលណាក្តៅជាង?',
+    images: [
+      { src: 'images/compare-summer.jpg', label: '여름 / រដូវក្តៅ' },
+      { src: 'images/compare-spring.jpg', label: '봄 / រដូវផ្ការីក' }
     ],
-    khmer: 'ពេលឈប់សម្រាក ខ្ញុំចង់ដំណើរទៅប្រទេសកូរ៉េ។ ចង់ញ៉ាំម្ហូបកូរ៉េដែរ។'
+    hint: '덥다 → 더워요 (ㅂ 불규칙)',
+    answer: '여름이 봄보다 더 더워요.',
+    checks: [
+      '덥다 → 더워요 (ㅂ 불규칙)',
+      '계절 = season: 봄/여름/가을/겨울',
+      '언제 더 ~? = when is it more ~? (시간/계절 비교 시 사용)'
+    ],
+    khmer: 'រដូវក្តៅក្តៅជាងរដូវផ្ការីក។'
   },
   {
-    tag: 'Q07',
-    pattern: '자유 대화',
-    prompt: '스트레스 받을 때 어떻게 해요?',
-    promptKhmer: 'ពេលស្ត្រេស ធ្វើអ្វី?',
-    hint: '음악을 들어요 / 친구를 만나요 / 운동해요',
-    answer: '스트레스 받을 때 음악을 들어요. 그리고 친구를 만나요.',
+    tag: 'Q06',
+    pattern: '[사진] 중에서 뭐가 더 [형용사]요? → A가 B보다 더 [형용사]요.',
+    prompt: '이 건물들 중에서 뭐가 더 높아요?',
+    promptKhmer: 'ក្នុងចំណោមអគាររូបភាពនេះ អគារមួយណាខ្ពស់ជាង?',
+    images: [{ src: 'images/compare-buildings.jpg', label: '건물 / អគារ' }],
+    hint: '높다 → 높아요',
+    answer: '오른쪽 건물이 왼쪽 건물보다 더 높아요.',
     checks: [
-      '~을 때 = when / at the time of',
-      '스트레스 받다 = to be stressed',
-      '그리고 = and then'
+      '높다 → 높아요 (받침 ㅍ, 규칙 활용)',
+      '오른쪽 = right / ស្តាំ, 왼쪽 = left / ឆ្វេង',
+      '낮다 (low) ↔ 높다 (high/tall)'
     ],
-    khmer: 'ពេលស្ត្រេស ខ្ញុំស្តាប់តន្ត្រី។ ហើយជួបមិត្ត។'
+    khmer: 'អគារខាងស្តាំខ្ពស់ជាងអគារខាងឆ្វេង។'
   },
   {
-    tag: 'Q07',
-    pattern: '자유 대화',
-    prompt: '오늘 날씨가 어때요?',
-    promptKhmer: 'អាកាសធាតុថ្ងៃនេះយ៉ាងម៉េច?',
-    hint: '더워요 / 맑아요 / 흐려요 / 비가 와요',
-    answer: '오늘 날씨가 더워요. 맑고 화창해요.',
-    checks: [
-      '날씨 = weather / អាកាសធាតុ',
-      '더워요 = hot, 맑아요 = clear',
-      '화창해요 = sunny and nice'
+    tag: 'Q06',
+    pattern: 'A하고 B 중에서 뭐가 더 [형용사]요? → A가 B보다 더 [형용사]요.',
+    prompt: '김밥하고 삼계탕 중에서 뭐가 더 비싸요?',
+    promptKhmer: 'ក្នុងចំណោម Gimbap និង Samgyetang មួយណាថ្លៃជាង?',
+    images: [
+      { src: 'images/compare-gimbap.jpg', label: '김밥 / Gimbap' },
+      { src: 'images/compare-samgyetang.jpg', label: '삼계탕 / Samgyetang' }
     ],
-    khmer: 'ថ្ងៃនេះអាកាសធាតុក្តៅ។ ស្រស់ស្អាត។'
+    hint: '비싸다 → 비싸요',
+    answer: '삼계탕이 김밥보다 더 비싸요.',
+    checks: [
+      '비싸다 → 비싸요 (아/어 규칙)',
+      '싸다 (cheap) ↔ 비싸다 (expensive)',
+      'A가 B보다 더 비싸요'
+    ],
+    khmer: 'Samgyetang ថ្លៃជាង Gimbap។'
   },
+
+  // ── Q07: 언제부터 ~셨어요? (honorific past + 부터, since when) ─────────
   {
     tag: 'Q07',
-    pattern: '자유 대화',
-    prompt: '좋아하는 카페나 장소가 있어요? 어디예요? 왜요?',
-    promptKhmer: 'មានហាងកាហ្វេ ឬកន្លែងដែលចូលចិត្តទេ? នៅណា? ហេតុអ្វី?',
-    hint: '네, 있어요. [장소]예요. 왜냐하면 [이유] 때문이에요.',
-    answer: '네, 있어요. 집 근처 카페예요. 조용하기 때문이에요.',
+    pattern: '언제부터 [동사]셨어요? 처음에 어디에서 시작하셨어요?',
+    prompt: '언제부터 한국어를 공부하셨어요? 처음에 어디에서 한국어 공부를 시작하셨어요?',
+    promptKhmer: 'អ្នកចាប់ផ្តើមរៀនភាសាកូរ៉េតាំងពីពេលណា? ដំបូងឡើយអ្នករៀននៅឯណា?',
+    hint: '공부하다 → 공부하셨어요 (질문은 존댓말, 대답은 반말 가능)',
+    answer: '6개월 전부터 한국어를 공부했어요. 처음에 학원에서 한국어 공부를 시작했어요.',
     checks: [
-      '왜냐하면 ~ 기 때문이에요 = because',
-      '근처 = near / ជិត',
-      '조용하다 = quiet / ស្ងាត់ស្ងៀម'
+      '~부터 = from / since / ចាប់ពី',
+      '질문의 셨어요 = 존댓말 과거, 자기 얘기는 았/었어요로 대답',
+      '처음에 = at first / ដំបូងឡើយ'
     ],
-    khmer: 'បាទ/ចាស មាន។ ជា café ជិតផ្ទះ។ ព្រោះវាស្ងាត់ស្ងៀម។'
+    khmer: 'ខ្ញុំចាប់ផ្តើមរៀនភាសាកូរ៉េតាំងពី ៦ខែមុន។ ដំបូងឡើយខ្ញុំចាប់ផ្តើមរៀននៅសាលារៀនបណ្តុះបណ្តាល។'
+  },
+
+  // ── Q08: 동안 ~셨어요? (honorific past + duration, incl. 거절/정정) ───
+  {
+    tag: 'Q08',
+    pattern: '가: 4개월 동안 [동사]셨어요?\n나: 아니요, 4개월 동안이 아니라 ~ (거절/정정)',
+    prompt: '4개월 동안 한국어를 공부하셨어요?',
+    promptKhmer: 'អ្នករៀនភាសាកូរ៉េអស់រយៈពេល៤ខែមែនទេ? (ប្រសិនបើមិនត្រូវ សូមកែតម្រូវ)',
+    hint: '아니요, 4개월이 아니라 6개월 동안 공부했어요.',
+    answer: '아니요, 4개월 동안이 아니에요. 6개월 동안 한국어를 공부했어요.',
+    checks: [
+      'N + 동안 = for (duration) / កំឡុងពេល',
+      '거절/정정 = 아니요, ~이/가 아니라 ~ (correcting wrong info)',
+      '개월 = month(s) counter / ខែ'
+    ],
+    khmer: 'ទេ មិនមែន៤ខែទេ។ ខ្ញុំរៀនភាសាកូរ៉េអស់រយៈពេល៦ខែ។'
   },
   {
-    tag: 'Q07',
-    pattern: '자유 대화',
-    prompt: '친구 생일에 보통 뭐 해요?',
-    promptKhmer: 'ថ្ងៃខួបកំណើតមិត្ត ជាធម្មតាធ្វើអ្វី?',
-    hint: '선물을 사요 / 같이 밥을 먹어요 / 파티를 해요',
-    answer: '친구 생일에 보통 선물을 사요. 같이 밥도 먹어요.',
+    tag: 'Q08',
+    pattern: '가: N 동안 뭐 하셨어요?\n나: N 동안 ~았/었어요.',
+    prompt: '1주일 동안 뭐 하셨어요?',
+    promptKhmer: 'ក្នុងរយៈពេល១សប្តាហ៍ អ្នកបានធ្វើអ្វីខ្លះ?',
+    hint: '1주일 동안 + 동사',
+    answer: '1주일 동안 시험 준비를 했어요.',
     checks: [
-      '생일 = birthday / ថ្ងៃខួបកំណើត',
-      '선물 = gift / អំណោយ',
-      '사다 → 사요 (irregular: 사다 ends in 아)'
+      '1주일 동안 = for one week / កំឡុងពេល១សប្តាហ៍',
+      '준비하다 = to prepare',
+      '동안 뒤에는 지속되는 행동을 씀'
     ],
-    khmer: 'ថ្ងៃខួបកំណើតមិត្ត ខ្ញុំជាធម្មតាទិញអំណោយ។ ញ៉ាំបាយជាមួយគ្នាដែរ។'
+    khmer: 'ក្នុងរយៈពេល១សប្តាហ៍ ខ្ញុំបានរៀបចំសម្រាប់ការប្រលង។'
+  },
+
+  // ── Q09: ~ㄴ/은 다음에 (존댓말 현재) ────────────────────────────────
+  {
+    tag: 'Q09',
+    pattern: 'V + ㄴ/은 다음에 뭐 하세요?',
+    prompt: '매일 아침에 뭐 하세요?',
+    promptKhmer: 'រៀងរាល់ព្រឹក អ្នកធ្វើអ្វី?',
+    hint: '일어나다 → 일어난 다음에',
+    answer: '일어난 다음에 세수를 해요. 그 다음에 아침을 먹어요.',
+    checks: [
+      '일어나다 → 일어난 다음에',
+      '세수하다 = to wash one\'s face / លាងមុខ',
+      '그 다음에 = after that / បន្ទាប់មកទៀត'
+    ],
+    khmer: 'បន្ទាប់ពីភ្ញាក់ពីដេក ខ្ញុំលាងមុខ។ បន្ទាប់មកទៀត ខ្ញុំញ៉ាំអាហារពេលព្រឹក។'
+  },
+  {
+    tag: 'Q09',
+    pattern: 'V + ㄴ/은 다음에 제일 먼저 뭐 하세요?',
+    prompt: '학교에 간 다음에 제일 먼저 뭐 하세요?',
+    promptKhmer: 'បន្ទាប់ពីមកដល់សាលារៀន អ្វីទីមួយដែលអ្នកធ្វើ?',
+    hint: '가다 → 간 다음에 / 제일 먼저 = first of all',
+    answer: '학교에 간 다음에 제일 먼저 선생님께 인사해요.',
+    checks: [
+      '가다 → 간 다음에',
+      '제일 먼저 = first of all / ជាដំបូងគេ',
+      '인사하다 = to greet / ស្វាគមន៍'
+    ],
+    khmer: 'បន្ទាប់ពីមកដល់សាលារៀន ជាដំបូងគេខ្ញុំសួរសុខទុក្ខគ្រូ។'
+  },
+
+  // ── Q10: ~아/어 드릴게요 (offering to do something for someone) ─────
+  {
+    tag: 'Q10',
+    pattern: '[상황] → V + 아/어 드릴게요.',
+    prompt: '교실이 더워요. 어떻게 말해요?',
+    promptKhmer: 'បន្ទប់រៀនក្តៅ។ អ្នកនិយាយយ៉ាងម៉េច? (ដើម្បីស្នើជួយ)',
+    hint: '열다 → 열어 드릴게요',
+    answer: '창문을 열어 드릴게요.',
+    checks: [
+      'V + 아/어 드릴게요 = I will do (something) for you (겸양)',
+      '열다 = to open / បើក',
+      '주다 → 드리다 (겸양어), 드릴게요 = will give/do for you'
+    ],
+    khmer: 'ខ្ញុំនឹងបើកបង្អួចអោយ។'
   }
 ];
 
@@ -796,6 +733,9 @@ const MODES = {
   q05: QUESTIONS.filter(q => q.tag === 'Q05'),
   q06: QUESTIONS.filter(q => q.tag === 'Q06'),
   q07: QUESTIONS.filter(q => q.tag === 'Q07'),
+  q08: QUESTIONS.filter(q => q.tag === 'Q08'),
+  q09: QUESTIONS.filter(q => q.tag === 'Q09'),
+  q10: QUESTIONS.filter(q => q.tag === 'Q10'),
 };
 
 let currentMode = 'all';
@@ -831,6 +771,14 @@ function renderQuestion() {
   document.getElementById('q-prompt').textContent = q.prompt;
   document.getElementById('q-khmer').textContent = q.promptKhmer || '';
   document.getElementById('q-pattern').textContent = 'គំរូ: ' + q.pattern;
+  const imgWrap = document.getElementById('q-images');
+  if (q.images && q.images.length) {
+    imgWrap.innerHTML = q.images.map(im => `<figure><img src="${im.src}" alt="${im.label}"><figcaption>${im.label}</figcaption></figure>`).join('');
+    imgWrap.style.display = 'flex';
+  } else {
+    imgWrap.innerHTML = '';
+    imgWrap.style.display = 'none';
+  }
   document.getElementById('q-hint-text').textContent = q.hint;
   document.getElementById('model-answer-text').textContent = q.answer;
   document.getElementById('khmer-answer-text').textContent = q.khmer || '';
