@@ -118,24 +118,34 @@
       gap: 10px;
       margin-bottom: 14px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .q-images figure {
-      flex: 1;
-      min-width: 120px;
+      flex: 1 1 200px;
+      max-width: 260px;
       margin: 0;
       text-align: center;
     }
 
+    .q-images.single figure {
+      flex: 0 1 320px;
+      max-width: 320px;
+    }
+
     .q-images img {
       width: 100%;
-      max-height: 220px;
-      object-fit: cover;
+      height: 200px;
+      object-fit: contain;
+      background: #fff;
+      padding: 6px;
       border-radius: 8px;
       border: 1px solid var(--border);
       box-shadow: 0 1px 4px rgba(0,0,0,0.08);
       display: block;
     }
+
+    .q-images.single img { height: 260px; }
 
     .q-images figcaption {
       font-family: 'DM Mono', monospace;
@@ -455,17 +465,32 @@ const QUESTIONS = [
   {
     tag: 'Q03',
     pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
-    prompt: '이게 사과예요?',
-    promptKhmer: 'នេះជាផ្លែប៉ោមមែនទេ?',
+    prompt: '이게 책이에요?',
+    promptKhmer: 'នេះជាសៀវភៅមែនទេ?',
     images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '사과 X → 연필 O',
-    answer: '아니요, 사과가 아니에요. 연필이에요.',
+    hint: '책 X → 가방 O',
+    answer: '아니요, 책이 아니에요. 가방이에요.',
     checks: [
       '이/가 아니에요 = is not (negation of 이다)',
-      '사과 = apple / ប៉ោម, 연필 = pencil / ខ្មៅដៃ',
+      '책 = book / សៀវភៅ, 가방 = bag / កាបូប',
       '받침 있음 → 이 아니에요, 받침 없음 → 가 아니에요'
     ],
-    khmer: 'ទេ វាមិនមែនជាផ្លែប៉ោមទេ។ វាជាខ្មៅដៃ។'
+    khmer: 'ទេ វាមិនមែនជាសៀវភៅទេ។ វាជាកាបូប។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
+    prompt: '이게 가방이에요?',
+    promptKhmer: 'នេះជាកាបូបមែនទេ?',
+    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
+    hint: '가방 X → 시계 O',
+    answer: '아니요, 가방이 아니에요. 시계예요.',
+    checks: [
+      '가방 = bag / កាបូប, 시계 = clock / នាឡិកា',
+      '받침 없음 → 가 아니에요 / 예요',
+      '이게 = 이것이 (this thing)의 줄임말'
+    ],
+    khmer: 'ទេ វាមិនមែនជាកាបូបទេ។ វាជានាឡិកា។'
   },
   {
     tag: 'Q03',
@@ -473,14 +498,29 @@ const QUESTIONS = [
     prompt: '이게 시계예요?',
     promptKhmer: 'នេះជានាឡិកាមែនទេ?',
     images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '시계 X → 가방 O',
-    answer: '아니요, 시계가 아니에요. 가방이에요.',
+    hint: '시계 X → 연필 O',
+    answer: '아니요, 시계가 아니에요. 연필이에요.',
     checks: [
-      '시계 = clock / នាឡិកា, 가방 = bag / កាបូប',
-      '받침 있음 (시계 X, actually 없음) → 가 아니에요',
-      '이게 = 이것이 (this thing)의 줄임말'
+      '시계 = clock / នាឡិកា, 연필 = pencil / ខ្មៅដៃ',
+      '받침 없음 → 가 아니에요',
+      '받침 있음 → 이에요 (연필이에요)'
     ],
-    khmer: 'ទេ វាមិនមែនជានាឡិកាទេ។ វាជាកាបូប។'
+    khmer: 'ទេ វាមិនមែនជានាឡិកាទេ។ វាជាខ្មៅដៃ។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
+    prompt: '이게 연필이에요?',
+    promptKhmer: 'នេះជាខ្មៅដៃមែនទេ?',
+    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
+    hint: '연필 X → 칠판 O',
+    answer: '아니요, 연필이 아니에요. 칠판이에요.',
+    checks: [
+      '연필 = pencil / ខ្មៅដៃ, 칠판 = blackboard / ក្តារខៀន',
+      '받침 있음 → 이 아니에요',
+      '가/이 구분은 받침 유무로 결정'
+    ],
+    khmer: 'ទេ វាមិនមែនជាខ្មៅដៃទេ។ វាជាក្តារខៀន។'
   },
   {
     tag: 'Q03',
@@ -488,14 +528,29 @@ const QUESTIONS = [
     prompt: '이게 칠판이에요?',
     promptKhmer: 'នេះជាក្តារខៀនមែនទេ?',
     images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '칠판 X → 책상 O',
-    answer: '아니요, 칠판이 아니에요. 책상이에요.',
+    hint: '칠판 X → 사과 O',
+    answer: '아니요, 칠판이 아니에요. 사과예요.',
     checks: [
-      '칠판 = blackboard / ក្តារខៀន, 책상 = desk / តុ',
+      '칠판 = blackboard / ក្តារខៀន, 사과 = apple / ប៉ោម',
       '받침 있음 → 이 아니에요',
-      '노트 / 공책 = notebook도 함께 학습'
+      '받침 없음 → 예요 (사과예요)'
     ],
-    khmer: 'ទេ វាមិនមែនជាក្តារខៀនទេ។ វាជាតុ។'
+    khmer: 'ទេ វាមិនមែនជាក្តារខៀនទេ។ វាជាផ្លែប៉ោម។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
+    prompt: '이게 사과예요?',
+    promptKhmer: 'នេះជាផ្លែប៉ោមមែនទេ?',
+    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
+    hint: '사과 X → 공책 O',
+    answer: '아니요, 사과가 아니에요. 공책이에요.',
+    checks: [
+      '사과 = apple / ប៉ោម, 공책 = notebook / សៀវភៅកត់ត្រា',
+      '받침 없음 → 가 아니에요',
+      '받침 있음 → 이에요 (공책이에요)'
+    ],
+    khmer: 'ទេ វាមិនមែនជាផ្លែប៉ោមទេ។ វាជាសៀវភៅកត់ត្រា។'
   },
   {
     tag: 'Q03',
@@ -503,14 +558,29 @@ const QUESTIONS = [
     prompt: '이게 공책이에요?',
     promptKhmer: 'នេះជាសៀវភៅកត់ត្រាមែនទេ?',
     images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '공책 X → 책 O',
-    answer: '아니요, 공책이 아니에요. 책이에요.',
+    hint: '공책 X → 책상 O',
+    answer: '아니요, 공책이 아니에요. 책상이에요.',
     checks: [
-      '공책 = notebook / សៀវភៅកត់ត្រា, 책 = book / សៀវភៅ',
-      '받침 있음 → 이 아니에요',
-      '연필, 가방, 시계, 책상, 사과도 같이 복습'
+      '공책 = notebook / សៀវភៅកត់ត្រា, 책상 = desk / តុ',
+      '받침 있음 → 이 아니에요 / 이에요',
+      '의자 = chair도 함께 학습'
     ],
-    khmer: 'ទេ វាមិនមែនជាសៀវភៅកត់ត្រាទេ។ វាជាសៀវភៅ។'
+    khmer: 'ទេ វាមិនមែនជាសៀវភៅកត់ត្រាទេ។ វាជាតុ។'
+  },
+  {
+    tag: 'Q03',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 네, [명사1] 맞아요.',
+    prompt: '이게 책상이에요?',
+    promptKhmer: 'នេះជាតុមែនទេ?',
+    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
+    hint: '책상 O → 네, 맞아요',
+    answer: '네, 책상이에요. 맞아요.',
+    checks: [
+      '맞다 = to be correct / ត្រឹមត្រូវ',
+      '긍정 대답: 네, [명사]이에요/예요. 맞아요.',
+      '책, 가방, 시계, 연필, 칠판, 사과, 공책, 책상 8개 단어 총복습'
+    ],
+    khmer: 'បាទ/ចាស វាជាតុ។ ត្រឹមត្រូវ។'
   },
 
   // ── Q04: 중에서 누가 제일 ~ (superlative among a group) ────────────────
@@ -774,6 +844,7 @@ function renderQuestion() {
   const imgWrap = document.getElementById('q-images');
   if (q.images && q.images.length) {
     imgWrap.innerHTML = q.images.map(im => `<figure><img src="${im.src}" alt="${im.label}"><figcaption>${im.label}</figcaption></figure>`).join('');
+    imgWrap.className = 'q-images' + (q.images.length === 1 ? ' single' : '');
     imgWrap.style.display = 'flex';
   } else {
     imgWrap.innerHTML = '';
