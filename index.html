@@ -851,7 +851,7 @@ function renderQuestion() {
     imgWrap.innerHTML = '';
     imgWrap.style.display = 'none';
   }
-  document.getElementById('q-hint-text').textContent = q.hint;
+  document.getElementById('q-hint-text').textContent = q.answer;
   document.getElementById('model-answer-text').textContent = q.answer;
   document.getElementById('khmer-answer-text').textContent = q.khmer || '';
   document.getElementById('progress').style.width = ((currentIndex + 1) / questions.length * 100) + '%';
