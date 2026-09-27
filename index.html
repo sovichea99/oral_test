@@ -462,13 +462,14 @@ const QUESTIONS = [
   },
 
   // ── Q03: 이게 ~이에요/예요? (*이/가 아니에요, negation + correction) ──
+  // 사진에 있는 물건이 실제 정답이고, 질문은 일부러 다른 단어로 추측합니다.
   {
     tag: 'Q03',
     pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
     prompt: '이게 책이에요?',
     promptKhmer: 'នេះជាសៀវភៅមែនទេ?',
-    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '책 X → 가방 O',
+    images: [{ src: 'images/object-backpack.jpg', label: '가방 / កាបូប' }],
+    hint: '사진: 가방 → 책 X, 가방 O',
     answer: '아니요, 책이 아니에요. 가방이에요.',
     checks: [
       '이/가 아니에요 = is not (negation of 이다)',
@@ -482,8 +483,8 @@ const QUESTIONS = [
     pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
     prompt: '이게 가방이에요?',
     promptKhmer: 'នេះជាកាបូបមែនទេ?',
-    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '가방 X → 시계 O',
+    images: [{ src: 'images/object-clock.jpg', label: '시계 / នាឡិកា' }],
+    hint: '사진: 시계 → 가방 X, 시계 O',
     answer: '아니요, 가방이 아니에요. 시계예요.',
     checks: [
       '가방 = bag / កាបូប, 시계 = clock / នាឡិកា',
@@ -497,8 +498,8 @@ const QUESTIONS = [
     pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
     prompt: '이게 시계예요?',
     promptKhmer: 'នេះជានាឡិកាមែនទេ?',
-    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '시계 X → 연필 O',
+    images: [{ src: 'images/object-pencil.jpg', label: '연필 / ខ្មៅដៃ' }],
+    hint: '사진: 연필 → 시계 X, 연필 O',
     answer: '아니요, 시계가 아니에요. 연필이에요.',
     checks: [
       '시계 = clock / នាឡិកា, 연필 = pencil / ខ្មៅដៃ',
@@ -512,8 +513,8 @@ const QUESTIONS = [
     pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
     prompt: '이게 연필이에요?',
     promptKhmer: 'នេះជាខ្មៅដៃមែនទេ?',
-    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '연필 X → 칠판 O',
+    images: [{ src: 'images/object-chalkboard.jpg', label: '칠판 / ក្តារខៀន' }],
+    hint: '사진: 칠판 → 연필 X, 칠판 O',
     answer: '아니요, 연필이 아니에요. 칠판이에요.',
     checks: [
       '연필 = pencil / ខ្មៅដៃ, 칠판 = blackboard / ក្តារខៀន',
@@ -527,8 +528,8 @@ const QUESTIONS = [
     pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
     prompt: '이게 칠판이에요?',
     promptKhmer: 'នេះជាក្តារខៀនមែនទេ?',
-    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '칠판 X → 사과 O',
+    images: [{ src: 'images/object-apple.jpg', label: '사과 / ផ្លែប៉ោម' }],
+    hint: '사진: 사과 → 칠판 X, 사과 O',
     answer: '아니요, 칠판이 아니에요. 사과예요.',
     checks: [
       '칠판 = blackboard / ក្តារខៀន, 사과 = apple / ប៉ោម',
@@ -542,8 +543,8 @@ const QUESTIONS = [
     pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
     prompt: '이게 사과예요?',
     promptKhmer: 'នេះជាផ្លែប៉ោមមែនទេ?',
-    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '사과 X → 공책 O',
+    images: [{ src: 'images/object-notebook.jpg', label: '공책 / សៀវភៅកត់ត្រា' }],
+    hint: '사진: 공책 → 사과 X, 공책 O',
     answer: '아니요, 사과가 아니에요. 공책이에요.',
     checks: [
       '사과 = apple / ប៉ោម, 공책 = notebook / សៀវភៅកត់ត្រា',
@@ -557,8 +558,8 @@ const QUESTIONS = [
     pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
     prompt: '이게 공책이에요?',
     promptKhmer: 'នេះជាសៀវភៅកត់ត្រាមែនទេ?',
-    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '공책 X → 책상 O',
+    images: [{ src: 'images/object-desk.jpg', label: '책상 / តុ' }],
+    hint: '사진: 책상 → 공책 X, 책상 O',
     answer: '아니요, 공책이 아니에요. 책상이에요.',
     checks: [
       '공책 = notebook / សៀវភៅកត់ត្រា, 책상 = desk / តុ',
@@ -569,18 +570,18 @@ const QUESTIONS = [
   },
   {
     tag: 'Q03',
-    pattern: '가: 이게 [명사1]이에요/예요?\n나: 네, [명사1] 맞아요.',
+    pattern: '가: 이게 [명사1]이에요/예요?\n나: 아니요, [명사1]이/가 아니에요. [명사2]예요.',
     prompt: '이게 책상이에요?',
     promptKhmer: 'នេះជាតុមែនទេ?',
-    images: [{ src: 'images/object-schoolsupplies.jpg', label: '학용품 / សម្ភារៈសិក្សា' }],
-    hint: '책상 O → 네, 맞아요',
-    answer: '네, 책상이에요. 맞아요.',
+    images: [{ src: 'images/object-book.jpg', label: '책 / សៀវភៅ' }],
+    hint: '사진: 책 → 책상 X, 책 O',
+    answer: '아니요, 책상이 아니에요. 책이에요.',
     checks: [
-      '맞다 = to be correct / ត្រឹមត្រូវ',
-      '긍정 대답: 네, [명사]이에요/예요. 맞아요.',
-      '책, 가방, 시계, 연필, 칠판, 사과, 공책, 책상 8개 단어 총복습'
+      '책상 = desk / តុ, 책 = book / សៀវភៅ',
+      '받침 있음 → 이 아니에요',
+      '8개 학용품 단어 총복습: 책·가방·시계·연필·칠판·사과·공책·책상'
     ],
-    khmer: 'បាទ/ចាស វាជាតុ។ ត្រឹមត្រូវ។'
+    khmer: 'ទេ វាមិនមែនជាតុទេ។ វាជាសៀវភៅ។'
   },
 
   // ── Q04: 중에서 누가 제일 ~ (superlative among a group) ────────────────
